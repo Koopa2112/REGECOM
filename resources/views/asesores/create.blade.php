@@ -4,7 +4,9 @@
 
 @section('contenido')
 
-<main>
+
+
+
     <div class="container py-4">
         <h2>Registrar asesor</h2>
 
@@ -64,4 +66,5 @@
 
         
     </div>
-</main>
+
+@stop
