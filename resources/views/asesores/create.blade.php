@@ -1,4 +1,4 @@
-@extends('layout/template')
+@extends('inicios/supervisor')
 
 @section('title', 'Registrar asesor')
 
@@ -36,9 +36,9 @@
         </div>
 
         <div class="mb-3 row">
-            <label for="nombre_empleado" class="col-sm-2 col-form-label">Nombre de usuario</label>
+            <label for="" class="col-sm-2 col-form-label">Nombre de usuario</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="nombre_empleado" id="nombre_empleado" value="{{old ('nombre_empleado')}}" required>
+                <input type="text" class="form-control" name="user" id="user" value="{{old ('user')}}" required>
 
             </div>
         </div>
@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <a href= "{{ url('asesores') }}" class="btn btn-secondary">Regresar</a>
+        <a href= "{{ url('inicio') }}" class="btn btn-secondary">Regresar</a>
         <button type="submit" class="btn btn-success">Guardar</button>
 
         </form>

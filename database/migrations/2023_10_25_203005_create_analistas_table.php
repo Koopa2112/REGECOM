@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('analistas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_empleado');
+            $table->unsignedBigInteger('id_user');
             $table->timestamps();
 
-            $table->foreign('id_empleado')->references('id')->on('empleados');
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

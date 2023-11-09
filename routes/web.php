@@ -1,7 +1,14 @@
 <?php
 
 use App\Http\Controllers\AsesorController;
+use App\Http\Controllers\VentasController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\InicioController;
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\puesto_empleadoMiddleware;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,23 +21,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::view('/', 'welcome');
+Route::view('/', 'login');
 Route::view('login', 'login')->name('login')->middleware('guest');
-Route::view('inicio', 'inicio')->middleware('auth');
+
+
+
+
+//Route::view('inicio', 'inicios.asesor')->middleware('auth');
+
+//Route::view('');
+
+
+
 Route::post('login', function(){
-    $credentials = request()->only('user', 'password');
-    if(Auth::attempt($credentials)){
-        request()->session()->regenerate();
-        return redirect('/asesores');
-    }
-        return redirect('login');
-    
 }
 );
 
 
+
 Route::resource('/asesores', AsesorController::class)->middleware('auth');
+Route::resource('/ventas', VentasController::class)->middleware('auth');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+Route::get('inicio', [InicioController::class, 'mostrarInicio'])->middleware('auth');
