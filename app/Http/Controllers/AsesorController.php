@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Asesores;
+use App\Models\asesores;
 use App\Models\User;
 use App\Models\administrativos;
 use Illuminate\Http\Request;
@@ -54,7 +54,7 @@ class AsesorController extends Controller
         //return($user);
         $user->save();
 
-        $asesor = new Asesores();
+        $asesor = new asesores();
         $asesor->id_administrativo = $supervisorID;
         $asesor->incubadora = request()->filled('incubadora');
         
