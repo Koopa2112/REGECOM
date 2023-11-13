@@ -1,6 +1,6 @@
 @extends('layout/template')
 
-@section('title', 'Inicio Asesor')
+@section('title', 'Inicio Supervisor')
 
 @section('opciones')
     

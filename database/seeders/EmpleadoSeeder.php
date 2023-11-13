@@ -17,43 +17,79 @@ class EmpleadoSeeder extends Seeder
     {
         DB::table('users')->insert([
             'nombre' => 'Jesus Angel Reyes',
-            'user' => 'Jesus Reyes',
-            'password' => Hash::make('password'),
+            'user' => 'admin',                  //1
+            'password' => Hash::make('123'),
             'estado' => true,
             'puesto_empleado' => 0
         ]);
 
         DB::table('users')->insert([
             'nombre' => 'Raziel Ramirez ',
-            'user' => 'Raziel Ramirez',
-            'password' => Hash::make('passw'),
+            'user' => 'Supervisor',
+            'password' => Hash::make('123'),       //2
             'estado' => true,
             'puesto_empleado' => 1
         ]);
-
+        
         DB::table('users')->insert([
-            'nombre' => 'Karla Palomo T',
-            'user' => 'Karla Palomo',
-            'password' => Hash::make('123'),
+            'nombre' => 'Marcelo',
+            'user' => 'Calidad',
+            'password' => Hash::make('123'),       //3
             'estado' => true,
-            'puesto_empleado' => 3
+            'puesto_empleado' => 2
         ]);
 
         DB::table('users')->insert([
+            'nombre' => 'Karla',
+            'user' => 'Asesor',
+            'password' => Hash::make('123'),    //4
+            'estado' => true,
+            'puesto_empleado' => 3
+        ]);
+        
+
+        DB::table('users')->insert([
+            'nombre' => 'Jonathan',
+            'user' => 'Logistica',
+            'password' => Hash::make('123'),    //5
+            'estado' => true,
+            'puesto_empleado' => 4
+        ]);
+
+        DB::table('users')->insert([
+            'nombre' => 'Sergio',
+            'user' => 'Almacén',
+            'password' => Hash::make('123'),    //6
+            'estado' => true,
+            'puesto_empleado' => 5
+        ]);
+
+        
+        DB::table('users')->insert([
             'nombre' => 'Lic. Eduardo Narvarez',
-            'user' => 'Eduardo Narvaez',
-            'password' => Hash::make('123'),
+            'user' => 'Analista',
+            'password' => Hash::make('123'),    //7
             'estado' => true,
             'puesto_empleado' => 6
         ]);
 
         DB::table('users')->insert([
             'nombre' => 'Raul',
-            'user' => 'Raul',
-            'password' => Hash::make('123'),
+            'user' => 'Analista',
+            'password' => Hash::make('123'),    //8
             'estado' => true,
             'puesto_empleado' => 6
         ]);
+
+        DB::table('users')->insert([
+            'nombre' => 'Adrian',
+            'user' => 'Asesor2',
+            'password' => Hash::make('123'),    //9
+            'estado' => true,
+            'puesto_empleado' => 3
+        ]);
+
+
 
         DB::table('administrativos')->insert([
             'id_user' => 1          
@@ -63,18 +99,36 @@ class EmpleadoSeeder extends Seeder
             'id_user' => 2            
         ]);
 
+        DB::table('administrativos')->insert([
+            'id_user' => 3           
+        ]);
+
+        DB::table('administrativos')->insert([
+            'id_user' => 5          
+        ]);
+
+        DB::table('administrativos')->insert([
+            'id_user' => 6            
+        ]);
+
         DB::table('asesores')->insert([
             'id_administrativo' => 2, 
             'incubadora' => false,  
-            'id_user' => 3            
+            'id_user' => 4            
+        ]);
+
+        DB::table('asesores')->insert([
+            'id_administrativo' => 1, 
+            'incubadora' => true,  
+            'id_user' => 9            
         ]);
 
         DB::table('analistas')->insert([
-            'id_user' => 4          
+            'id_user' => 7          
         ]);
 
         DB::table('analistas')->insert([
-            'id_user' => 5          
+            'id_user' => 8          
         ]);
 
         DB::table('ventas')->insert([

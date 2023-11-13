@@ -1,18 +1,26 @@
 @extends('layout/template')
 
-@section('title', 'Inicio Asesor')
+@section('title', 'Inicio Analista')
 
 @section('opciones')
     
         
 <li class="nav-item dropdown">
             <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Ventas
+                Lineas
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="{{ url('ventas/create') }}">Registrar venta</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas en curso</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas terminadas</a></li>
+                <li><a class="dropdown-item" href="{{ url('ventas/analisis') }}">Lineas para analizar</a></li>
+            </ul>
+</li>
+
+<li class="nav-item dropdown">           
+            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Contratos
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="{{ url('ventas/con_ruta') }} ">Contratos con ruta asignada</a></li>
+                <li><a class="dropdown-item" href="{{ url('ventas/entregadas') }} ">Contratos entregados</a></li>
             </ul>
 </li>
 

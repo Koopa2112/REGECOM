@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InicioController;
 
@@ -21,27 +22,27 @@ use App\Http\Middleware\puesto_empleadoMiddleware;
 |
 */
 
-
 Route::view('/', 'login');
 Route::view('login', 'login')->name('login')->middleware('guest');
-
-
 
 
 //Route::view('inicio', 'inicios.asesor')->middleware('auth');
 
 //Route::view('');
 
-
-
 Route::post('login', function(){
 }
 );
-
-
+Route::get('/ventas/curso', [VentasController::class, 'curso'])->middleware('auth');
+Route::get('/ventas/terminadas', [VentasController::class, 'terminadas'])->middleware('auth');
+Route::get('/ventas/{id}/fecha', [VentasController::class, 'fecha'])->middleware('auth');
+Route::post('/ventas/{id}/saveDate', [VentasController::class, 'saveDate'])->middleware('auth');
 
 Route::resource('/asesores', AsesorController::class)->middleware('auth');
 Route::resource('/ventas', VentasController::class)->middleware('auth');
+Route::resource('/users', UserController::class)->middleware('auth');
+
+
 
 Route::middleware([
     'auth:sanctum',
@@ -56,6 +57,6 @@ Route::middleware([
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-
-
 Route::get('inicio', [InicioController::class, 'mostrarInicio'])->middleware('auth');
+
+Route::view('about', 'about')->name('about');

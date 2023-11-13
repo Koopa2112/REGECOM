@@ -11,8 +11,8 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" href="{{ url('ventas/create') }}">Registrar venta</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas en curso</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas terminadas</a></li>
+                <li><a class="dropdown-item" href="{{ url('ventas/curso') }}">Mis ventas en curso</a></li>
+                <li><a class="dropdown-item" href="{{ url('ventas/terminadas') }}">Mis ventas terminadas</a></li>
             </ul>
 </li>
 

@@ -1,18 +1,18 @@
 @extends('layout/template')
 
-@section('title', 'Inicio Asesor')
+@section('title', 'Inicio Administrador')
 
 @section('opciones')
     
         
 <li class="nav-item dropdown">
             <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Ventas
+                Usuarios
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="{{ url('ventas/create') }}">Registrar venta</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas en curso</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas terminadas</a></li>
+                <li><a class="dropdown-item" href="{{ url('users/create') }}">Registrar usuario</a></li>
+                <li><a class="dropdown-item" href="{{ url('users/index') }}">Ver usuarios</a></li>
+
             </ul>
 </li>
 

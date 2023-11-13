@@ -1,6 +1,6 @@
 @extends('layout/template')
 
-@section('title', 'Inicio Asesor')
+@section('title', 'Inicio Calidad')
 
 @section('opciones')
     
@@ -10,9 +10,8 @@
                 Ventas
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="{{ url('ventas/create') }}">Ventas pendientes de revisión</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas en curso</a></li>
-                <li><a class="dropdown-item" href="#">Mis ventas terminadas</a></li>
+                <li><a class="dropdown-item" href="{{ url('ventas/pendienteRevision') }}">Ventas pendientes de revisión</a></li>
+
             </ul>
 </li>
 

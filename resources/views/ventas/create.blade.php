@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <a href= "{{ url('ventas') }}" class="btn btn-secondary">Regresar</a>
+        <a href= "{{ url('inicio') }}" class="btn btn-secondary">Regresar</a>
 
 
         <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>

@@ -56,7 +56,7 @@ class AsesorController extends Controller
 
         $asesor = new asesores();
         $asesor->id_administrativo = $supervisorID;
-        $asesor->incubadora = request()->filled('incubadora');
+        $asesor->incubadora = $request->has('incubadora');
         
         $asesor->id_user = $user->id;
         $asesor->updated_at = null;

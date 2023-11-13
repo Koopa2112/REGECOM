@@ -5,11 +5,54 @@ namespace App\Http\Controllers;
 use App\Models\analistas;
 use App\Models\ventas;
 use App\Models\User;
+use App\Models\rutas;
 use App\Models\asesores;
 use Illuminate\Http\Request;
 
 class VentasController extends Controller
 {
+
+    public function curso()
+    {
+        $user = auth()->user();
+        $userID = $user->id;
+        $asesor = asesores::where('id_user', $userID)->first();
+        $asesorID = $asesor->id;
+        $ventasCurso = ventas::where('id_asesor', $asesorID)->get();
+        return view('ventas.curso', ['ventas' => $ventasCurso]);
+    }
+
+    public function fecha($id){
+        $zonaVenta = ventas::where('id', $id)->pluck('id_zona')->first();
+        $fechas_disponibles = rutas::where('id_zona', $zonaVenta)->get();
+        return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]);
+    }
+
+    public function saveDate(Request $request, $id){
+        $request->validate([
+            'fecha_entrega' => 'required',                       
+        ]);
+
+        $ruta = rutas::find($request->input('fecha_entrega'));
+        if($ruta->num_entregas < $ruta->max_entregas){
+            $venta = ventas::find($id);
+            $venta->estado_venta = (6); 
+            
+            $venta->id_zona = $request->input('fecha_entrega');
+            //return($venta);
+            //$venta->save();
+
+
+            $ruta->num_entregas++;
+            return($ruta);
+
+            return view("message", ['msg' => "Fecha guardada"]);
+        }
+        else{
+            return view("message", ['msg' => "No se ha podido guardar, límite de entregas alcanzado"]);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -35,7 +78,7 @@ class VentasController extends Controller
         $user = auth()->user();
         $userID = $user->id;
         $asesor = asesores::where('id_user', $userID)->first();
-        //return($asesor);
+        
         $asesorID = $asesor->id;
 
         $ultimaVenta = ventas::latest()->first();
@@ -96,7 +139,7 @@ class VentasController extends Controller
 
         $venta = new ventas();
         $venta->id_asesor = $asesorID;
-        if($asesor->incubadora === true){
+        if($asesor->incubadora === 1){
             $venta->estado_venta = (1); 
         }else{
             $venta->estado_venta = (2); 
@@ -122,7 +165,7 @@ class VentasController extends Controller
         $venta->notas_MC = $request->input('notas_MC');
         $venta->id_zona = $request->input('id_zona');
         $venta->fecha_venta = now();
-
+ 
         $venta->save();
 
         return view("message", ['msg' => "Registro guardado"]);
@@ -149,7 +192,7 @@ class VentasController extends Controller
      */
     public function update(Request $request, ventas $ventas)
     {
-        //
+        
     }
 
     /**
@@ -159,6 +202,17 @@ class VentasController extends Controller
     {
         //
     }
+
+    public function terminadas()
+    {
+        $user = auth()->user();
+        $userID = $user->id;
+        $asesor = asesores::where('id_user', $userID)->first();
+        $asesorID = $asesor->id;
+        $terminadas = ventas::where('id_asesor', $asesorID)->whereIn('estado_venta', [9,10])->get();
+        return view('ventas.terminadas', ['ventas' => $terminadas]);
+    }
+
 
 
 
