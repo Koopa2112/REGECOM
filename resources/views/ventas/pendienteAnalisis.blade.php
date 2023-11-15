@@ -1,12 +1,12 @@
-@extends('inicios/asesor')
+@extends('inicios/analista')
 
-@section('title', 'Ventas terminadas')
+@section('title', 'Lineas para analizar')
 
 @section('contenido')
 <main>
     <div class="container py-4">
 
-        <h2>Ventas terminadas</h2>
+        <h2>Lineas para analizar</h2>
         <table class="table table-striped">
 
             <thead>
@@ -14,8 +14,8 @@
                     <th>ID venta</th>
                     <th>Linea</th>
                     <th>Nombre del cliente</th>
-                    <th>Estado</th>
-                    <th>Info</th>
+                    <th>Asesor</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -27,17 +27,10 @@
                     <th>{{ $venta->id }}</th>
                     <th>{{ $venta->linea_venta }}</th>
                     <th>{{ $venta->nombre_cliente }}</th>
+                    <th>{{ $venta->asesor->user->user}}</th>
 
-                    @if ($venta->estado_venta == 9)
-                    <th>Finalizada</th>
-                    @elseif ($venta->estado_venta == 10)
-                    <th>Cancelada</th>
-                    @else
-                    <th></th>
-                    @endif
-
-                    <th><a href="{{  url('ventas/' .$venta->id. '/show') }}" class="btn btn-primary btn-small">Ver</a>
-                    </th>
+                    <th><a href="{{  url('ventas/' .$venta->id. '/ashow') }}"
+                            class="btn btn-primary btn-small">Abrir</a></th>
 
 
 
@@ -46,6 +39,7 @@
             </tbody>
 
         </table>
+
     </div>
 </main>
 

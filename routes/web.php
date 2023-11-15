@@ -33,10 +33,27 @@ Route::view('login', 'login')->name('login')->middleware('guest');
 Route::post('login', function(){
 }
 );
+
 Route::get('/ventas/curso', [VentasController::class, 'curso'])->middleware('auth');
+
 Route::get('/ventas/terminadas', [VentasController::class, 'terminadas'])->middleware('auth');
 Route::get('/ventas/{id}/fecha', [VentasController::class, 'fecha'])->middleware('auth');
+Route::post('/ventas/{id}/cancel', [VentasController::class, 'cancel'])->middleware('auth');
 Route::post('/ventas/{id}/saveDate', [VentasController::class, 'saveDate'])->middleware('auth');
+Route::get('/ventas/{id}/show', [VentasController::class, 'show'])->middleware('auth');
+Route::get('/ventas/dia', [VentasController::class, 'dia'])->middleware('auth');
+Route::get('/ventas/{id}/sshow', [VentasController::class, 'sshow'])->middleware('auth');
+Route::get('/ventas/pendienteRevision', [VentasController::class, 'pendienteRevision'])->middleware('auth');
+Route::get('/ventas/{id}/cshow', [VentasController::class, 'cshow'])->middleware('auth');
+Route::post('/ventas/{id}/aceptar', [VentasController::class, 'aceptar'])->middleware('auth');
+Route::post('/ventas/{id}/rechazar', [VentasController::class, 'rechazar'])->middleware('auth');
+Route::get('/ventas/pendienteAnalisis', [VentasController::class, 'pendienteAnalisis'])->middleware('auth');
+Route::get('/ventas/{id}/ashow', [VentasController::class, 'ashow'])->middleware('auth');
+Route::post('/ventas/{id}/analisis', [VentasController::class, 'analisis'])->middleware('auth');
+
+Route::get('/asesores/lista', [AsesorController::class, 'lista'])->middleware('auth');
+Route::get('/asesores/{id}/show', [Asesor::class, 'show'])->middleware('auth');
+
 
 Route::resource('/asesores', AsesorController::class)->middleware('auth');
 Route::resource('/ventas', VentasController::class)->middleware('auth');

@@ -1,4 +1,4 @@
-@extends('inicios/asesor')
+@extends('inicios/supervisor')
 
 @section('title', 'Ventas en curso')
 
@@ -14,9 +14,9 @@
                     <th>ID venta</th>
                     <th>Linea</th>
                     <th>Nombre del cliente</th>
+                    <th>Asesor</th>
                     <th>Estado</th>
                     <th>Info</th>
-                    <th></th>
                 </tr>
             </thead>
 
@@ -28,6 +28,7 @@
                     <th>{{ $venta->id }}</th>
                     <th>{{ $venta->linea_venta }}</th>
                     <th>{{ $venta->nombre_cliente }}</th>
+                    <th>{{ $venta->asesor->user->user}}</th>
                     @if ($venta->estado_venta == 0)
                     <th>Creada</th>
                     @elseif ($venta->estado_venta == 1)
@@ -52,14 +53,9 @@
                     <th>Cancelada</th>
                     @endif
 
-                    <th><a href="{{  url('ventas/' .$venta->id. '/show') }}" class="btn btn-primary btn-small">Ver</a>
+                    <th><a href="{{  url('ventas/' .$venta->id. '/sshow') }}" class="btn btn-primary btn-small">Ver</a>
                     </th>
-                    @if ($venta->estado_venta == 5)
-                    <th><a href="{{  url('ventas/' .$venta->id. '/fecha') }}"
-                            class="btn btn-secondary btn-small">Agregar fecha</a></th>
-                    @else
-                    <th></th>
-                    @endif
+
 
 
                 </tr>

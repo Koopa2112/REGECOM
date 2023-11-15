@@ -11,7 +11,7 @@ class analistas extends Model
 
     protected $table = 'analistas';
 
-    public function empleado(){
-        return $this->belongsTo(empleados::class, 'id_empleado', 'id');
+    public function user(){
+        return $this->belongsTo(user::class, 'id_user', 'id');
     }
 }

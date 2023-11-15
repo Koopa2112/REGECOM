@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\asesores;
 use App\Models\User;
 use App\Models\administrativos;
+use App\Models\ventas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -66,6 +67,29 @@ class AsesorController extends Controller
         return view("message", ['msg' => "Asesor guardado"]);
     }
 
+    public function lista(){
+        $user = auth()->user();
+        if($user->puesto_empleado = 1){
+            $userId = $user->id;
+            $supervisor = administrativos::where('id_user', $userId)->first();
+            $asesores = asesores::where('id_administrativo', $supervisor->id)->get();
+            $asesoresId = $asesores->pluck('id');
+            $asesoresUsuarios = User::whereIn('id', $asesoresId)->get();
+            $hoy = now(('America/Mexico_City'))->format('Y-m-d');
+            $ventas = ventas::where('fecha_venta', $hoy)->pluck('id_asesor');
+            $conteo = $ventas->countBy(function ($item) {
+                return $item;
+            });
+            //return($asesores);
+
+            return view("asesores.lista", ['conteo' => $conteo, 'asesores'=> $asesores]);
+        }else{
+            return view("message", ['msg' => "No debes estar aqui"]);
+        }
+        
+
+    }
+
     /**
      * Display the specified resource.
      */
@@ -77,17 +101,45 @@ class AsesorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Asesores $asesor)
+    public function edit($id)
     {
-        //
+        $asesor = asesores::find($id);
+
+        return view('asesores.edit', ['asesor' => $asesor]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Asesores $asesor)
+    public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'nombre_completo' => 'required',
+            'user' => 'required|max:255|unique:users,user,' . $id,
+            'password' => 'max:255',
+            
+        ]);
+        
+        //$userId = asesores::where('id_user', $id)->pluck('id')->first();
+        
+        $user = User::find($id);
+        
+        $user->nombre = $request->input('nombre_completo');
+        $user->user = $request->input('user');
+        if('password' != null){
+            $user->password = Hash::make($request->input('password'));
+        }
+        $user->estado = $request->has('estado');
+
+        $user->save();
+        
+        $asesorB = asesores::where('id_user', $id)->first();
+        $asesor = asesores::find($asesorB->id);
+        $asesor->incubadora = $request->has('incubadora');
+        $asesor->save();
+
+        return view("message", ['msg' => "Asesor actualizado correctamente"]);
     }
 
     /**

@@ -15,8 +15,8 @@ class asesores extends Model
         return $this->belongsTo(administrativos::class, 'id_administrativo', 'id');
     }
 
-    public function empleado(){
-        return $this->belongsTo(empleados::class, 'id_empleado', 'id');
+    public function user(){
+        return $this->belongsTo(user::class, 'id_user', 'id');
     }
 
 }

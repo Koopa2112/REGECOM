@@ -11,22 +11,22 @@ class ventas extends Model
     //protected $table = 'ventas';
 
     public function asesor(){
-        return $this->belongsTo(asesores::class, 'asesor_id', 'id');
+        return $this->belongsTo(asesores::class, 'id_asesor', 'id');
     }
     
     public function analista(){
-        return $this->belongsTo(analistas::class, 'analista_id', 'id');
+        return $this->belongsTo(analistas::class, 'id_analista', 'id');
     }
 
     public function equipo(){
-        return $this->belongsTo(equipos::class, 'equipo_id', 'id');
+        return $this->belongsTo(equipos::class, 'id_equipo', 'id');
     }
 
     public function ruta(){
-        return $this->belongsTo(rutas::class, 'ruta_id', 'id');
+        return $this->belongsTo(rutas::class, 'id_ruta', 'id');
     }
 
     public function zona(){
-        return $this->belongsTo(zonas::class, 'zona_id', 'id');
+        return $this->belongsTo(zonas::class, 'id_zona', 'id');
     }
 }

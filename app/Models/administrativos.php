@@ -11,7 +11,7 @@ class administrativos extends Model
 
     protected $table = 'administrativos';
 
-    public function empleado(){
-        return $this->belongsTo(empleados::class, 'id_empleado', 'id');
+    public function user(){
+        return $this->belongsTo(user::class, 'id_user', 'id');
     }
 }
