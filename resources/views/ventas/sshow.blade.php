@@ -157,7 +157,7 @@
                 <label for="notas_vendedor" class="col-sm-2 col-form-label">Notas</label>
                 <div class="col-sm-5">
                     <textarea class="form-control-plaintext" name="notas_vendedor" id="notas_vendedor"
-                        value="{{$venta->notas_vendedor}}" readonly></textarea>
+                         readonly>{{$venta->notas_vendedor}}</textarea>
                 </div>
             </div>
 
@@ -165,7 +165,7 @@
                 <label for="notas_analista" class="col-sm-2 col-form-label">Notas analista</label>
                 <div class="col-sm-5">
                     <textarea class="form-control-plaintext" name="notas_analista" id="notas_analista"
-                        value="{{$venta->notas_MC}}" readonly></textarea>
+                     readonly>{{$venta->notas_MC}}</textarea>
                 </div>
             </div>
 
