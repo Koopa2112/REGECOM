@@ -47,8 +47,50 @@
             <div class="mb-3 row">
                 <label for="plan_venta" class="col-sm-2 col-form-label">Plan</label>
                 <div class="col-sm-5">
-                    <input type="plan_venta" class="form-control" name="plan_venta" id="plan_venta"
-                        value="{{old ('plan_venta')}}" required>
+                    <select class="form-control" name="plan_venta" id="plan_venta">
+                        <option disabled selected>Seleccionar...</option>
+                        <option value="Telcel Plus 1"> Telcel Plus 1</option>
+                        <option value="Telcel Plus 1.5"> Telcel Plus 1.5</option>
+                        <option value="Telcel Plus 2"> Telcel Plus 2</option>
+                        <option value="Telcel Plus 3"> Telcel Plus 3</option>
+                        <option value="Telcel Plus 4"> Telcel Plus 4</option>
+                        <option value="Telcel Plus 5"> Telcel Plus 5</option>
+                        <option value="Telcel Plus 6"> Telcel Plus 6</option>
+                        <option value="Telcel Plus 7 "> Telcel Plus 7</option>
+                        <option value="Telcel Plus 8"> Telcel Plus 8</option>
+                        <option value="Telcel Plus 9"> Telcel Plus 9</option>
+                        <option value="Telcel Plus 1 CC"> Telcel Plus 1 CC</option>
+                        <option value="Telcel Plus 1.5 CC"> Telcel Plus 1.5 CC</option>
+                        <option value="Telcel Plus 2 CC"> Telcel Plus 2 CC</option>
+                        <option value="Telcel Plus 3"> Telcel Plus 3CC</option>
+                        <option value="Telcel Plus 4 CC"> Telcel Plus 4 CC</option>
+                        <option value="Telcel Plus 5 CC"> Telcel Plus 5 CC</option>
+                        <option value="Telcel Plus 6 CC"> Telcel Plus 6 CC</option>
+                        <option value="Telcel Plus 7 CC"> Telcel Plus 7 CC</option>
+                        <option value="Telcel Plus 8 CC"> Telcel Plus 8 CC</option>
+                        <option value="Telcel Plus 9 CC"> Telcel Plus 9 CC</option>
+                        <option value="Telcel Plus 1 MPP"> Telcel Plus 1 MPP</option>
+                        <option value="Telcel Plus 1.5"> Telcel Plus 1.5 MPP</option>
+                        <option value="Telcel Plus 2"> Telcel Plus 2 MPP</option>
+                        <option value="Telcel Plus 3"> Telcel Plus 3 MPP</option>
+                        <option value="Telcel Plus 4"> Telcel Plus 4 MPP</option>
+                        <option value="Telcel Plus 5"> Telcel Plus 5 MPP</option>
+                        <option value="Telcel Plus 6"> Telcel Plus 6 MPP</option>
+                        <option value="Telcel Plus 7 "> Telcel Plus 7 MPP</option>
+                        <option value="Telcel Plus 8"> Telcel Plus 8 MPP</option>
+                        <option value="Telcel Plus 9"> Telcel Plus 9 MPP</option>
+                        <option value="Telcel Plus 1 CC"> Telcel Plus 1 MPP CC</option>
+                        <option value="Telcel Plus 1.5 CC"> Telcel Plus 1.5 MPP CC</option>
+                        <option value="Telcel Plus 2 CC"> Telcel Plus 2 MPP CC</option>
+                        <option value="Telcel Plus 3"> Telcel Plus 3 MPP CC</option>
+                        <option value="Telcel Plus 4 CC"> Telcel Plus 4 MPP CC</option>
+                        <option value="Telcel Plus 5 CC"> Telcel Plus 5 MPP CC</option>
+                        <option value="Telcel Plus 6 CC"> Telcel Plus 6 MPP CC</option>
+                        <option value="Telcel Plus 7 CC"> Telcel Plus 7 MPP CC</option>
+                        <option value="Telcel Plus 8 CC"> Telcel Plus 8 MPP CC</option>
+                        <option value="Telcel Plus 9 CC"> Telcel Plus 9 MPP CC</option>
+
+                    </select>
 
                 </div>
             </div>
