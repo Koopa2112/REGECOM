@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\analistas;
+use App\Models\administrativos;
 use App\Models\ventas;
 use App\Models\User;
 use App\Models\rutas;
@@ -358,7 +359,8 @@ class VentasController extends Controller
     }
 
     public function dia(){
-        $supervisor = auth()->user();
+        $user = auth()->user();
+        $supervisor = administrativos::where('id_user', $user->id);
         $supervisorId = $supervisor->id;
         $asesores = asesores::where('id_administrativo', $supervisorId)->get()->pluck('id');
         $hoy = now(('America/Mexico_City'))->format('Y-m-d');

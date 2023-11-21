@@ -96,7 +96,7 @@ class UserController extends Controller
         if(auth()->user()->puesto_empleado == 0){
             $request->validate([
                 'nombre_completo' => 'required',
-                'user' => 'required|unique:Users,user,' . $id,
+                'user' => 'required|unique:users,user,' . $id,
                 'puesto_empleado' => 'required'
             ]);
             $user = user::find($id);
