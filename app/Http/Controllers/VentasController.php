@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\rutas;
 use App\Models\zonas;
 use App\Models\asesores;
+use App\Models\equipos;
 use Illuminate\Http\Request;
 
 class VentasController extends Controller
@@ -30,36 +31,34 @@ class VentasController extends Controller
         if($venta->id_asesor == $asesorId && $venta->estado_venta != 10){
 
             $zonaVenta = ventas::where('id', $id)->pluck('id_zona')->first();
-            $fechas_disponibles = rutas::where('id_zona', $zonaVenta)->get();
-        return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]);
+            $fechas_disponibles = rutas::where('id_zona', $zonaVenta)->where('num_entregas', '<', rutas::raw('max_entregas'))->get();
+            return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]);
             
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-
+/*
         $zonaVenta = ventas::where('id', $id)->pluck('id_zona')->first();
         $fechas_disponibles = rutas::where('id_zona', $zonaVenta)->get();
-        return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]);
+        return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]); */
     }
 
     public function saveDate(Request $request, $id){
         $request->validate([
             'fecha_entrega' => 'required',                       
         ]);
-
         $ruta = rutas::find($request->input('fecha_entrega'));
         if($ruta->num_entregas < $ruta->max_entregas){
             $venta = ventas::find($id);
             $venta->estado_venta = (6); 
             
-            $venta->id_zona = $request->input('fecha_entrega');
-            //return($venta);
-            //$venta->save();
+            $venta->id_ruta = $request->input('fecha_entrega');
+
+            $venta->save();
 
 
             $ruta->num_entregas++;
-            return($ruta);
-
+            $ruta->save();
             return view("message", ['msg' => "Fecha guardada"]);
         }
         else{
@@ -112,35 +111,38 @@ class VentasController extends Controller
         
         $asesorID = $asesor->id;
 
-        $ultimaVenta = ventas::latest()->first();
-        
+        $ultimaVenta = ventas::get()->last();
         
         
     // Obtener la lista de analistas disponibles
         $analistasU = User::where('puesto_empleado', 6)->where('estado', true)->pluck('id');
+
   //tengo la colección con los id
-        $id_analistas = [];
+
         $n = 0;
-        foreach($analistasU as $id_user){       //busco en cada uno de los analistas, si conocide con los id activos
+        /*foreach($analistasU as $id_user){       //busco en cada uno de los analistas, si conocide con los id activos
             $id_analistas[$n] = analistas::where('id_user', $id_user)->pluck('id');
             $n++;
-        }
-     
+        }*/
+        $id_analistas = analistas::whereIn('id_user', $analistasU)->get()->pluck('id');
+        $id_analistasArray = $id_analistas->all();
         if($ultimaVenta == null){
-            $ultimoAnalistaUsado = 1;
+            $ultimoAnalistaUsado = null;
         }else{                              //ver si hay una venta, si no por defecto poner a analista 1
             $ultimoAnalistaUsado = $ultimaVenta->id_analista;
         }      
 
-        if ($ultimoAnalistaUsado == false || $ultimoAnalistaUsado == last($id_analistas)->last()){
-            // Si el último analista no se encuentra o es el último de la lista, selecciona el primero
-            $analistaAsignado = $id_analistas[0]->first();
-            
+        if ($ultimoAnalistaUsado == null || $ultimoAnalistaUsado == $id_analistas->last()){
+            // Si el último analista no se encuentra o es el último de la lista, selecciona el primeros
+            $analistaAsignado = reset($id_analistasArray);
         } else {
             // Selecciona el siguiente analista en la lista
-            $analistaAsignado = ($ultimoAnalistaUsado + 1);
+
+            $key = array_search($ultimoAnalistaUsado, $id_analistasArray);
+            if ($key !== false && isset($id_analistasArray[$key + 1])) {
+                $analistaAsignado = $id_analistasArray[$key + 1];
+            }
         }
-                
         $request->validate([
             'linea_venta' => 'required',
             'nombre_cliente' => 'required',
@@ -191,7 +193,6 @@ class VentasController extends Controller
         $venta->notas_MC = $request->input('notas_MC');
         $venta->id_zona = $request->input('id_zona');
         $venta->fecha_venta = now(('America/Mexico_City'));
- 
         $venta->save();
 
         return view("message", ['msg' => "Registro guardado =D"]);
@@ -291,18 +292,27 @@ class VentasController extends Controller
     public function analisis(request $request, $id){
         $request->validate([
             'notas_analista' => 'required',
-            'estado' => 'required'
+            'estado' => 'required',
         ]);
 
         if(auth()->user()->puesto_empleado == 6){
             $venta = ventas::find($id);
             $venta->notas_MC = $request->input('notas_analista');
-            $venta->estado_venta = $request->input('estado');
+            $venta->estado_venta = intval($request->input('estado'));
             $venta->save();
-            if($venta->estado_venta == 4){
+            if($venta->estado_venta == 5){
                 return view("message", ['msg' => "Tramite mandado a proceso ;D"]);
-            }elseif($venta->estado_venta == 5){
+            }elseif($venta->estado_venta == 3){
                 return view("message", ['msg' => "Venta con problema :`("]);
+            }elseif($venta->estado_venta == 7){
+                if(null != ($request->input('id_equipo'))){
+                    $venta->id_equipo = intval($request->input('id_equipo'), 10);
+                    $equipo = equipos::find($venta->id_equipo);
+                    $equipo->entregado = true;
+                    $venta->save();
+                    $equipo->save();
+                    return view("message", ['msg' => "Venta lista para entregarse :D"]);
+                }
             }
 
 
@@ -369,9 +379,10 @@ class VentasController extends Controller
     }
 
     public function pendienteAnalisis(){
-
-        if(auth()->user()->puesto_empleado == 6){
-            $ventas = ventas::where('estado_venta', 2)->get();
+        $user = auth()->user();
+        $analista = analistas::where('id_user', $user->id)->first();
+        if($user->puesto_empleado == 6){
+            $ventas = ventas::where('estado_venta', 2)->where('id_analista', $analista->id)->get();
             return view("ventas.pendienteAnalisis", ['ventas' => $ventas]);
             
         }else{
@@ -379,4 +390,115 @@ class VentasController extends Controller
         }
 
     }
+
+    public function conRuta(){
+        $user = auth()->user();
+        $analista = analistas::where('id_user', $user->id)->get()->first();
+        if($user->puesto_empleado == 6){
+            $ventas = ventas::where('estado_venta', 6)->where('id_analista', $analista->id)->get();
+            return view("ventas.conRuta", ['ventas' => $ventas]);
+            
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+
+    }
+
+    public function contrato($id){
+        $user = auth()->user();
+        $userId = $user->id;
+        //$asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
+        $venta = ventas::find($id);
+        $zona = zonas::find($venta->id_zona);
+        if($user->puesto_empleado == 6){
+            $equipos = equipos::where('entregado', false)->get();
+            return view('ventas.contrato', ['venta' => $venta, 'zona' => $zona, 'equipos' => $equipos]);       
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
+    public function entregadas(){
+        $user = auth()->user();
+        $analista = analistas::where('id_user', $user->id)->get()->first();
+        if($user->puesto_empleado == 6){
+            
+            $ventas = ventas::where('estado_venta', 8)->where('id_analista', $analista->id)->get();
+
+            return view("ventas.entregadas", ['ventas' => $ventas]);
+            
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
+    public function finalizar($id){
+        if(auth()->user()->puesto_empleado == 6){
+            $venta = ventas::find($id);
+            $venta->estado_venta = 9;
+            $venta->save();
+            return redirect()->back();
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
+
+
+    public function pendienteZona(){
+        if(auth()->user()->puesto_empleado == 4){
+            $ventas = ventas::where('estado_venta', 5)->get();
+ 
+            return view("ventas.pendienteZona", ['ventas' => $ventas]);
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
+    public function asignarZona($id){
+        if(auth()->user()->puesto_empleado == 4){
+            $venta = ventas::find($id);
+            $zonas = zonas::all();
+            return view("ventas.asignarZona", ['venta' => $venta, 'zonas' => $zonas, ]);
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
+    public function zonaAsignada(request $request, $id){
+        if(auth()->user()->puesto_empleado == 4){
+            //return($request);
+            $request->validate([
+                'id_zona' => 'required'
+            ]);
+            $venta = ventas::find($id);
+            $venta->estado_venta = 4;
+            $venta->id_zona = intval($request->input('id_zona'), 10);
+            $venta->save();
+            return view("message", ['msg' => "Zona guardada correctamente (="]);
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
+    public function enviadas(){
+        if(auth()->user()->puesto_empleado == 4){
+            $ventas = ventas::where('estado_venta', 7)->get();
+            return view('ventas.enviadas', ['ventas' => $ventas]);
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
+    public function envio(request $request, $id){
+        if(auth()->user()->puesto_empleado == 4){
+            $venta = ventas::find($id);
+            $venta->estado_venta = intval($request->input('estado_venta'), 10);
+            $venta->save();
+            return back();
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+    
 }

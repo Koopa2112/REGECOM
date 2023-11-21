@@ -10,17 +10,18 @@
         Lineas
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
-        <li><a class="dropdown-item" href="#">Lineas para asignar zona</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/pendienteZona') }}">Ventas para asignar zona</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/enviadas') }}">Ventas enviadas</a></li>
     </ul>
 </li>
 
 <li class="nav-item dropdown">
     <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        Fechas de entrega
+        Rutas
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
-        <li><a class="dropdown-item" href="{{ url('ventas/create') }}">Agregar fecha de entrega</a></li>
-        <li><a class="dropdown-item" href="#">Ver fechas de entrega</a></li>
+        <li><a class="dropdown-item" href="{{ url('rutas/create') }}">Agregar ruta</a></li>
+        <li><a class="dropdown-item" href="{{ url('rutas') }}">Ver rutas</a></li>
 
     </ul>
 </li>
@@ -30,8 +31,8 @@
         Zonas
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
-        <li><a class="dropdown-item" href="{{ url('ventas/create') }}">Agregar zona</a></li>
-        <li><a class="dropdown-item" href="#">Ver zonas</a></li>
+        <li><a class="dropdown-item" href="{{ url('zonas/create') }}">Agregar zona</a></li>
+        <li><a class="dropdown-item" href="{{ url('zonas/') }}">Ver zonas</a></li>
 
     </ul>
 </li>

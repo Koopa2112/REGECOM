@@ -19,7 +19,7 @@
         Contratos
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
-        <li><a class="dropdown-item" href="{{ url('ventas/con_ruta') }} ">Contratos con ruta asignada</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/conRuta') }} ">Contratos con ruta asignada</a></li>
         <li><a class="dropdown-item" href="{{ url('ventas/entregadas') }} ">Contratos entregados</a></li>
     </ul>
 </li>

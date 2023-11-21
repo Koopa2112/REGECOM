@@ -11,7 +11,7 @@
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
         <li><a class="dropdown-item" href="{{ url('users/create') }}">Registrar usuario</a></li>
-        <li><a class="dropdown-item" href="{{ url('users/index') }}">Ver usuarios</a></li>
+        <li><a class="dropdown-item" href="{{ url('users') }}">Ver usuarios</a></li>
 
     </ul>
 </li>

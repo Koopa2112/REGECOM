@@ -17,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = user::all();
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -61,7 +62,9 @@ class UserController extends Controller
 
             $asesor->save();
         }elseif($request->puesto_empleado == 6){
-
+            $analista = new analistas();
+            $analista->id_user = $user->id;
+            $analista->save();
         }
 
         return view("message", ['msg' => "Usuario guardado"]);
@@ -79,17 +82,36 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(user $user)
-    {
-        //
+    public function edit($id)
+    {   
+        $user = user::find($id);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, $id)
     {
-        //
+        if(auth()->user()->puesto_empleado == 0){
+            $request->validate([
+                'nombre_completo' => 'required',
+                'user' => 'required|unique:Users,user,' . $id,
+                'puesto_empleado' => 'required'
+            ]);
+            $user = user::find($id);
+            $user->nombre = $request->input('nombre_completo');
+            $user->user = $request->input('user');
+            $user->puesto_empleado = $request->input('puesto_empleado');
+            if(null != ($request->input('password'))){
+                $user->password = Hash::make($request->input('password'));
+            }
+            
+            $user->save();
+            return view('message', ['msg' => "Usuario editado correctamente =)"]);
+        }else{
+            return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
+        }
     }
 
     /**

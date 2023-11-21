@@ -127,7 +127,7 @@ class AsesorController extends Controller
         
         $user->nombre = $request->input('nombre_completo');
         $user->user = $request->input('user');
-        if('password' != null){
+        if($request->input('password') != null){
             $user->password = Hash::make($request->input('password'));
         }
         $user->estado = $request->has('estado');

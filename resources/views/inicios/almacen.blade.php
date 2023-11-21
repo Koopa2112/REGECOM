@@ -10,9 +10,9 @@
         Inventario
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
-        <li><a class="dropdown-item" href="{{ url('ventas/create') }}">Agregar equipos</a></li>
-        <li><a class="dropdown-item" href="#">Ver equipos asignados</a></li>
-        <li><a class="dropdown-item" href="#">Inventario</a></li>
+        <li><a class="dropdown-item" href="{{ url('equipos/create') }}">Agregar equipos</a></li>
+        <li><a class="dropdown-item" href="{{ url('equipos/asignados') }}">Ver equipos asignados</a></li>
+        <li><a class="dropdown-item" href="{{ url('equipos/inventario') }}">Inventario</a></li>
     </ul>
 </li>
 

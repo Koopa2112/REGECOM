@@ -5,6 +5,9 @@ use App\Http\Controllers\VentasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\RutaController;
+use App\Http\Controllers\ZonaController;
+use App\Http\Controllers\EquipoController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +53,20 @@ Route::post('/ventas/{id}/rechazar', [VentasController::class, 'rechazar'])->mid
 Route::get('/ventas/pendienteAnalisis', [VentasController::class, 'pendienteAnalisis'])->middleware('auth');
 Route::get('/ventas/{id}/ashow', [VentasController::class, 'ashow'])->middleware('auth');
 Route::post('/ventas/{id}/analisis', [VentasController::class, 'analisis'])->middleware('auth');
+Route::get('/ventas/conRuta', [VentasController::class, 'conRuta'])->middleware('auth');
+Route::get('/ventas/entregadas', [VentasController::class, 'entregadas'])->middleware('auth');
+Route::get('/ventas/{id}/contrato', [VentasController::class, 'contrato'])->middleware('auth');
+Route::post('/ventas/{id}/finalizar', [VentasController::class, 'finalizar'])->middleware('auth');
+
+Route::get('/ventas/pendienteZona', [VentasController::class, 'pendienteZona'])->middleware('auth');
+Route::get('/ventas/{id}/asignarZona', [VentasController::class, 'asignarZona'])->middleware('auth');
+Route::post('/ventas/{id}/zonaAsignada', [VentasController::class, 'zonaAsignada'])->middleware('auth');
+Route::get('/ventas/enviadas', [VentasController::class, 'enviadas'])->middleware('auth');
+Route::post('/ventas/{id}/envio', [VentasController::class, 'envio'])->middleware('auth');
+
+Route::get('/equipos/asignados', [EquipoController::class, 'asignados'])->middleware('auth');
+Route::get('/equipos/inventario', [EquipoController::class, 'inventario'])->middleware('auth');
+
 
 Route::get('/asesores/lista', [AsesorController::class, 'lista'])->middleware('auth');
 Route::get('/asesores/{id}/show', [Asesor::class, 'show'])->middleware('auth');
@@ -58,6 +75,9 @@ Route::get('/asesores/{id}/show', [Asesor::class, 'show'])->middleware('auth');
 Route::resource('/asesores', AsesorController::class)->middleware('auth');
 Route::resource('/ventas', VentasController::class)->middleware('auth');
 Route::resource('/users', UserController::class)->middleware('auth');
+Route::resource('/rutas', RutaController::class)->middleware('auth');
+Route::resource('/zonas', ZonaController::class)->middleware('auth');
+Route::resource('/equipos', EquipoController::class)->middleware('auth');
 
 
 

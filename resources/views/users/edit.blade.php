@@ -1,6 +1,6 @@
 @extends('inicios/admin')
 
-@section('title', 'Registrar Usuario')
+@section('title', 'Editar Usuario')
 
 @section('contenido')
 
@@ -8,7 +8,7 @@
 
 
     <div class="container py-4">
-        <h2>Registrar usuario</h2>
+        <h2>Editar usuario</h2>
 
         @if ($errors->any())
 
@@ -23,14 +23,14 @@
 
         @endif
 
-    <form action="{{ url('users') }}" method="post" id="registrarUsuario">
-
+    <form action="{{ url('users/'. $user->id) }}" method="post" id="registrarUsuario">
+        @method("put")
         @csrf
 
         <div class="mb-3 row">
             <label for="nombre_completo" class="col-sm-2 col-form-label">Nombre completo</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="nombre_completo" id="nombre_completo" value="{{old ('nombre_completo')}}" required>
+                <input type="text" class="form-control" name="nombre_completo" id="nombre_completo" value="{{$user->nombre}}" required>
 
             </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="mb-3 row">
             <label for="user" class="col-sm-2 col-form-label">Nombre de usuario</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="user" id="user" value="{{old ('user')}}" required>
+                <input type="text" class="form-control" name="user" id="user" value="{{$user->user}}" required>
 
             </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="mb-3 row">
             <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
             <div class="col-sm-5">
-                <input type="password" class="form-control" name="password" id="password" value="{{old ('password')}}" required>
+                <input type="password" class="form-control" name="password" id="password" value="" required>
 
             </div>
         </div>
@@ -54,15 +54,15 @@
         <div class="mb-3 row">
             <label for="puesto_empleado" class="col-sm-2 col-form-label">Puesto</label>
             <div class="col-sm-5">
-                <select name="puesto_empleado" class="form-select" id="puesto_empleado" value= "" required>
+                <select name="puesto_empleado" class="form-select" id="puesto_empleado" nvalue= ""required >
                     <option disabled selected>Seleccionar...</option>
-                    <option value="0">Administrador</option>
-                    <option value="1">Supervisor</option>
-                    <option value="2">Calidad</option>
-                    <option value="3">Asesor</option>
-                    <option value="4">Logistica</option>
-                    <option value="5">Almacen</option>
-                    <option value="6">Analista</option>
+                    <option value="0" @if($user->puesto_empleado == 0) selected @endif>Administrador</option>
+                    <option value="1" @if($user->puesto_empleado == 1) selected @endif>Supervisor</option>
+                    <option value="2" @if($user->puesto_empleado == 2) selected @endif>Calidad</option>
+                    <option value="3" @if($user->puesto_empleado == 3) selected @endif>Asesor</option>
+                    <option value="4" @if($user->puesto_empleado == 4) selected @endif>Logistica</option>
+                    <option value="5" @if($user->puesto_empleado == 5) selected @endif>Almacen</option>
+                    <option value="6" @if($user->puesto_empleado == 6) selected @endif>Analista</option>
                 </select>
             
             </div>

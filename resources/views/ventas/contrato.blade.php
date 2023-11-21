@@ -1,13 +1,13 @@
 @extends('inicios/analista')
 
-@section('title', 'Revisión de venta')
+@section('title', 'Contrato de venta')
 
 @section('contenido')
 
 <main>
 
     <div class="container py-4">
-        <h2>Revisión de venta</h2>
+        <h2>Contrato de venta</h2>
 
         @if ($errors->any())
 
@@ -33,6 +33,55 @@
                 <div class="col-sm-5">
                     <input type="tel" class="form-control-plaintext" name="linea_venta" id="linea_venta"
                         value="{{$venta->linea_venta}}" readonly>
+
+                </div>
+            </div>
+
+            
+
+            <div class="mb-3 row">
+                <input type="hidden" name="id_equipo" id="id_equipo">
+                <label for="equipo" class="col-sm-2 col-form-label">Equipo</label>
+                <div class="col-sm-5">
+                    <select name="equipo" class="form-select" id="equipo" required>
+                        <option disabled selected>Seleccionar...</option>
+
+                        @foreach($equipos as $equipo)
+                        <option value="{{ $equipo }}">
+                            {{  ($equipo->imei) }}</option>
+
+                        @endforeach
+                    </select>
+
+                </div>
+
+                <div id="info_equipo" , class="col-sm-5">
+
+                </div>
+
+                <script>
+                // Obtenemos el elemento select y el contenedor de información
+                var select = document.getElementById('equipo');
+                var infoContainer = document.getElementById('info_equipo');
+                var equipo = document.getElementById('id_equipo');
+
+                // Evento de cambio en el select
+                select.addEventListener('change', function() {
+                    var selectedOption = JSON.parse(select.value);
+                    // Lógica para mostrar información relacionada
+                    infoContainer.innerHTML = '<h3>Marca: ' + selectedOption.marca_equipo + '</h3>';
+                    infoContainer.innerHTML += '<h3>Modelo: ' + selectedOption.modelo_equipo + '</h3>';
+                    equipo.value = parseInt(selectedOption.id, 10);
+                });
+                </script>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="fecha_entrega" class="col-sm-2 col-form-label">Fecha de entrega</label>
+                <div class="col-sm-5">
+                    <input style="background-color:yellow" type="tel" class="form-control-plaintext"
+                        name="fecha_entrega" id="fecha_entrega"
+                        value="{{ date( 'd M Y', strtotime( $venta->ruta->fecha_entrega)) }} " readonly>
 
                 </div>
             </div>
@@ -106,25 +155,25 @@
                 <label for="notas_analista" class="col-sm-2 col-form-label">Notas</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="notas_analista" id="notas_analista"
-                        value="{{$venta->notas_MC}}"></textarea>
+                        >{{$venta->notas_MC}}</textarea>
                 </div>
             </div>
 
             <input type="hidden" class="form-hidden" name="estado" id="estado" value="">
 
             <div style="float:right; margin-right:30px; margin-bottom:20px">
-                <button type="button" class="btn btn-danger btn-lg" id="btnRechazar" onclick="guardar(3)">Problema con
+                <button type="button" class="btn btn-danger btn-lg" id="btnRechazar" onclick="guardar(5)">Problema con
                     el trámite</button>
 
-                <button type="button" class="btn btn-success btn-lg" id="btnAceptar" onclick="guardar(5)">Proceder con
-                    el trámite</button>
+                <button type="button" class="btn btn-success btn-lg" id="btnAceptar" onclick="guardar(7)">Contrato
+                    impreso correctamente</button>
 
                 <script>
                 function guardar(estado) {
                     // Muestra un cuadro de diálogo de confirmación
-                    if (estado == 3) {
+                    if (estado == 5) {
                         var confirmacion = confirm('¿Estás seguro de que deseas marcar problemas con la venta?');
-                    } else if (estado == 5) {
+                    } else if (estado == 7) {
                         var confirmacion = confirm('¿Estás seguro de que deseas proceder con la venta?');
                     }
                     // Si el usuario hace clic en "Aceptar", se enviará el formulario
