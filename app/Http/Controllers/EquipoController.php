@@ -43,7 +43,8 @@ class EquipoController extends Controller
                 $equipo->imei =  $imei;
                 $equipo->save();
             }
-            return(equipos::all());
+            //return(equipos::all());
+            return view("message", ['msg' => "Equipo(s) guardados 8)"]);
         }else{
             return view("message", ['msg' => "No debes estar aqui"]);
         }
