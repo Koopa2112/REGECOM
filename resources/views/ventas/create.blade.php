@@ -161,7 +161,7 @@
                 <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias: </label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="referencia_entrega" id="municipio_entrega"
-                        value="{{old ('referencia_entrega')}}" rows="3"></textarea>
+                        rows="3">{{old ('referencia_entrega')}}</textarea>
 
                 </div>
             </div>
@@ -187,7 +187,7 @@
                 <label for="notas_vendedor" class="col-sm-2 col-form-label">Agregar notas</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="notas_vendedor" id="notas_vendedor"
-                        value="{{old ('notas_vendedor')}}"></textarea>
+                        >{{old ('notas_vendedor')}}</textarea>
                 </div>
             </div>
 

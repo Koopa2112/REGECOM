@@ -1,4 +1,4 @@
-@extends('inicios/Almacen')
+@extends('inicios/almacen')
 
 @section('title', 'Equipos asignados')
 
