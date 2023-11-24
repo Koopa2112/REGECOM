@@ -198,9 +198,9 @@
 
 
             <div class="mb-3 row">
-                <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias: </label>
+                <label for="referencia_entrega" class="col-sm-2 col-form-label">Entre calle y referencias:</label>
                 <div class="col-sm-5">
-                    <textarea class="form-control" name="referencia_entrega" id="municipio_entrega" rows="3"
+                    <textarea class="form-control" name="referencia_entrega" id="referencia_entrega" rows="5"
                         required>{{old ('referencia_entrega')}}</textarea>
 
                 </div>
