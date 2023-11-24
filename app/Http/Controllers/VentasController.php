@@ -328,9 +328,9 @@ class VentasController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(ventas $ventas)
-    {
+    {   
         //
-        
+                
     }
 
     /**
