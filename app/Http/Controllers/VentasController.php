@@ -186,8 +186,8 @@ class VentasController extends Controller
         $venta->calle_entrega = $request->input('calle_entrega');
         $venta->numero_entrega = $request->input('numero_entrega');
         $venta->municipio_entrega = $request->input('municipio_entrega');
-        $venta->colonia_entrega = $request->input('municipio_entrega');
-        $venta->referencia_entrega = $request->input('municipio_entrega');
+        $venta->colonia_entrega = $request->input('colonia_entrega');
+        $venta->referencia_entrega = $request->input('referencia_entrega');
         $venta->url_maps = $request->input('url_maps');
         $venta->total_mensual = $request->input('total_mensual');
         $venta->notas_vendedor = $request->input('notas_vendedor');
