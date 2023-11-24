@@ -49,46 +49,86 @@
                 <div class="col-sm-5">
                     <select class="form-control" name="plan_venta" id="plan_venta">
                         <option disabled selected>Seleccionar...</option>
-                        <option value="Telcel Plus 1"> Telcel Plus 1</option>
-                        <option value="Telcel Plus 1.5"> Telcel Plus 1.5</option>
-                        <option value="Telcel Plus 2"> Telcel Plus 2</option>
-                        <option value="Telcel Plus 3"> Telcel Plus 3</option>
-                        <option value="Telcel Plus 4"> Telcel Plus 4</option>
-                        <option value="Telcel Plus 5"> Telcel Plus 5</option>
-                        <option value="Telcel Plus 6"> Telcel Plus 6</option>
-                        <option value="Telcel Plus 7 "> Telcel Plus 7</option>
-                        <option value="Telcel Plus 8"> Telcel Plus 8</option>
-                        <option value="Telcel Plus 9"> Telcel Plus 9</option>
-                        <option value="Telcel Plus 1 CC"> Telcel Plus 1 CC</option>
-                        <option value="Telcel Plus 1.5 CC"> Telcel Plus 1.5 CC</option>
-                        <option value="Telcel Plus 2 CC"> Telcel Plus 2 CC</option>
-                        <option value="Telcel Plus 3"> Telcel Plus 3CC</option>
-                        <option value="Telcel Plus 4 CC"> Telcel Plus 4 CC</option>
-                        <option value="Telcel Plus 5 CC"> Telcel Plus 5 CC</option>
-                        <option value="Telcel Plus 6 CC"> Telcel Plus 6 CC</option>
-                        <option value="Telcel Plus 7 CC"> Telcel Plus 7 CC</option>
-                        <option value="Telcel Plus 8 CC"> Telcel Plus 8 CC</option>
-                        <option value="Telcel Plus 9 CC"> Telcel Plus 9 CC</option>
-                        <option value="Telcel Plus 1 MPP"> Telcel Plus 1 MPP</option>
-                        <option value="Telcel Plus 1.5"> Telcel Plus 1.5 MPP</option>
-                        <option value="Telcel Plus 2 MPP"> Telcel Plus 2 MPP</option>
-                        <option value="Telcel Plus 3 MPP"> Telcel Plus 3 MPP</option>
-                        <option value="Telcel Plus 4 MPP"> Telcel Plus 4 MPP</option>
-                        <option value="Telcel Plus 5 MPP"> Telcel Plus 5 MPP</option>
-                        <option value="Telcel Plus 6 MPP"> Telcel Plus 6 MPP</option>
-                        <option value="Telcel Plus 7 MPP"> Telcel Plus 7 MPP</option>
-                        <option value="Telcel Plus 8 MPP"> Telcel Plus 8 MPP</option>
-                        <option value="Telcel Plus 9 MPP"> Telcel Plus 9 MPP</option>
-                        <option value="Telcel Plus 1 MPP CC"> Telcel Plus 1 MPP CC</option>
-                        <option value="Telcel Plus 1.5 MPP CC"> Telcel Plus 1.5 MPP CC</option>
-                        <option value="Telcel Plus 2 MPP CC"> Telcel Plus 2 MPP CC</option>
-                        <option value="Telcel Plus 3 MPP CC"> Telcel Plus 3 MPP CC</option>
-                        <option value="Telcel Plus 4 MPP CC"> Telcel Plus 4 MPP CC</option>
-                        <option value="Telcel Plus 5 MPP CC"> Telcel Plus 5 MPP CC</option>
-                        <option value="Telcel Plus 6 MPP CC"> Telcel Plus 6 MPP CC</option>
-                        <option value="Telcel Plus 7 MPP CC"> Telcel Plus 7 MPP CC</option>
-                        <option value="Telcel Plus 8 MPP CC"> Telcel Plus 8 MPP CC</option>
-                        <option value="Telcel Plus 9 MPP CC"> Telcel Plus 9 MPP CC</option>
+                        <option value="Telcel Plus 1" @if(old ('plan_venta')=='Telcel Plus 1' ) selected @endif> Telcel
+                            Plus 1</option>
+                        <option value="Telcel Plus 1.5" @if(old ('plan_venta')=='Telcel Plus 1.5' ) selected @endif>
+                            Telcel Plus 1.5</option>
+                        <option value="Telcel Plus 2" @if(old ('plan_venta')=='Telcel Plus 2' ) selected @endif> Telcel
+                            Plus 2</option>
+                        <option value="Telcel Plus 3" @if(old ('plan_venta')=='Telcel Plus 3' ) selected @endif> Telcel
+                            Plus 3</option>
+                        <option value="Telcel Plus 4" @if(old ('plan_venta')=='Telcel Plus 4' ) selected @endif> Telcel
+                            Plus 4</option>
+                        <option value="Telcel Plus 5" @if(old ('plan_venta')=='Telcel Plus 5' ) selected @endif> Telcel
+                            Plus 5</option>
+                        <option value="Telcel Plus 6" @if(old ('plan_venta')=='Telcel Plus 6' ) selected @endif> Telcel
+                            Plus 6</option>
+                        <option value="Telcel Plus 7" @if(old ('plan_venta')=='Telcel Plus 7' ) selected @endif> Telcel
+                            Plus 7</option>
+                        <option value="Telcel Plus 8" @if(old ('plan_venta')=='Telcel Plus 8' ) selected @endif> Telcel
+                            Plus 8</option>
+                        <option value="Telcel Plus 9" @if(old ('plan_venta')=='Telcel Plus 9' ) selected @endif> Telcel
+                            Plus 9</option>
+                        <option value="Telcel Plus 1 CC" @if(old ('plan_venta')=='Telcel Plus 1 CC' ) selected @endif>
+                            Telcel Plus 1 CC</option>
+                        <option value="Telcel Plus 1.5 CC" @if(old ('plan_venta')=='Telcel Plus 1.5 CC' ) selected
+                            @endif> Telcel Plus 1.5 CC</option>
+                        <option value="Telcel Plus 2 CC" @if(old ('plan_venta')=='Telcel Plus 2CC' ) selected @endif>
+                            Telcel Plus 2 CC</option>
+                        <option value="Telcel Plus 3" @if(old ('plan_venta')=='Telcel Plus 3 CC' ) selected @endif>
+                            Telcel Plus 3CC</option>
+                        <option value="Telcel Plus 4 CC" @if(old ('plan_venta')=='Telcel Plus 4 CC' ) selected @endif>
+                            Telcel Plus 4 CC</option>
+                        <option value="Telcel Plus 5 CC" @if(old ('plan_venta')=='Telcel Plus 5 CC' ) selected @endif>
+                            Telcel Plus 5 CC</option>
+                        <option value="Telcel Plus 6 CC" @if(old ('plan_venta')=='Telcel Plus 6 CC' ) selected @endif>
+                            Telcel Plus 6 CC</option>
+                        <option value="Telcel Plus 7 CC" @if(old ('plan_venta')=='Telcel Plus 7 CC' ) selected @endif>
+                            Telcel Plus 7 CC</option>
+                        <option value="Telcel Plus 8 CC" @if(old ('plan_venta')=='Telcel Plus 8 CC' ) selected @endif>
+                            Telcel Plus 8 CC</option>
+                        <option value="Telcel Plus 9 CC" @if(old ('plan_venta')=='Telcel Plus 9 CC' ) selected @endif>
+                            Telcel Plus 9 CC</option>
+                        <option value="Telcel Plus 1 MPP" @if(old ('plan_venta')=='Telcel Plus 1 MPP' ) selected @endif>
+                            Telcel Plus 1 MPP</option>
+                        <option value="Telcel Plus 1.5 MPP" @if(old ('plan_venta')=='Telcel Plus 1.5 MPP' ) selected
+                            @endif> Telcel Plus 1.5 MPP</option>
+                        <option value="Telcel Plus 2 MPP" @if(old ('plan_venta')=='Telcel Plus 2 MPP' ) selected @endif>
+                            Telcel Plus 2 MPP</option>
+                        <option value="Telcel Plus 3 MPP" @if(old ('plan_venta')=='Telcel Plus 3 MPP' ) selected @endif>
+                            Telcel Plus 3 MPP</option>
+                        <option value="Telcel Plus 4 MPP" @if(old ('plan_venta')=='Telcel Plus 4 MPP' ) selected @endif>
+                            Telcel Plus 4 MPP</option>
+                        <option value="Telcel Plus 5 MPP" @if(old ('plan_venta')=='Telcel Plus 5 MPP' ) selected @endif>
+                            Telcel Plus 5 MPP</option>
+                        <option value="Telcel Plus 6 MPP" @if(old ('plan_venta')=='Telcel Plus 6 MPP' ) selected @endif>
+                            Telcel Plus 6 MPP</option>
+                        <option value="Telcel Plus 7 MPP" @if(old ('plan_venta')=='Telcel Plus 7 MPP' ) selected @endif>
+                            Telcel Plus 7 MPP</option>
+                        <option value="Telcel Plus 8 MPP" @if(old ('plan_venta')=='Telcel Plus 8 MPP' ) selected @endif>
+                            Telcel Plus 8 MPP</option>
+                        <option value="Telcel Plus 9 MPP" @if(old ('plan_venta')=='Telcel Plus 9 MPP' ) selected @endif>
+                            Telcel Plus 9 MPP</option>
+                        <option value="Telcel Plus 1 MPP CC" @if(old ('plan_venta')=='Telcel Plus 1 MPP CC' ) selected
+                            @endif> Telcel Plus 1 MPP CC</option>
+                        <option value="Telcel Plus 1.5 MPP CC" @if(old ('plan_venta')=='Telcel Plus 1.5 MPP CC' )
+                            selected @endif> Telcel Plus 1.5 MPP CC</option>
+                        <option value="Telcel Plus 2 MPP CC" @if(old ('plan_venta')=='Telcel Plus 2 MPP CC' ) selected
+                            @endif> Telcel Plus 2 MPP CC</option>
+                        <option value="Telcel Plus 3 MPP CC" @if(old ('plan_venta')=='Telcel Plus 3 MPP CC' ) selected
+                            @endif> Telcel Plus 3 MPP CC</option>
+                        <option value="Telcel Plus 4 MPP CC" @if(old ('plan_venta')=='Telcel Plus 4 MPP CC' ) selected
+                            @endif> Telcel Plus 4 MPP CC</option>
+                        <option value="Telcel Plus 5 MPP CC" @if(old ('plan_venta')=='Telcel Plus 5 MPP CC' ) selected
+                            @endif> Telcel Plus 5 MPP CC</option>
+                        <option value="Telcel Plus 6 MPP CC" @if(old ('plan_venta')=='Telcel Plus 6 MPP CC' ) selected
+                            @endif> Telcel Plus 6 MPP CC</option>
+                        <option value="Telcel Plus 7 MPP CC" @if(old ('plan_venta')=='Telcel Plus 7 MPP CC' ) selected
+                            @endif> Telcel Plus 7 MPP CC</option>
+                        <option value="Telcel Plus 8 MPP CC" @if(old ('plan_venta')=='Telcel Plus 8 MPP CC' ) selected
+                            @endif> Telcel Plus 8 MPP CC</option>
+                        <option value="Telcel Plus 9 MPP CC" @if(old ('plan_venta')=='Telcel Plus 9 MPP CC' ) selected
+                            @endif> Telcel Plus 9 MPP CC</option>
 
                     </select>
 
@@ -108,7 +148,7 @@
                 <label for="marca_equipo" class="col-sm-2 col-form-label">Marca equipo</label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="marca_equipo" id="marca_equipo"
-                        value="{{old ('marca_equipo')}}">
+                        value="{{old ('marca_equipo')}}" required>
 
                 </div>
             </div>
@@ -117,7 +157,7 @@
                 <label for="modelo_equipo" class="col-sm-2 col-form-label">Modelo del equipo</label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="modelo_equipo" id="modelo_equipo"
-                        value="{{old ('modelo_equipo')}}">
+                        value="{{old ('modelo_equipo')}}" required>
 
                 </div>
             </div>
@@ -126,7 +166,7 @@
                 <label for="calle_entrega" class="col-sm-2 col-form-label">Calle: </label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="calle_entrega" id="calle_entrega"
-                        value="{{old ('calle_entrega')}}">
+                        value="{{old ('calle_entrega')}}" required>
 
                 </div>
             </div>
@@ -134,7 +174,7 @@
                 <label for="numero_entrega" class="col-sm-2 col-form-label">Número: </label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="numero_entrega" id="numero_entrega"
-                        value="{{old ('numero_entrega')}}">
+                        value="{{old ('numero_entrega')}}" required>
 
                 </div>
             </div>
@@ -143,7 +183,7 @@
                 <label for="colonia_entrega" class="col-sm-2 col-form-label">Colonia: </label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="colonia_entrega" id="colonia_entrega"
-                        value="{{old ('colonia_entrega')}}" rows="3"></textarea>
+                        value="{{old ('colonia_entrega')}}" rows="3" required></textarea>
                 </div>
             </div>
 
@@ -151,7 +191,7 @@
                 <label for="municipio_entrega" class="col-sm-2 col-form-label">Municipio: </label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="municipio_entrega" id="municipio_entrega"
-                        value="{{old ('municipio_entrega')}}" rows="3"></textarea>
+                        value="{{old ('municipio_entrega')}}" rows="3" required></textarea>
 
                 </div>
             </div>
@@ -160,8 +200,8 @@
             <div class="mb-3 row">
                 <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias: </label>
                 <div class="col-sm-5">
-                    <textarea class="form-control" name="referencia_entrega" id="municipio_entrega"
-                        rows="3">{{old ('referencia_entrega')}}</textarea>
+                    <textarea class="form-control" name="referencia_entrega" id="municipio_entrega" rows="3"
+                        required>{{old ('referencia_entrega')}}</textarea>
 
                 </div>
             </div>
@@ -169,7 +209,8 @@
             <div class="mb-3 row">
                 <label for="url_maps" class="col-sm-2 col-form-label">URL de google maps</label>
                 <div class="col-sm-5">
-                    <input type="url" class="form-control" name="url_maps" id="url_maps" value="{{old ('url_maps')}}">
+                    <input required type="url" class="form-control" name="url_maps" id="url_maps"
+                        value="{{old ('url_maps')}}">
 
                 </div>
             </div>
@@ -177,7 +218,7 @@
             <div class="mb-3 row">
                 <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
                 <div class="col-sm-5">
-                    <input type="number" class="form-control" name="total_mensual" id="total_mensual"
+                    <input type="number" class="form-control" name="total_mensual" id="total_mensual" required
                         value="{{old ('total_mensual')}}">
 
                 </div>
@@ -186,8 +227,8 @@
             <div class="mb-3 row">
                 <label for="notas_vendedor" class="col-sm-2 col-form-label">Agregar notas</label>
                 <div class="col-sm-5">
-                    <textarea class="form-control" name="notas_vendedor" id="notas_vendedor"
-                        >{{old ('notas_vendedor')}}</textarea>
+                    <textarea class="form-control" name="notas_vendedor" id="notas_vendedor" rows="3"
+                        required>{{old ('notas_vendedor')}}</textarea>
                 </div>
             </div>
 

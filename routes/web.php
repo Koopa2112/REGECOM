@@ -44,6 +44,7 @@ Route::get('/ventas/{id}/fecha', [VentasController::class, 'fecha'])->middleware
 Route::post('/ventas/{id}/cancel', [VentasController::class, 'cancel'])->middleware('auth');
 Route::post('/ventas/{id}/saveDate', [VentasController::class, 'saveDate'])->middleware('auth');
 Route::get('/ventas/{id}/show', [VentasController::class, 'show'])->middleware('auth');
+Route::get('/ventas/{id}/reenviar', [VentasController::class, 'reenviar'])->middleware('auth');
 Route::get('/ventas/dia', [VentasController::class, 'dia'])->middleware('auth');
 Route::get('/ventas/{id}/sshow', [VentasController::class, 'sshow'])->middleware('auth');
 Route::get('/ventas/pendienteRevision', [VentasController::class, 'pendienteRevision'])->middleware('auth');

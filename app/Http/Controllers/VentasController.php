@@ -330,14 +330,70 @@ class VentasController extends Controller
     public function edit(ventas $ventas)
     {
         //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ventas $ventas)
+    public function update(Request $request, $id)
     {
+        $user = auth()->user();
+        $asesor = asesores::where('id_user', $user->id)->first();
+        $request->validate([
+            'linea_venta' => 'required',
+            'nombre_cliente' => 'required',
+            'plan_venta' => 'required',
+            'meses_venta' => 'required',
+            'marca_equipo' => 'required',
+            'modelo_equipo' => 'required',
+
+            'calle_entrega' => 'required',
+            'numero_entrega' => 'required',
+            'colonia_entrega' => 'required',
+            'referencia_entrega' => 'required',
+            'municipio_entrega' => 'required',
+            'url_maps' => 'required',
+            'total_mensual' => 'required',
+            'notas_vendedor' => 'nullable',
+                        
+        ]);
+
+        $venta = ventas::find($id);
+        if($asesor->incubadora === 1){
+            $venta->estado_venta = (0); 
+        }else{
+            $venta->estado_venta = (2); 
+        }
         
+        $venta->linea_venta = $request->input('linea_venta');
+        $venta->nombre_cliente = $request->input('nombre_cliente');
+        $venta->plan_venta = $request->input('plan_venta');
+        $venta->meses_venta = $request->input('meses_venta');
+        $venta->marca_equipo = $request->input('marca_equipo');
+        $venta->modelo_equipo = $request->input('modelo_equipo');
+
+        $venta->calle_entrega = $request->input('calle_entrega');
+        $venta->numero_entrega = $request->input('numero_entrega');
+        $venta->municipio_entrega = $request->input('municipio_entrega');
+        $venta->colonia_entrega = $request->input('municipio_entrega');
+        $venta->referencia_entrega = $request->input('municipio_entrega');
+        $venta->url_maps = $request->input('url_maps');
+        $venta->total_mensual = $request->input('total_mensual');
+        $venta->notas_vendedor = $request->input('notas_vendedor');
+        $venta->notas_MC = $request->input('notas_MC');
+        
+        $venta->fecha_venta = now(('America/Mexico_City'));
+        $venta->save();
+
+        return view("message", ['msg' => "Registro reenviado =D"]);
+    }
+
+    public function reenviar(Request $request, $id)
+    {
+        $venta = ventas::find($id);
+
+        return view('ventas.reenviar', ['venta' => $venta]);
     }
 
     /**

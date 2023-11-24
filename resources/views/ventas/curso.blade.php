@@ -57,6 +57,9 @@
                     @if ($venta->estado_venta == 4)
                     <th><a href="{{  url('ventas/' .$venta->id. '/fecha') }}"
                             class="btn btn-secondary btn-small">Agregar fecha</a></th>
+                    @elseif ($venta->estado_venta == 3 || $venta->estado_venta == 1)
+                    <th><a href="{{  url('ventas/' .$venta->id. '/reenviar') }}"
+                            class="btn btn-secondary btn-small">Reenviar venta</a></th>
                     @else
                     <th></th>
                     @endif
