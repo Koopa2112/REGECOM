@@ -45,7 +45,7 @@
                     @elseif ($venta->estado_venta == 7)
                     <th>En fase de entrega</th>
                     @elseif ($venta->estado_venta == 8)
-                    <th>Entregada</th>
+                    <th>Trámite en proceso</th>
                     @elseif ($venta->estado_venta == 9)
                     <th>Finalizada</th>
                     @elseif ($venta->estado_venta == 10)
