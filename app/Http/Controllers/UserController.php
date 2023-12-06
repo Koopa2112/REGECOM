@@ -106,6 +106,7 @@ class UserController extends Controller
             if(null != ($request->input('password'))){
                 $user->password = Hash::make($request->input('password'));
             }
+            $user->estado = $request->has('estado');
             
             $user->save();
             return view('message', ['msg' => "Usuario editado correctamente =)"]);

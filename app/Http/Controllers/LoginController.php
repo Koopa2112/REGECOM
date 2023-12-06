@@ -19,10 +19,17 @@ class LoginController extends Controller
 
     $remember = request()->filled('remember');
     //return($credentials);
-    if(Auth::attempt($credentials, true)){
-        
-        request()->session()->regenerate();
-        return redirect('inicio');
+    if(Auth::attempt($credentials, $remember) ){
+        if (auth()->user()->estado) {
+            request()->session()->regenerate();
+            return redirect('inicio');
+        } else {
+            // Si el estado es falso, cerrar sesión y redirigir a una página de acceso denegado
+            Auth::logout();
+            throw ValidationException::withMessages([
+                'email' => __("No tienes permitido el acceso")
+            ]);
+        }
     }
         throw ValidationException::withMessages([
             'email' => __('auth.failed')

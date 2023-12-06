@@ -68,6 +68,21 @@
             </div>
         </div>
 
+        <div class="mb-3 row">
+            <label for="estado" class="col-sm-2 col-form-label">Permitir acceso</label>
+            <div class="col-sm-5">
+
+                @if($user->estado == true)
+                <input type="checkbox" class="form-check-input" name="estado" id="estado"
+                    value="{{ $user->estado}}" checked>
+                @else
+                <input type="checkbox" class="form-check-input" name="estado" id="estado"
+                    value="{{ $user->estado}}">
+                @endif
+
+            </div>
+        </div>
+
         <a href= "{{ url('inicio') }}" class="btn btn-secondary">Regresar</a>
         <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
 
