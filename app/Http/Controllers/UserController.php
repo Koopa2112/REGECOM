@@ -83,9 +83,13 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {   
-        $user = user::find($id);
-        return view('users.edit', ['user' => $user]);
+    {   if(auth()->user()->puesto_empleado == 0){
+                $user = user::find($id);
+                return view('users.edit', ['user' => $user]);
+        }else{
+            return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
+        }
+        
     }
 
     /**

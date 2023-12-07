@@ -24,7 +24,11 @@ class ZonaController extends Controller
      */
     public function create()
     {
-        return view('zonas.create');
+        if(auth()->user()->puesto_empleado == 4){
+            return view('zonas.create');
+        }else{
+            return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
+        }
     }
 
     /**

@@ -13,8 +13,12 @@ class RutaController extends Controller
      */
     public function index()
     {   
-        $rutas = rutas::all();
-        return view('rutas.index',[ 'rutas' => $rutas]);
+        if(auth()->user()->puesto_empleado == 4){
+            $rutas = rutas::all();
+            return view('rutas.index',[ 'rutas' => $rutas]);
+        }else{
+            return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
+        }
     }
 
     /**
@@ -22,8 +26,12 @@ class RutaController extends Controller
      */
     public function create()
     {   
-        $zonas = zonas::all();
-        return view('rutas.create', ['zonas' => $zonas]);
+        if(auth()->user()->puesto_empleado == 4){
+            $zonas = zonas::all();
+            return view('rutas.create', ['zonas' => $zonas]);
+        }else{
+            return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
+        }
     }
 
     /**
@@ -62,9 +70,13 @@ class RutaController extends Controller
      */
     public function edit($id)
     {
-        $ruta = rutas::find($id);
-        $zonas = zonas::all();
-        return view('rutas.edit', ['ruta' => $ruta, 'zonas' => $zonas]);
+        if(auth()->user()->puesto_empleado == 4){
+            $ruta = rutas::find($id);
+            $zonas = zonas::all();
+            return view('rutas.edit', ['ruta' => $ruta, 'zonas' => $zonas]);
+        }else{
+            return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
+        }
     }
 
     /**

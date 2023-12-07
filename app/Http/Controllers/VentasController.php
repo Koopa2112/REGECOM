@@ -416,13 +416,18 @@ class VentasController extends Controller
 
     public function dia(){
         $user = auth()->user();
-        $supervisor = administrativos::where('id_user', $user->id)->get()->first();
-        $supervisorId = $supervisor->id;
-        $asesores = asesores::where('id_administrativo', $supervisorId)->get()->pluck('id');
-        $hoy = now(('America/Mexico_City'))->format('Y-m-d');
-        $ventas = ventas::whereIn('id_asesor', $asesores)->where('fecha_venta', $hoy)->get();
-        $asesores = asesores::all();
-        return view('ventas.dia', ['ventas' => $ventas, 'asesores' => $asesores]);
+        if($user->puesto_empleado == 1){
+            $supervisor = administrativos::where('id_user', $user->id)->get()->first();
+            $supervisorId = $supervisor->id;
+            $asesores = asesores::where('id_administrativo', $supervisorId)->get()->pluck('id');
+            $hoy = now(('America/Mexico_City'))->format('Y-m-d');
+            $ventas = ventas::whereIn('id_asesor', $asesores)->where('fecha_venta', $hoy)->get();
+            $asesores = asesores::all();
+            return view('ventas.dia', ['ventas' => $ventas, 'asesores' => $asesores]);
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+
     }
 
     public function pendienteRevision(){
