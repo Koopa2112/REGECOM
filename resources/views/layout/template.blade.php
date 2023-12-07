@@ -10,8 +10,8 @@
 
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="color:blue">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('inicio') }}">Inicio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -40,9 +40,13 @@
     <br>
 
 
-
-    <main>
+    <body >
+    <main >
+        <div style=" height: 85vh; background-image: URL('http://localhost/REGECOM/public/images/logo_transparente.png') ;background-repeat: no-repeat; 
+            background-position: center; margin: 0; padding: 0">
         @yield('contenido')
+        </div>
+        
 
 
 

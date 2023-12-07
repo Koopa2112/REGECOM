@@ -3,7 +3,7 @@
 @section('title', 'Ventas en curso')
 
 @section('contenido')
-<main>
+
     <div class="container py-4">
 
         <h2>Ventas en curso</h2>
@@ -71,6 +71,6 @@
 
         </table>
     </div>
-</main>
+
 
 @stop
