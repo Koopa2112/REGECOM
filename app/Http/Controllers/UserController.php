@@ -65,6 +65,10 @@ class UserController extends Controller
             $analista = new analistas();
             $analista->id_user = $user->id;
             $analista->save();
+        }elseif($request->puesto_empleado == 1){
+            $administrativos = new administrativos();
+            $administrativos->id_user = $user->id;
+            $administrativos->save();
         }
 
         return view("message", ['msg' => "Usuario guardado"]);
@@ -113,6 +117,29 @@ class UserController extends Controller
             $user->estado = $request->has('estado');
             
             $user->save();
+
+            if($request->puesto_empleado == 3){
+                $supervisor = user::where('puesto_empleado', 1)->first()->value('id');
+                $asesor = asesores::where('id_user', $user->id)->get();
+                
+                if($asesor = null);{
+                    $asesor = new asesores();
+                    $asesor->id_administrativo = administrativos::where('id_user', $supervisor)->value('id');
+                    $asesor->incubadora = true;            
+                    $asesor->id_user = $user->id;
+                }
+
+                $asesor->save();
+            }elseif($request->puesto_empleado == 6){
+                $analista = new analistas();
+                $analista->id_user = $user->id;
+                $analista->save();
+            }else{
+                $administrativos = new administrativos();
+                $administrativos->id_user = $user->id;
+                $administrativos->save();
+            }
+            
             return view('message', ['msg' => "Usuario editado correctamente =)"]);
         }else{
             return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
