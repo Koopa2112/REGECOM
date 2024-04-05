@@ -130,7 +130,7 @@
                 <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias: </label>
                 <div class="col-sm-5">
                     <textarea class="form-control-plaintext" name="referencia_entrega" id="municipio_entrega"
-                        value="{{$venta->referencia_entrega}}" rows="3" readonly></textarea>
+                        rows="3" readonly>{{$venta->referencia_entrega}}</textarea>
 
                 </div>
             </div>
@@ -147,8 +147,8 @@
             <div class="mb-3 row">
                 <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
                 <div class="col-sm-5">
-                    <input type="number" class="form-control-plaintext" name="total_mensual" id="total_mensual"
-                        value="{{$venta->total_mensual}}" readonly>
+                    <input type="text" class="form-control-plaintext" name="total_mensual" id="total_mensual"
+                        value="{{$total_mensual}}" readonly>
 
                 </div>
             </div>

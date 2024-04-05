@@ -146,8 +146,8 @@
         <div class="mb-3 row">
             <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
             <div class="col-sm-5">
-                <input type="number" class="form-control-plaintext" name="total_mensual" id="total_mensual"
-                    value="{{$venta->total_mensual}}" readonly>
+                <input type="text" class="form-control-plaintext" name="total_mensual" id="total_mensual"
+                    value="{{$total_mensual}}" readonly>
 
             </div>
         </div>
@@ -182,7 +182,7 @@
             <form action="{{ url('ventas/' . $venta->id . '/aceptar') }}" method="post" id="aceptarVenta">
                 @csrf
                 @method('post')
-                <button type="button" class="btn btn-success btn-lg" id="btnAceptar">Problema con el trámite</button>
+                <button type="button" class="btn btn-success btn-lg" id="btnAceptar">Aceptar Venta</button>
                 <script>
                 document.getElementById('btnAceptar').addEventListener('click', function() {
                     // Muestra un cuadro de diálogo de confirmación

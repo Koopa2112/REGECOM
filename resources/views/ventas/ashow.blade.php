@@ -88,8 +88,8 @@
             <div class="mb-3 row">
                 <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
                 <div class="col-sm-5">
-                    <input type="number" class="form-control-plaintext" name="total_mensual" id="total_mensual"
-                        value="{{$venta->total_mensual}}" readonly>
+                    <input type="text" class="form-control-plaintext" name="total_mensual" id="total_mensual"
+                        value="{{$total_mensual}}" readonly>
 
                 </div>
             </div>
@@ -106,7 +106,7 @@
                 <label for="notas_analista" class="col-sm-2 col-form-label">Notas</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="notas_analista" id="notas_analista"
-                        value="{{$venta->notas_MC}}"></textarea>
+                        >{{$venta->notas_MC}}</textarea>
                 </div>
             </div>
 
