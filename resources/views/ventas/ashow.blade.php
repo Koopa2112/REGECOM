@@ -89,7 +89,7 @@
                 <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control-plaintext" name="total_mensual" id="total_mensual"
-                        value="{{$total_mensual}}" readonly>
+                        value="{{$venta->total_mensual}}" readonly>
 
                 </div>
             </div>
