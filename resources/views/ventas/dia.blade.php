@@ -36,17 +36,17 @@
                     @elseif ($venta->estado_venta == 2)
                     <th>Aceptada</th>
                     @elseif ($venta->estado_venta == 3)
-                    <th>Aceptada</th>
-                    @elseif ($venta->estado_venta == 4)
                     <th>Problema</th>
-                    @elseif ($venta->estado_venta == 5)
+                    @elseif ($venta->estado_venta == 4)
                     <th>Esperando fecha de entrega</th>
+                    @elseif ($venta->estado_venta == 5)
+                    <th>Esperando asignación de zona</th>
                     @elseif ($venta->estado_venta == 6)
                     <th>Esperando contrato</th>
                     @elseif ($venta->estado_venta == 7)
                     <th>En fase de entrega</th>
                     @elseif ($venta->estado_venta == 8)
-                    <th>Entregada</th>
+                    <th>Trámite en proceso</th>
                     @elseif ($venta->estado_venta == 9)
                     <th>Finalizada</th>
                     @elseif ($venta->estado_venta == 10)
