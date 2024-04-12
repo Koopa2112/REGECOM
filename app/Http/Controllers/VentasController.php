@@ -38,7 +38,7 @@ class VentasController extends Controller
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-/*
+        /*
         $zonaVenta = ventas::where('id', $id)->pluck('id_zona')->first();
         $fechas_disponibles = rutas::where('id_zona', $zonaVenta)->get();
         return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]); */
@@ -330,14 +330,21 @@ class VentasController extends Controller
                 return view("message", ['msg' => "Venta con problema :`("]);
             }elseif($venta->estado_venta == 7){
                 $request->validate([
-                    'id_equipo' => 'required'
+                    'imei' => 'required'
                 ]);
-                if(null != ($request->input('id_equipo'))){
-                    $venta->id_equipo = intval($request->input('id_equipo'), 10);
-                    $equipo = equipos::find($venta->id_equipo);
-                    $equipo->entregado = true;
-                    $venta->save();
+                if(null != ($request->input('imei'))){
+                    // $venta->id_equipo = intval($request->input('id_equipo'), 10);
+                    // $equipo = equipos::find($venta->id_equipo);
+                    // $equipo->entregado = true;
+                    $equipo = new equipos();
+                    $equipo->imei = $request->input('imei');
+                    $equipo->marca = "null";
+                    $equipo->modelo = 'null';
                     $equipo->save();
+
+                    $venta->id_equipo = equipos::where('imei', $equipo->imei)->value('id');
+                    $venta->save();
+                    //$equipo->save();
                     return view("message", ['msg' => "Venta lista para entregarse :D"]);
                 }
             }
