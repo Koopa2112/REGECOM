@@ -105,7 +105,7 @@ class VentasController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $user = auth()->user();
         $userID = $user->id;
         $asesor = asesores::where('id_user', $userID)->first();
@@ -115,16 +115,13 @@ class VentasController extends Controller
         $ultimaVenta = ventas::get()->last();
         
         
-    // Obtener la lista de analistas disponibles
+        // Obtener la lista de analistas disponibles
         $analistasU = User::where('puesto_empleado', 6)->where('estado', true)->pluck('id');
 
-  //tengo la colección con los id
+        //tengo la colección con los id
 
         $n = 0;
-        /*foreach($analistasU as $id_user){       //busco en cada uno de los analistas, si conocide con los id activos
-            $id_analistas[$n] = analistas::where('id_user', $id_user)->pluck('id');
-            $n++;
-        }*/
+
         $id_analistas = analistas::whereIn('id_user', $analistasU)->get()->pluck('id');
         $id_analistasArray = $id_analistas->all();
         if($ultimaVenta == null){
@@ -165,6 +162,9 @@ class VentasController extends Controller
             'id_zona' => 'nullable|int',
                         
         ]);
+        $total_mensual = $request->input('total_mensual');
+
+        $total_mensual_formateado = intval(str_replace(',','', $total_mensual));
 
         $venta = new ventas();
         $venta->id_asesor = $asesorID;
@@ -174,7 +174,6 @@ class VentasController extends Controller
             $venta->estado_venta = (2); 
         }
         
-
         $venta->id_analista = $analistaAsignado;
         $venta->linea_venta = $request->input('linea_venta');
         $venta->nombre_cliente = $request->input('nombre_cliente');
@@ -189,7 +188,7 @@ class VentasController extends Controller
         $venta->colonia_entrega = $request->input('colonia_entrega');
         $venta->referencia_entrega = $request->input('referencia_entrega');
         $venta->url_maps = $request->input('url_maps');
-        $venta->total_mensual = $request->input('total_mensual');
+        $venta->total_mensual = $total_mensual_formateado;
         $venta->notas_vendedor = $request->input('notas_vendedor');
         $venta->notas_MC = $request->input('notas_MC');
         $venta->id_zona = $request->input('id_zona');
@@ -210,7 +209,9 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($venta->id_asesor == $asesorId ){
-            return view('ventas.show', compact('venta', 'zona'));
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.show', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] ); 
             
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
@@ -227,7 +228,9 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($user->puesto_empleado == 1){
-            return view('ventas.sshow', ['venta' => $venta, 'zona' => $zona]);
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.sshow', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] ); 
             
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
@@ -243,8 +246,9 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($user->puesto_empleado == 2){
-            return view('ventas.cshow', ['venta' => $venta, 'zona' => $zona]);
-            
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.cshow', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] );  
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
@@ -258,7 +262,14 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($user->puesto_empleado == 6){
-            return view('ventas.ashow', ['venta' => $venta, 'zona' => $zona]);       
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.ashow', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] );       
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
     public function lshow($id)
     {
         $user = auth()->user();
@@ -274,6 +285,7 @@ class VentasController extends Controller
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
+    
 
     public function aceptar($id){
 
@@ -317,6 +329,9 @@ class VentasController extends Controller
             }elseif($venta->estado_venta == 3){
                 return view("message", ['msg' => "Venta con problema :`("]);
             }elseif($venta->estado_venta == 7){
+                $request->validate([
+                    'id_equipo' => 'required'
+                ]);
                 if(null != ($request->input('id_equipo'))){
                     $venta->id_equipo = intval($request->input('id_equipo'), 10);
                     $equipo = equipos::find($venta->id_equipo);
@@ -376,7 +391,9 @@ class VentasController extends Controller
         }else{
             $venta->estado_venta = (2); 
         }
-        
+        $total_mensual = $request->input('total_mensual');
+        $total_mensual_formateado = intval(str_replace(',','', $total_mensual));
+
         $venta->linea_venta = $request->input('linea_venta');
         $venta->nombre_cliente = $request->input('nombre_cliente');
         $venta->plan_venta = $request->input('plan_venta');
@@ -390,7 +407,7 @@ class VentasController extends Controller
         $venta->colonia_entrega = $request->input('colonia_entrega');
         $venta->referencia_entrega = $request->input('referencia_entrega');
         $venta->url_maps = $request->input('url_maps');
-        $venta->total_mensual = $request->input('total_mensual');
+        $venta->total_mensual = $total_mensual_formateado;
         $venta->notas_vendedor = $request->input('notas_vendedor');
         $venta->notas_MC = $request->input('notas_MC');
         
