@@ -338,8 +338,8 @@ class VentasController extends Controller
                     // $equipo->entregado = true;
                     $equipo = new equipos();
                     $equipo->imei = $request->input('imei');
-                    $equipo->marca = "null";
-                    $equipo->modelo = 'null';
+                    $equipo->marca_equipo = "null";
+                    $equipo->modelo_equipo = 'null';
                     $equipo->save();
 
                     $venta->id_equipo = equipos::where('imei', $equipo->imei)->value('id');
