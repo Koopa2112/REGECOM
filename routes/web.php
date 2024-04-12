@@ -64,13 +64,15 @@ Route::get('/ventas/{id}/asignarZona', [VentasController::class, 'asignarZona'])
 Route::post('/ventas/{id}/zonaAsignada', [VentasController::class, 'zonaAsignada'])->middleware('auth');
 Route::get('/ventas/enviadas', [VentasController::class, 'enviadas'])->middleware('auth');
 Route::post('/ventas/{id}/envio', [VentasController::class, 'envio'])->middleware('auth');
+Route::get('/ventas/{id}/lshow', [VentasController::class, 'lshow'])->middleware('auth');
+
 
 Route::get('/equipos/asignados', [EquipoController::class, 'asignados'])->middleware('auth');
 Route::get('/equipos/inventario', [EquipoController::class, 'inventario'])->middleware('auth');
 
 
 Route::get('/asesores/lista', [AsesorController::class, 'lista'])->middleware('auth');
-Route::get('/asesores/{id}/show', [Asesor::class, 'show'])->middleware('auth');
+Route::get('/asesores/{id}/show', [AsesorController::class, 'show'])->middleware('auth');
 
 
 Route::resource('/asesores', AsesorController::class)->middleware('auth');

@@ -32,7 +32,7 @@
                     <th>{{ $venta->nombre_cliente }}</th>
                     <th>{{ $venta->ruta->fecha_entrega }}</th>
                     <th>{{ $venta->ruta->zona->nombre_zona }}</th>
-
+                    <th><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></th>
                     <form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
                         @csrf
                         <input type="hidden" value="" id="estado_venta{{ $venta->id }}" name="estado_venta">
