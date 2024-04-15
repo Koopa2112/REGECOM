@@ -190,8 +190,18 @@
             <div class="mb-3 row">
                 <label for="municipio_entrega" class="col-sm-2 col-form-label">Municipio: </label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" name="municipio_entrega" id="municipio_entrega"
-                        value="{{old ('municipio_entrega')}}" rows="3" required></textarea>
+                    <select class="form-control" name="municipio_entrega" id="municipio_entrega">
+                        <option disabled selected>Seleccionar...</option>
+                        <option value="Apodaca" > Apodaca</option>
+                        <option value="García" > García</option>
+                        <option value="San Pedro Garza García" >  San Pedro Garza García</option>
+                        <option value="General Escobedo" > General Escobedo</option>
+                        <option value="Guadalupe"> Guadalupe</option>
+                        <option value="Ciudad Benito Juárez" > Ciudad Benito Juárez</option>
+                        <option value="Monterrey" > Monterrey</option>
+                        <option value="San Nicolás de los Garza" > San Nicolás de los Garza</option>
+                        <option value="Santa Catarina" > Santa Catarina</option>
+                    </select>
 
                 </div>
             </div>
@@ -201,7 +211,7 @@
                 <label for="referencia_entrega" class="col-sm-2 col-form-label">Entre calle y referencias:</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="referencia_entrega" id="referencia_entrega" rows="5"
-                        required>{{old ('referencia_entrega')}}</textarea>
+                        required placeholder="Entre calles, puntos de referencia, color de fachada, etc">{{old ('referencia_entrega')}}</textarea>
 
                 </div>
             </div>
@@ -228,7 +238,7 @@
                 <label for="notas_vendedor" class="col-sm-2 col-form-label">Agregar notas</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="notas_vendedor" id="notas_vendedor" rows="3"
-                        required>{{old ('notas_vendedor')}}</textarea>
+                        required placeholder="Información adicional a lo anterior">{{old ('notas_vendedor')}}</textarea>
                 </div>
             </div>
 

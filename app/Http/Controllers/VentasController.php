@@ -155,9 +155,9 @@ class VentasController extends Controller
             'colonia_entrega' => 'required',
             'referencia_entrega' => 'required',
             'municipio_entrega' => 'required',
-            'url_maps' => 'required',
+            'url_maps' => 'required|url',
             'total_mensual' => 'required',
-            'notas_vendedor' => 'nullable',
+            'notas_vendedor' => 'required',
             'notas_MC' => 'nullable',
             'id_zona' => 'nullable|int',
                         
@@ -360,17 +360,26 @@ class VentasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ventas $ventas)
-    {   
-        //
-                
+    public function edit($id)
+    {  
+            $user = auth()->user();
+            $userId = $user->id;
+            $asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
+            $venta = ventas::find($id);
+            $zona = zonas::find($venta->id_zona);
+            if($venta->id_asesor == $asesorId ){
+                $total_mensual = $venta->total_mensual;
+                $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+                return view('ventas.edit', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] ); 
+            }else{
+                return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+            }        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){   
         $user = auth()->user();
         $asesor = asesores::where('id_user', $user->id)->first();
         $request->validate([
@@ -386,17 +395,19 @@ class VentasController extends Controller
             'colonia_entrega' => 'required',
             'referencia_entrega' => 'required',
             'municipio_entrega' => 'required',
-            'url_maps' => 'required',
+            'url_maps' => 'required|url',
             'total_mensual' => 'required',
-            'notas_vendedor' => 'nullable',
+            'notas_vendedor' => 'required',
                         
         ]);
 
         $venta = ventas::find($id);
-        if($asesor->incubadora === 1){
-            $venta->estado_venta = (0); 
-        }else{
-            $venta->estado_venta = (2); 
+        if($venta->estado_venta == 1){
+            if($asesor->incubadora === 1){
+                $venta->estado_venta = (0); 
+            }else{
+                $venta->estado_venta = (2); 
+            }
         }
         $total_mensual = $request->input('total_mensual');
         $total_mensual_formateado = intval(str_replace(',','', $total_mensual));

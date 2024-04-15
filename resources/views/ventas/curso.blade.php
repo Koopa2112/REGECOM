@@ -17,6 +17,7 @@
                     <th>Estado</th>
                     <th>Info</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -53,6 +54,8 @@
                     @endif
 
                     <th><a href="{{  url('ventas/' .$venta->id. '/show') }}" class="btn btn-primary btn-small">Ver</a>
+                    </th>
+                    <th><a href="{{  url('ventas/' .$venta->id. '/edit') }}" class="btn btn-warning btn-small">Editar</a>
                     </th>
                     @if ($venta->estado_venta == 4)
                     <th><a href="{{  url('ventas/' .$venta->id. '/fecha') }}"
