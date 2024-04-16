@@ -38,7 +38,7 @@ class VentasController extends Controller
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-/*
+        /*
         $zonaVenta = ventas::where('id', $id)->pluck('id_zona')->first();
         $fechas_disponibles = rutas::where('id_zona', $zonaVenta)->get();
         return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]); */
@@ -105,7 +105,7 @@ class VentasController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $user = auth()->user();
         $userID = $user->id;
         $asesor = asesores::where('id_user', $userID)->first();
@@ -115,16 +115,13 @@ class VentasController extends Controller
         $ultimaVenta = ventas::get()->last();
         
         
-    // Obtener la lista de analistas disponibles
+        // Obtener la lista de analistas disponibles
         $analistasU = User::where('puesto_empleado', 6)->where('estado', true)->pluck('id');
 
-  //tengo la colección con los id
+        //tengo la colección con los id
 
         $n = 0;
-        /*foreach($analistasU as $id_user){       //busco en cada uno de los analistas, si conocide con los id activos
-            $id_analistas[$n] = analistas::where('id_user', $id_user)->pluck('id');
-            $n++;
-        }*/
+
         $id_analistas = analistas::whereIn('id_user', $analistasU)->get()->pluck('id');
         $id_analistasArray = $id_analistas->all();
         if($ultimaVenta == null){
@@ -158,13 +155,16 @@ class VentasController extends Controller
             'colonia_entrega' => 'required',
             'referencia_entrega' => 'required',
             'municipio_entrega' => 'required',
-            'url_maps' => 'required',
+            'url_maps' => 'required|url',
             'total_mensual' => 'required',
-            'notas_vendedor' => 'nullable',
+            'notas_vendedor' => 'required',
             'notas_MC' => 'nullable',
             'id_zona' => 'nullable|int',
                         
         ]);
+        $total_mensual = $request->input('total_mensual');
+
+        $total_mensual_formateado = intval(str_replace(',','', $total_mensual));
 
         $venta = new ventas();
         $venta->id_asesor = $asesorID;
@@ -174,7 +174,6 @@ class VentasController extends Controller
             $venta->estado_venta = (2); 
         }
         
-
         $venta->id_analista = $analistaAsignado;
         $venta->linea_venta = $request->input('linea_venta');
         $venta->nombre_cliente = $request->input('nombre_cliente');
@@ -189,7 +188,7 @@ class VentasController extends Controller
         $venta->colonia_entrega = $request->input('colonia_entrega');
         $venta->referencia_entrega = $request->input('referencia_entrega');
         $venta->url_maps = $request->input('url_maps');
-        $venta->total_mensual = $request->input('total_mensual');
+        $venta->total_mensual = $total_mensual_formateado;
         $venta->notas_vendedor = $request->input('notas_vendedor');
         $venta->notas_MC = $request->input('notas_MC');
         $venta->id_zona = $request->input('id_zona');
@@ -210,7 +209,9 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($venta->id_asesor == $asesorId ){
-            return view('ventas.show', compact('venta', 'zona'));
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.show', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] ); 
             
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
@@ -227,7 +228,9 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($user->puesto_empleado == 1){
-            return view('ventas.sshow', ['venta' => $venta, 'zona' => $zona]);
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.sshow', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] ); 
             
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
@@ -243,8 +246,9 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($user->puesto_empleado == 2){
-            return view('ventas.cshow', ['venta' => $venta, 'zona' => $zona]);
-            
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.cshow', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] );  
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
@@ -258,7 +262,14 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($user->puesto_empleado == 6){
-            return view('ventas.ashow', ['venta' => $venta, 'zona' => $zona]);       
+            $total_mensual = $venta->total_mensual;
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.ashow', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] );       
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+    }
+
     public function lshow($id)
     {
         $user = auth()->user();
@@ -274,6 +285,7 @@ class VentasController extends Controller
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
+    
 
     public function aceptar($id){
 
@@ -317,12 +329,22 @@ class VentasController extends Controller
             }elseif($venta->estado_venta == 3){
                 return view("message", ['msg' => "Venta con problema :`("]);
             }elseif($venta->estado_venta == 7){
-                if(null != ($request->input('id_equipo'))){
-                    $venta->id_equipo = intval($request->input('id_equipo'), 10);
-                    $equipo = equipos::find($venta->id_equipo);
-                    $equipo->entregado = true;
-                    $venta->save();
+                $request->validate([
+                    'imei' => 'required'
+                ]);
+                if(null != ($request->input('imei'))){
+                    // $venta->id_equipo = intval($request->input('id_equipo'), 10);
+                    // $equipo = equipos::find($venta->id_equipo);
+                    // $equipo->entregado = true;
+                    $equipo = new equipos();
+                    $equipo->imei = $request->input('imei');
+                    $equipo->marca_equipo = "null";
+                    $equipo->modelo_equipo = 'null';
                     $equipo->save();
+
+                    $venta->id_equipo = equipos::where('imei', $equipo->imei)->value('id');
+                    $venta->save();
+                    //$equipo->save();
                     return view("message", ['msg' => "Venta lista para entregarse :D"]);
                 }
             }
@@ -338,17 +360,26 @@ class VentasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ventas $ventas)
-    {   
-        //
-                
+    public function edit($id)
+    {  
+            $user = auth()->user();
+            $userId = $user->id;
+            $asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
+            $venta = ventas::find($id);
+            $zona = zonas::find($venta->id_zona);
+            if($venta->id_asesor == $asesorId ){
+                $total_mensual = $venta->total_mensual;
+                $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+                return view('ventas.edit', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] ); 
+            }else{
+                return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+            }        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){   
         $user = auth()->user();
         $asesor = asesores::where('id_user', $user->id)->first();
         $request->validate([
@@ -364,19 +395,23 @@ class VentasController extends Controller
             'colonia_entrega' => 'required',
             'referencia_entrega' => 'required',
             'municipio_entrega' => 'required',
-            'url_maps' => 'required',
+            'url_maps' => 'required|url',
             'total_mensual' => 'required',
-            'notas_vendedor' => 'nullable',
+            'notas_vendedor' => 'required',
                         
         ]);
 
         $venta = ventas::find($id);
-        if($asesor->incubadora === 1){
-            $venta->estado_venta = (0); 
-        }else{
-            $venta->estado_venta = (2); 
+        if($venta->estado_venta == 1){
+            if($asesor->incubadora === 1){
+                $venta->estado_venta = (0); 
+            }else{
+                $venta->estado_venta = (2); 
+            }
         }
-        
+        $total_mensual = $request->input('total_mensual');
+        $total_mensual_formateado = intval(str_replace(',','', $total_mensual));
+
         $venta->linea_venta = $request->input('linea_venta');
         $venta->nombre_cliente = $request->input('nombre_cliente');
         $venta->plan_venta = $request->input('plan_venta');
@@ -390,7 +425,7 @@ class VentasController extends Controller
         $venta->colonia_entrega = $request->input('colonia_entrega');
         $venta->referencia_entrega = $request->input('referencia_entrega');
         $venta->url_maps = $request->input('url_maps');
-        $venta->total_mensual = $request->input('total_mensual');
+        $venta->total_mensual = $total_mensual_formateado;
         $venta->notas_vendedor = $request->input('notas_vendedor');
         $venta->notas_MC = $request->input('notas_MC');
         

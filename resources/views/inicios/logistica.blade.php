@@ -37,7 +37,16 @@
     </ul>
 </li>
 
-
+<li class="nav-item dropdown">
+    <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Inventario
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" href="{{ url('equiposL/create') }}">Agregar equipos</a></li>
+        <li><a class="dropdown-item" href="{{ url('equiposL/asignados') }}">Ver equipos asignados</a></li>
+        <li><a class="dropdown-item" href="{{ url('equiposL/inventario') }}">Inventario</a></li>
+    </ul>
+</li>
 
 
 

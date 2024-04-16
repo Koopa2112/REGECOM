@@ -218,11 +218,17 @@
             <div class="mb-3 row">
                 <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
                 <div class="col-sm-5">
-                    <input type="number" class="form-control" name="total_mensual" id="total_mensual" required
-                        value="{{old ('total_mensual')}}">
-
+                    <div class="col-sm-3 input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">$</span>
+                        </div>
+                        <input required type="text" class="form-control" name="total_mensual" id="total_mensual"
+                            required value="{{old ('total_mensual')}}">
+                    </div>
                 </div>
+
             </div>
+
 
             <div class="mb-3 row">
                 <label for="notas_vendedor" class="col-sm-2 col-form-label">Agregar notas</label>
@@ -252,8 +258,28 @@
 
         </form>
 
-
     </div>
 </main>
+
+
+<script>
+    
+$("#total_mensual").on({
+    "focus": function(event) {
+        $(event.target).select();
+    },
+    "keyup": function(event) {
+        $(event.target).val(function(index, value) {
+            return value.replace(/\D/g, "")
+                //.replace(/([0-9])([0-9]{2})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+
+        });
+    }
+});
+</script>
+
+
+
 
 @stop
