@@ -25,29 +25,29 @@
 
 
         <form action="{{ url('ventas/' . $venta->id) }}" method="post" id="aceptarVenta">
-                @csrf
-                @method('put')
+            @csrf
+            @method('put')
 
 
-        <div class="mb-3 row">
-            <label for="linea_venta" class="col-sm-2 col-form-label">Linea del cliente</label>
-            <div class="col-sm-5">
-                <input type="tel" class="form-control" name="linea_venta" id="linea_venta"
-                    value="{{$venta->linea_venta}}" >
+            <div class="mb-3 row">
+                <label for="linea_venta" class="col-sm-2 col-form-label">Linea del cliente</label>
+                <div class="col-sm-5">
+                    <input type="tel" class="form-control" name="linea_venta" id="linea_venta"
+                        value="{{$venta->linea_venta}}">
 
+                </div>
             </div>
-        </div>
 
-        <div class="mb-3 row">
-            <label for="nombre_cliente" class="col-sm-2 col-form-label">Nombre del cliente</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="nombre_cliente" id="nombre_cliente"
-                    value="{{$venta->nombre_cliente}}" >
+            <div class="mb-3 row">
+                <label for="nombre_cliente" class="col-sm-2 col-form-label">Nombre del cliente</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="nombre_cliente" id="nombre_cliente"
+                        value="{{$venta->nombre_cliente}}">
 
+                </div>
             </div>
-        </div>
 
-        <div class="mb-3 row">
+            <div class="mb-3 row">
                 <label for="plan_venta" class="col-sm-2 col-form-label">Plan</label>
                 <div class="col-sm-5">
                     <select class="form-control" name="plan_venta" id="plan_venta">
@@ -98,109 +98,113 @@
                 </div>
             </div>
 
-        <div class="mb-3 row">
-            <label for="meses_venta" class="col-sm-2 col-form-label">Meses</label>
-            <div class="col-sm-5">
-                <input type="number" class="form-control" name="meses_venta" id="meses_venta"
-                    value="{{$venta->meses_venta}}" >
+            <div class="mb-3 row">
+                <label for="meses_venta" class="col-sm-2 col-form-label">Meses</label>
+                <div class="col-sm-5">
+                    <input type="number" class="form-control" name="meses_venta" id="meses_venta"
+                        value="{{$venta->meses_venta}}">
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="marca_equipo" class="col-sm-2 col-form-label">Marca equipo</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="marca_equipo" id="marca_equipo"
+                        value="{{$venta->marca_equipo}}">
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="modelo_equipo" class="col-sm-2 col-form-label">Modelo del equipo</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="modelo_equipo" id="modelo_equipo"
+                        value="{{$venta->modelo_equipo}}">
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="calle_entrega" class="col-sm-2 col-form-label">Calle: </label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="calle_entrega" id="calle_entrega"
+                        value="{{$venta->calle_entrega}}">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="numero_entrega" class="col-sm-2 col-form-label">Número: </label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="numero_entrega" id="numero_entrega"
+                        value="{{$venta->numero_entrega}}">
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="colonia_entrega" class="col-sm-2 col-form-label">Colonia: </label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="colonia_entrega" id="colonia_entrega"
+                        value="{{$venta->colonia_entrega}}" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="municipio_entrega" class="col-sm-2 col-form-label">Municipio: </label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="municipio_entrega" id="municipio_entrega"
+                        value="{{$venta->municipio_entrega}}" rows="3"></textarea>
+
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias: </label>
+                <div class="col-sm-5">
+                    <textarea class="form-control" name="referencia_entrega" id="municipio_entrega"
+                        rows="3">{{$venta->referencia_entrega}}</textarea>
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="url_maps" class="col-sm-2 col-form-label">URL de google maps</label>
+                <div class="col-sm-5">
+                    <input value="{{$venta->url_maps}}" class="form-control" name="url_maps" id="url_maps">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
+                <div class="col-sm-5">
+                    <div class="col-sm-3 input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend2">$</span>
+                        </div>
+                        <input required type="text" class="form-control" name="total_mensual" id="total_mensual"
+                            required value="{{$venta->total_mensual}}">
+                    </div>
+                </div>
 
             </div>
-        </div>
 
-        <div class="mb-3 row">
-            <label for="marca_equipo" class="col-sm-2 col-form-label">Marca equipo</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="marca_equipo" id="marca_equipo"
-                    value="{{$venta->marca_equipo}}" >
-
+            <div class="mb-3 row">
+                <label for="notas_vendedor" class="col-sm-2 col-form-label">Notas</label>
+                <div class="col-sm-5">
+                    <textarea class="form-control" name="notas_vendedor"
+                        id="notas_vendedor">{{$venta->notas_vendedor}}</textarea>
+                </div>
             </div>
-        </div>
 
-        <div class="mb-3 row">
-            <label for="modelo_equipo" class="col-sm-2 col-form-label">Modelo del equipo</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="modelo_equipo" id="modelo_equipo"
-                    value="{{$venta->modelo_equipo}}" >
-
+            <div class="mb-3 row">
+                <label for="notas_MC" class="col-sm-2 col-form-label">Notas</label>
+                <div class="col-sm-5">
+                    <textarea class="form-control-plaintext" name="notas_MC" id="notas_MC"
+                        readonly>{{$venta->notas_MC}}</textarea>
+                </div>
             </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="calle_entrega" class="col-sm-2 col-form-label">Calle: </label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="calle_entrega" id="calle_entrega"
-                    value="{{$venta->calle_entrega}}" >
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="numero_entrega" class="col-sm-2 col-form-label">Número: </label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="numero_entrega" id="numero_entrega"
-                    value="{{$venta->numero_entrega}}" >
-
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="colonia_entrega" class="col-sm-2 col-form-label">Colonia: </label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="colonia_entrega" id="colonia_entrega"
-                    value="{{$venta->colonia_entrega}}" rows="3" ></textarea>
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="municipio_entrega" class="col-sm-2 col-form-label">Municipio: </label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="municipio_entrega" id="municipio_entrega"
-                    value="{{$venta->municipio_entrega}}" rows="3" ></textarea>
-
-            </div>
-        </div>
-
-
-        <div class="mb-3 row">
-            <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias: </label>
-            <div class="col-sm-5">
-                <textarea class="form-control" name="referencia_entrega" id="municipio_entrega" rows="3"
-                    >{{$venta->referencia_entrega}}</textarea>
-
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="url_maps" class="col-sm-2 col-form-label">URL de google maps</label>
-            <div class="col-sm-5">
-                <input value="{{$venta->url_maps}}" class="form-control" name="url_maps" id="url_maps"
-                    >
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
-            <div class="col-sm-5">
-                <input type="number" class="form-control" name="total_mensual" id="total_mensual"
-                    value="{{$venta->total_mensual}}" >
-
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="notas_vendedor" class="col-sm-2 col-form-label">Notas</label>
-            <div class="col-sm-5">
-                <textarea class="form-control" name="notas_vendedor" id="notas_vendedor"
-                    >{{$venta->notas_vendedor}}</textarea>
-            </div>
-        </div>
-
-        <div class="mb-3 row">
-            <label for="notas_MC" class="col-sm-2 col-form-label">Notas</label>
-            <div class="col-sm-5">
-                <textarea class="form-control-plaintext" name="notas_vendedor" id="notas_vendedor"
-                    readonly>{{$venta->notas_MC}}</textarea>
-            </div>
-        </div>
 
         </form>
 
@@ -223,21 +227,21 @@
                 </script>
             </form>
             <br><br>
-            
-                <button type="button" class="btn btn-success btn-lg" id="btnAceptar">Reenviar</button>
-                <script>
-                document.getElementById('btnAceptar').addEventListener('click', function() {
-                    // Muestra un cuadro de diálogo de confirmación
-                    var confirmacion = confirm('¿Estás seguro de que deseas REENVIAR la venta?');
 
-                    // Si el usuario hace clic en "Aceptar", se enviará el formulario
-                    if (confirmacion) {
-                        document.getElementById('aceptarVenta').submit();
-                    }
+            <button type="button" class="btn btn-success btn-lg" id="btnAceptar">Reenviar</button>
+            <script>
+            document.getElementById('btnAceptar').addEventListener('click', function() {
+                // Muestra un cuadro de diálogo de confirmación
+                var confirmacion = confirm('¿Estás seguro de que deseas REENVIAR la venta?');
 
-                });
-                </script>
-           
+                // Si el usuario hace clic en "Aceptar", se enviará el formulario
+                if (confirmacion) {
+                    document.getElementById('aceptarVenta').submit();
+                }
+
+            });
+            </script>
+
         </div>
 
         <br>
@@ -249,4 +253,19 @@
 
 </main>
 
+<script>
+$("#total_mensual").on({
+    "focus": function(event) {
+        $(event.target).select();
+    },
+    "keyup": function(event) {
+        $(event.target).val(function(index, value) {
+            return value.replace(/\D/g, "")
+                //.replace(/([0-9])([0-9]{2})$/, '$1.$2')
+                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+
+        });
+    }
+});
+</script>
 @stop

@@ -32,7 +32,7 @@
 <br>
 <body>
     <main>
-        <div style=" height: 80vh; background-image: URL('https://localhost/REGECOM/public/images/logo_transparente.png') ;background-repeat: no-repeat; 
+    <div style=" height: 80vh; background-image: URL('https://cpdatelcel.com/public/images/logo_transparente.png') ;background-repeat: no-repeat; 
             background-position: center; margin: 0; padding: 0">
             @yield('contenido')
         </div>

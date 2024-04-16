@@ -520,8 +520,10 @@ class VentasController extends Controller
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
         if($user->puesto_empleado == 6){
+            $total_mensual = $venta->total_mensual;
             $equipos = equipos::where('entregado', false)->get();
-            return view('ventas.contrato', ['venta' => $venta, 'zona' => $zona, 'equipos' => $equipos]);       
+            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
+            return view('ventas.contrato', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado, 'equipos' => $equipos] );      
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }

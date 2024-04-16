@@ -36,8 +36,6 @@
                 </div>
             </div>
 
-
-
             <div class="mb-3 row">
                 <!-- <input type="hidden" name="id_equipo" id="id_equipo"> -->
                 <label for="imei" class="col-sm-2 col-form-label">Equipo</label>
@@ -70,6 +68,7 @@
                 <label for="fecha_entrega" class="col-sm-2 col-form-label">Fecha de entrega</label>
                 <div class="col-sm-5">
                     <input style="background-color:yellow" type="tel" class="form-control-plaintext" name="fecha_entrega" id="fecha_entrega" value="{{ date( 'd M Y', strtotime( $venta->ruta->fecha_entrega)) }} " readonly>
+
 
                 </div>
             </div>
@@ -120,7 +119,8 @@
             <div class="mb-3 row">
                 <label for="total_mensual" class="col-sm-2 col-form-label">Total mensual</label>
                 <div class="col-sm-5">
-                    <input type="number" class="form-control-plaintext" name="total_mensual" id="total_mensual" value="{{$venta->total_mensual}}" readonly>
+                    <input type="text" class="form-control-plaintext" name="total_mensual" id="total_mensual"
+                        value="{{$total_mensual}}" readonly>
 
                 </div>
             </div>
@@ -135,23 +135,32 @@
             <div class="mb-3 row">
                 <label for="notas_analista" class="col-sm-2 col-form-label">Notas</label>
                 <div class="col-sm-5">
-                    <textarea class="form-control" name="notas_analista" id="notas_analista">{{$venta->notas_MC}}</textarea>
+                    <textarea class="form-control" name="notas_analista"
+                        id="notas_analista">{{$venta->notas_MC}}</textarea>
                 </div>
             </div>
 
             <input type="hidden" class="form-hidden" name="estado" id="estado" value="">
 
-            <div style="float:right; margin-right:30px; margin-bottom:20px">
-                <button type="button" class="btn btn-danger btn-lg" id="btnRechazar" onclick="guardar(5)">Problema con
-                    el trámite</button>
+                        </div>
 
-                <button type="button" class="btn btn-success btn-lg" id="btnAceptar" onclick="guardar(7)">Contrato
-                    impreso correctamente</button>
+                <div class="col-sm-5">
+                    <div class="col-sm">
+                        <button type="button" style="flex-grow: 10" class="btn btn-danger btn-lg" id="btnRechazar"
+                            onclick="guardar(3)">Contrato no impreso</button>
+                    </div >
 
-                <script>
+                    <br>
+                    <div class="col-sm">
+                        <button type="button" style="flex-grow: 10" class="btn btn-success btn-lg" id="btnAceptar"
+                            onclick="guardar(7)">Contrato impreso</button>
+                    </div>
+
+
+                    <script>
                     function guardar(estado) {
                         // Muestra un cuadro de diálogo de confirmación
-                        if (estado == 5) {
+                        if (estado == 3) {
                             var confirmacion = confirm('¿Estás seguro de que deseas marcar problemas con la venta?');
                         } else if (estado == 7) {
                             var confirmacion = confirm('¿Estás seguro de que deseas proceder con la venta?');
@@ -164,8 +173,8 @@
                             document.getElementById("analizarVenta").submit();
                         }
                     }
-                </script>
-            </div>
+                    </script>
+                </div>
         </form>
         <br><br>
 
