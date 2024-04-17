@@ -341,10 +341,8 @@ class VentasController extends Controller
                     $equipo->marca_equipo = "null";
                     $equipo->modelo_equipo = 'null';
                     $equipo->save();
-
-                    $venta->id_equipo = equipos::where('imei', $equipo->imei)->value('id');
+                    $venta->id_equipo = $equipo->id;
                     $venta->save();
-                    //$equipo->save();
                     return view("message", ['msg' => "Venta lista para entregarse :D"]);
                 }
             }
