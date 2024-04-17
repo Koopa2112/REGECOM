@@ -36,7 +36,7 @@
                     <th>{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
                     {{ $venta->municipio_entrega}}
                     </th>
-                    <th>{{ $venta->notas_vendedor}}<br>{{ $venta->notas_MC}}</th>
+                    <th>{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</th>
                     <th>{{ $venta->url_maps}}</th>
                     <th><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></th>
                     <form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
