@@ -12,9 +12,9 @@
             <thead>
                 <tr>
                     <th>ID venta</th>
+                    <th>Fecha de envio</th>
                     <th>Linea</th>
                     <th>Nombre del cliente</th>
-                    <th>Fecha de envio</th>
                     <th>Domicilio</th>
                     <th>Notas</th>
                     <th>URL</th>
@@ -30,9 +30,9 @@
                 <tr>
 
                     <th>{{ $venta->id}}</th>
+                    <th>{{ $venta->ruta->fecha_entrega }}</th>
                     <th>{{ $venta->linea_venta }}</th>
                     <th>{{ $venta->nombre_cliente }}</th>
-                    <th>{{ $venta->ruta->fecha_entrega }}</th>
                     <th>{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
                     {{ $venta->municipio_entrega}}
                     </th>
