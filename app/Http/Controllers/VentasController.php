@@ -400,7 +400,7 @@ class VentasController extends Controller
         ]);
 
         $venta = ventas::find($id);
-        if($venta->estado_venta == 1){
+        if($venta->estado_venta == 1 || $venta->estado_venta == 3){
             if($asesor->incubadora === 1){
                 $venta->estado_venta = (0); 
             }else{
