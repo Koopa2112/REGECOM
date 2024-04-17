@@ -315,13 +315,13 @@ class VentasController extends Controller
 
     public function analisis(request $request, $id){
         $request->validate([
-            'notas_analista' => 'required',
+            'notas_MC' => 'required',
             'estado' => 'required',
         ]);
 
         if(auth()->user()->puesto_empleado == 6){
             $venta = ventas::find($id);
-            $venta->notas_MC = $request->input('notas_analista');
+            $venta->notas_MC = $request->input('notas_MC');
             $venta->estado_venta = intval($request->input('estado'));
             $venta->save();
             if($venta->estado_venta == 5){

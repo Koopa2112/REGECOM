@@ -103,9 +103,9 @@
             </div>
 
             <div class="mb-3 row">
-                <label for="notas_analista" class="col-sm-2 col-form-label">Notas</label>
+                <label for="notas_MC" class="col-sm-2 col-form-label">Notas</label>
                 <div class="col-sm-5">
-                    <textarea class="form-control" name="notas_analista" id="notas_analista"
+                    <textarea class="form-control" name="notas_MC" id="notas_MC"
                         >{{$venta->notas_MC}}</textarea>
                 </div>
             </div>
