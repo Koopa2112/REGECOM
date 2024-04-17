@@ -427,7 +427,7 @@ class VentasController extends Controller
         $venta->notas_vendedor = $request->input('notas_vendedor');
         $venta->notas_MC = $request->input('notas_MC');
         
-        $venta->fecha_venta = now(('America/Mexico_City'));
+        //$venta->fecha_venta = now(('America/Mexico_City'));
         $venta->save();
 
         return view("message", ['msg' => "Registro reenviado =D"]);
