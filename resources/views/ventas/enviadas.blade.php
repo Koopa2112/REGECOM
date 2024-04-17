@@ -7,7 +7,7 @@
     <div class="container py-4">
 
         <h2>Ventas enviadas</h2>
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive">
 
             <thead>
                 <tr>
@@ -34,7 +34,7 @@
                     <th>{{ $venta->linea_venta }}</th>
                     <th>{{ $venta->nombre_cliente }}</th>
                     <th>{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
-                    {{ $venta->municipio_entrega}}
+                    {{ $venta->municipio_entrega}}. {{ $venta->referencia_entrega}}
                     </th>
                     <th>{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</th>
                     <th>{{ $venta->url_maps}}</th>
