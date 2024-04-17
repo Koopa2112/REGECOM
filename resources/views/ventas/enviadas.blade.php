@@ -13,9 +13,10 @@
                 <tr>
                     <th>ID venta</th>
                     <th>Linea</th>
-                    <th>Nombre del cliente</th>
                     <th>Fecha de envio</th>
-                    <th>Zona</th>
+                    <th>Domicilio</th>
+                    <th>Notas</th>
+                    <th>URL</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -29,9 +30,12 @@
 
                     <th>{{ $venta->id}}</th>
                     <th>{{ $venta->linea_venta }}</th>
-                    <th>{{ $venta->nombre_cliente }}</th>
                     <th>{{ $venta->ruta->fecha_entrega }}</th>
-                    <th>{{ $venta->ruta->zona->nombre_zona }}</th>
+                    <th>{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
+                    {{ $venta->municipio_entrega}}
+                    </th>
+                    <th>{{ $venta->notas_vendedor}}<br>{{ $venta->notas_MC}}</th>
+                    <th>{{ $venta->url_maps}}</th>
                     <th><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></th>
                     <form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
                         @csrf
