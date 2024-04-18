@@ -72,7 +72,11 @@ class AsesorController extends Controller
         if($user->puesto_empleado = 1){
             $userId = $user->id;
             $supervisor = administrativos::where('id_user', $userId)->first();
-            $asesores = asesores::where('id_administrativo', $supervisor->id)->get();
+            $asesores = asesores::where('id_administrativo', $supervisor->id)->
+            whereHas('user', function($query){
+                $query->where('estado', '=', 1);
+            })
+            ->get();
             $asesoresId = $asesores->pluck('id');
             $asesoresUsuarios = User::whereIn('id', $asesoresId)->get();
             $hoy = now(('America/Mexico_City'))->format('Y-m-d');
