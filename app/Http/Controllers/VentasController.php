@@ -612,7 +612,9 @@ class VentasController extends Controller
 
     public function enviadas(){
         if(auth()->user()->puesto_empleado == 4){
-            $ventas = ventas::where('estado_venta', 7)->get();
+            $ventas = ventas::where('estado_venta', 7)
+            ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
+            ->orderBy('rutas.fecha_entrega', 'asc')->get();
             return view('ventas.enviadas', ['ventas' => $ventas]);
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
