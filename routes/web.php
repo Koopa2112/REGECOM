@@ -47,6 +47,7 @@ Route::get('/ventas/{id}/show', [VentasController::class, 'show'])->middleware('
 Route::get('/ventas/{id}/edit', [VentasController::class, 'edit'])->middleware('auth');
 Route::get('/ventas/{id}/reenviar', [VentasController::class, 'reenviar'])->middleware('auth');
 Route::get('/ventas/dia', [VentasController::class, 'dia'])->middleware('auth');
+Route::get('/ventas/mes', [VentasController::class, 'mes'])->middleware('auth');
 Route::get('/ventas/{id}/sshow', [VentasController::class, 'sshow'])->middleware('auth');
 Route::get('/ventas/pendienteRevision', [VentasController::class, 'pendienteRevision'])->middleware('auth');
 Route::get('/ventas/{id}/cshow', [VentasController::class, 'cshow'])->middleware('auth');

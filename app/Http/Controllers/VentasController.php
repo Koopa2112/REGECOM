@@ -11,6 +11,7 @@ use App\Models\zonas;
 use App\Models\asesores;
 use App\Models\equipos;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class VentasController extends Controller
 {
@@ -468,6 +469,25 @@ class VentasController extends Controller
             $ventas = ventas::whereIn('id_asesor', $asesores)->where('fecha_venta', $hoy)->get();
             $asesores = asesores::all();
             return view('ventas.dia', ['ventas' => $ventas, 'asesores' => $asesores]);
+        }else{
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
+
+    }
+
+    public function mes(){
+        $user = auth()->user();
+        if($user->puesto_empleado == 1){
+            $supervisor = administrativos::where('id_user', $user->id)->get()->first();
+            $supervisorId = $supervisor->id;
+            $asesores = asesores::where('id_administrativo', $supervisorId)->get()->pluck('id');
+            $fecha_hace_30_dias = Carbon::now()->subDays(30);
+            $ventas = ventas::whereIn('id_asesor', $asesores)
+                ->whereDate('fecha_venta', '>=', $fecha_hace_30_dias)
+                ->get();
+            $asesores = asesores::all();
+            $zonas = zonas::all();
+            return view('ventas.mes', ['ventas' => $ventas, 'asesores' => $asesores, 'zonas' => $zonas]);
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
