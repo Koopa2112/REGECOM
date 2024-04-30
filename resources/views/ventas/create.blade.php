@@ -75,7 +75,7 @@
                             @endif> Telcel Plus 1.5 CC</option>
                         <option value="Telcel Plus 2 CC" @if(old ('plan_venta')=='Telcel Plus 2CC' ) selected @endif>
                             Telcel Plus 2 CC</option>
-                        <option value="Telcel Plus 3" @if(old ('plan_venta')=='Telcel Plus 3 CC' ) selected @endif>
+                        <option value="Telcel Plus 3 CC" @if(old ('plan_venta')=='Telcel Plus 3 CC' ) selected @endif>
                             Telcel Plus 3CC</option>
                         <option value="Telcel Plus 4 CC" @if(old ('plan_venta')=='Telcel Plus 4 CC' ) selected @endif>
                             Telcel Plus 4 CC</option>
