@@ -65,7 +65,7 @@
                         <option value="Telcel Plus 1 CC" @if($venta->plan_venta == 'Telcel Plus 1 CC') selected @endif> Telcel Plus 1 CC</option>
                         <option value="Telcel Plus 1.5 CC" @if($venta->plan_venta == 'Telcel Plus 1.5 CC') selected @endif> Telcel Plus 1.5 CC</option>
                         <option value="Telcel Plus 2 CC" @if($venta->plan_venta == 'Telcel Plus 2CC') selected @endif> Telcel Plus 2 CC</option>
-                        <option value="Telcel Plus 3" @if($venta->plan_venta == 'Telcel Plus 3 CC') selected @endif> Telcel Plus 3CC</option>
+                        <option value="Telcel Plus 3 CC" @if($venta->plan_venta == 'Telcel Plus 3 CC') selected @endif> Telcel Plus 3CC</option>
                         <option value="Telcel Plus 4 CC" @if($venta->plan_venta == 'Telcel Plus 4 CC') selected @endif> Telcel Plus 4 CC</option>
                         <option value="Telcel Plus 5 CC" @if($venta->plan_venta == 'Telcel Plus 5 CC') selected @endif> Telcel Plus 5 CC</option>
                         <option value="Telcel Plus 6 CC" @if($venta->plan_venta == 'Telcel Plus 6 CC') selected @endif> Telcel Plus 6 CC</option>
