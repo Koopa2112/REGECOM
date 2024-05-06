@@ -564,10 +564,15 @@ class VentasController extends Controller
         }
     }
 
-    public function finalizar($id){
+    public function finalizar(request $request, $id){
         if(auth()->user()->puesto_empleado == 6){
+            $request->validate([
+                'repartidor' => 'required',
+            ]);
             $venta = ventas::find($id);
             $venta->estado_venta = 9;
+            $venta->repartidor = $request->repartidor;
+            return($venta);
             $venta->save();
             return redirect()->back();
         }else{
