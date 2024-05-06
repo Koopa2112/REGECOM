@@ -35,7 +35,7 @@ class VentasController extends Controller
             $zonaVenta = ventas::where('id', $id)->pluck('id_zona')->first();
             $hoy = now(('America/Mexico_City'));
             $fechas_disponibles = rutas::where('id_zona', $zonaVenta)
-                ->where('fecha_entrega', '>', $hoy)
+                ->where('fecha_entrega', '>=', $hoy)
                 ->where('num_entregas', '<', rutas::raw('max_entregas'))->get();
             return view('ventas.fecha', ['venta' => $id, 'fechas_entrega' => $fechas_disponibles]);
             
