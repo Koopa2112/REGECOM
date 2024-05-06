@@ -63,7 +63,7 @@
                     <form action="{{  url('ventas/' .$venta->id. '/finalizar') }}" method="post" id="form{{$venta->id}}">
                         @csrf
                         <th><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" onclick="cambiarHidden( {{$venta->id}} )">Finalizar</button></th>
+                                data-bs-target="#exampleModal" onclick="cambiarHidden( '$venta->id' )">Finalizar</button></th>
                         <input type="hidden" value="" id="venta{{$venta->id}}" name="repartidor">
                     </form>
 
