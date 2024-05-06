@@ -33,7 +33,7 @@ class VentasController extends Controller
         if($venta->id_asesor == $asesorId && $venta->estado_venta != 10){
 
             $zonaVenta = ventas::where('id', $id)->pluck('id_zona')->first();
-            $hoy = now(('America/Mexico_City'));
+            $hoy = today(('America/Mexico_City'));
             $fechas_disponibles = rutas::where('id_zona', $zonaVenta)
                 ->where('fecha_entrega', '>=', $hoy)
                 ->where('num_entregas', '<', rutas::raw('max_entregas'))->get();
