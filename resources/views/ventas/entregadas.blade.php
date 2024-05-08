@@ -20,13 +20,13 @@
                 </div>
                 <div class="modal-body">
                     <select name="select" class="form-select" id="nombreRepartidor">
-                        <option selected disabled type="unseel">Seleccionar </option>
+                        <option value="" selected disabled>Seleccionar</option>
                         <option value="Jonathan Ibarra">Jonathan Ibarra</option>
                         <option value="Cosme Campos">Cosme Campos</option>
                         <option value="Eduardo Narvaez">Eduardo Narvaez</option>
                         <option value="Miguel Sanchez">Miguel Sanchez</option>
                     </select>
-                    <input type="hidden" value="", id="idSelected">
+                    <input type="hidden" value="" id="idSelected">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -36,6 +36,20 @@
         </div>
     </div>
     <div class="container py-4">
+
+        @if ($errors->any())
+
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        @endif
 
         <h2>Ventas entregadas</h2>
         <table class="table table-striped">
@@ -62,8 +76,7 @@
                     <th>{{ $venta->ruta->fecha_entrega }}</th>
                     <form action="{{  url('ventas/' .$venta->id. '/finalizar') }}" method="post" id="form{{$venta->id}}">
                         @csrf
-                        <th><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" onclick="cambiarHidden( '$venta->id' )">Finalizar</button></th>
+                        <th><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="cambiarHidden( '{{$venta->id}}')">Finalizar</button></th>
                         <input type="hidden" value="" id="venta{{$venta->id}}" name="repartidor">
                     </form>
 
@@ -82,13 +95,15 @@
             form.submit();
         }
     }
-    function cambiarHidden(id){
+
+    function cambiarHidden(id) {
         document.getElementById("idSelected").value = id;
     }
-    function send(){
+
+    function send() {
         var id = document.getElementById('idSelected').value;
         var repartidor = document.getElementById('nombreRepartidor').value;
-        document.getElementById('venta'+id).value = repartidor;
+        document.getElementById('venta' + id).value = repartidor;
         confirmar(id)
     }
     </script>

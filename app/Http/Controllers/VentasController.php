@@ -572,7 +572,6 @@ class VentasController extends Controller
             $venta = ventas::find($id);
             $venta->estado_venta = 9;
             $venta->repartidor = $request->repartidor;
-            return($venta);
             $venta->save();
             return redirect()->back();
         }else{
