@@ -596,8 +596,13 @@ class VentasController extends Controller
         $puesto = auth()->user()->puesto_empleado;
         if($puesto == 4 || $puesto == 1){
             $venta = ventas::find($id);
-            $zonas = zonas::all();
-            return view("ventas.asignarZona", ['venta' => $venta, 'zonas' => $zonas, ]);
+            if($venta->estado_venta == 5){
+                $zonas = zonas::where('isActive', 1)->get();
+                return view("ventas.asignarZona", ['venta' => $venta, 'zonas' => $zonas, ]);
+            }else{
+                header("Location: /REGECOM/public/ventas/pendienteZona");
+                exit();
+            }
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
@@ -605,19 +610,19 @@ class VentasController extends Controller
 
     public function zonaAsignada(request $request, $id){
         $puesto = auth()->user()->puesto_empleado;
-        if($puesto == 4 || $puesto == 1){
-            //return($request);
-            $request->validate([
-                'id_zona' => 'required'
-            ]);
-            $venta = ventas::find($id);
-            $venta->estado_venta = 4;
-            $venta->id_zona = intval($request->input('id_zona'), 10);
-            $venta->save();
-            return view("message", ['msg' => "Zona guardada correctamente (="]);
-        }else{
-            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
-        }
+            if($puesto == 4 || $puesto == 1){
+                //return($request);
+                $request->validate([
+                    'id_zona' => 'required'
+                ]);
+                $venta = ventas::find($id);
+                $venta->estado_venta = 4;
+                $venta->id_zona = intval($request->input('id_zona'), 10);
+                $venta->save();
+                return view("message", ['msg' => "Zona guardada correctamente (="]);
+            }else{
+                return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+            }
     }
 
     public function enviadas(){
