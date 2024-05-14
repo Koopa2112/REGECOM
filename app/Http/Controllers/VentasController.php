@@ -582,7 +582,8 @@ class VentasController extends Controller
 
 
     public function pendienteZona(){
-        if(auth()->user()->puesto_empleado == 4){
+        $puesto = auth()->user()->puesto_empleado;
+        if($puesto == 4 || $puesto == 1){
             $ventas = ventas::where('estado_venta', 5)->get();
  
             return view("ventas.pendienteZona", ['ventas' => $ventas]);
@@ -592,7 +593,8 @@ class VentasController extends Controller
     }
 
     public function asignarZona($id){
-        if(auth()->user()->puesto_empleado == 4){
+        $puesto = auth()->user()->puesto_empleado;
+        if($puesto == 4 || $puesto == 1){
             $venta = ventas::find($id);
             $zonas = zonas::all();
             return view("ventas.asignarZona", ['venta' => $venta, 'zonas' => $zonas, ]);
@@ -602,7 +604,8 @@ class VentasController extends Controller
     }
 
     public function zonaAsignada(request $request, $id){
-        if(auth()->user()->puesto_empleado == 4){
+        $puesto = auth()->user()->puesto_empleado;
+        if($puesto == 4 || $puesto == 1){
             //return($request);
             $request->validate([
                 'id_zona' => 'required'

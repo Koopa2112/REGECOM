@@ -1,5 +1,5 @@
-@extends('inicios/logistica')
-
+@extends((Auth::user()->puesto_empleado == 4) ? 'inicios.logistica' : 
+        ((Auth::user()->puesto_empleado == 1) ? 'inicios.supervisor' : 'inicios.logistica'))
 @section('title', 'Ventas para asignar zona')
 
 @section('contenido')
