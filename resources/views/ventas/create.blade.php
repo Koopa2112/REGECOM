@@ -193,6 +193,7 @@
                     <select class="form-control" name="municipio_entrega" id="municipio_entrega">
                         <option disabled selected>Seleccionar...</option>
                         <option value="Apodaca" > Apodaca</option>
+                        <option value="Cumbres" > Cumbres</option>
                         <option value="García" > García</option>
                         <option value="San Pedro Garza García" >  San Pedro Garza García</option>
                         <option value="General Escobedo" > General Escobedo</option>

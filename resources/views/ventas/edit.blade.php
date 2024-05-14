@@ -156,6 +156,7 @@
                     <select class="form-control" name="municipio_entrega" id="municipio_entrega">
                         <option disabled selected>Seleccionar...</option>
                         <option value="Apodaca" @if($venta->municipio_entrega == 'Apodaca') selected @endif> Apodaca</option>
+                        <option value="Cumbres" @if($venta->municipio_entrega == 'Cumbres') selected @endif> Cumbres</option>
                         <option value="García" @if($venta->municipio_entrega == 'García') selected @endif> García</option>
                         <option value="San Pedro Garza García" @if($venta->municipio_entrega == 'San Pedro Garza García') selected @endif>  San Pedro Garza García</option>
                         <option value="General Escobedo" @if($venta->municipio_entrega == 'General Escobedo') selected @endif> General Escobedo</option>

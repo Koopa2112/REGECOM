@@ -153,9 +153,19 @@
             <div class="mb-3 row">
                 <label for="municipio_entrega" class="col-sm-2 col-form-label">Municipio: </label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" name="municipio_entrega" id="municipio_entrega"
-                        value="{{$venta->municipio_entrega}}" rows="3"></textarea>
-
+                    <select class="form-control" name="municipio_entrega" id="municipio_entrega">
+                        <option disabled selected>Seleccionar...</option>
+                        <option value="Apodaca" @if($venta->municipio_entrega == 'Apodaca') selected @endif> Apodaca</option>
+                        <option value="Cumbres" @if($venta->municipio_entrega == 'Cumbres') selected @endif> Cumbres</option>
+                        <option value="Garcia" @if($venta->municipio_entrega == 'Garcia') selected @endif> García</option>
+                        <option value="San Pedro Garza Garcia" @if($venta->municipio_entrega == 'San Pedro Garza Garcia') selected @endif>  San Pedro Garza García</option>
+                        <option value="General Escobedo" @if($venta->municipio_entrega == 'General Escobedo') selected @endif> General Escobedo</option>
+                        <option value="Guadalupe" @if($venta->municipio_entrega == 'Guadalupe') selected @endif> Guadalupe</option>
+                        <option value="Ciudad Benito Juarez" @if($venta->municipio_entrega == 'Ciudad Benito Juarez') selected @endif> Ciudad Benito Juárez</option>
+                        <option value="Monterrey" @if($venta->municipio_entrega == 'Monterrey') selected @endif> Monterrey</option>
+                        <option value="San Nicolas de los Garza" @if($venta->municipio_entrega == 'San Nicolas de los Garza') selected @endif> San Nicolás de los Garza</option>
+                        <option value="Santa Catarina" @if($venta->municipio_entrega == 'Santa Catarina') selected @endif> Santa Catarina</option>
+                    </select>
                 </div>
             </div>
 
@@ -163,7 +173,7 @@
             <div class="mb-3 row">
                 <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias: </label>
                 <div class="col-sm-5">
-                    <textarea class="form-control" name="referencia_entrega" id="municipio_entrega"
+                    <textarea class="form-control" name="referencia_entrega" id="referencia_entrega"
                         rows="3">{{$venta->referencia_entrega}}</textarea>
 
                 </div>
