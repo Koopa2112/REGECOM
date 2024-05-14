@@ -12,7 +12,7 @@ class ZonaController extends Controller
      */
     public function index()
     {   if(auth()->user()->puesto_empleado == 4){
-            $zonas = zonas::all();
+            $zonas = zonas::where('isActive', 1)->get();
             return view('zonas.index', ['zonas' => $zonas]);
         }else{
             return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
@@ -89,6 +89,16 @@ class ZonaController extends Controller
         }
     }
 
+    public function delete($id){
+        if(auth()->user()->puesto_empleado == 4){
+            $zona = zonas::find($id);
+            $zona->isActive = 0;
+            $zona->save();
+            return view('message', ['msg' => "Zona eliminada correctamente =)"]);
+        }else{
+            return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      */
