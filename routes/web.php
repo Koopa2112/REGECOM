@@ -76,6 +76,7 @@ Route::get('/equipos/inventario', [EquipoController::class, 'inventario'])->midd
 Route::get('/asesores/lista', [AsesorController::class, 'lista'])->middleware('auth');
 Route::get('/asesores/{id}/show', [AsesorController::class, 'show'])->middleware('auth');
 
+Route::post('/zonas/{id}/delete', [ZonaController::class, 'delete'])->middleware('auth');
 
 Route::resource('/asesores', AsesorController::class)->middleware('auth');
 Route::resource('/ventas', VentasController::class)->middleware('auth');
