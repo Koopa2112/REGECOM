@@ -85,7 +85,7 @@ Route::resource('/rutas', RutaController::class)->middleware('auth');
 Route::resource('/zonas', ZonaController::class)->middleware('auth');
 Route::resource('/equipos', EquipoController::class)->middleware('auth');
 
-
+Route::post('/check-line', [VentasController::class, 'checkLine'])->name('check.line')->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',

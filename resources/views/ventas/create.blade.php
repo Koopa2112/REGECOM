@@ -31,7 +31,7 @@
                 <div class="col-sm-5">
                     <input type="tel" class="form-control" name="linea_venta" id="linea_venta"
                         value="{{old ('linea_venta')}}" required>
-
+                        <div id="message-box" class="message-box"></div>
                 </div>
             </div>
 
@@ -252,7 +252,7 @@
             <a href="{{ url('inicio') }}" class="btn btn-secondary">Regresar</a>
 
 
-            <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
+            <button type="button" class="btn btn-success" id="btnGuardar" >Guardar</button>
 
             <script>
             document.getElementById('btnGuardar').addEventListener('click', function() {
@@ -272,6 +272,42 @@
     </div>
 </main>
 
+<script>
+$(document).ready(function() {
+    $('#linea_venta').on('blur', function() {
+        var linea_venta = $(this).val();
+        $.ajax({
+            url: '{{ route('check.line') }}',
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                linea_venta: linea_venta
+            },
+            success: function(response) {
+                var input = document.getElementById('linea_venta')
+                var messageBox = document.getElementById('message-box');
+                if (response.exists) {
+                    input.style.borderColor = '#FF0000';
+                    input.classList.add('vibrate'); // Añadir la clase de vibración
+                        setTimeout(function() {
+                            input.classList.remove('vibrate'); // Eliminar la clase después de la animación
+                        }, 200);
+                        messageBox.innerHTML = "¡ATENCION! Esta línea ha sido registrada el: " + response.venta + 
+                                                ", con el ID: " + response.id +
+                                                ". Por favor, valida que ya este cerrada esa venta antes de continuar";
+                        messageBox.style.display = 'block';
+                } else {
+                    input.style.borderColor = '#00ff00';
+                    messageBox.style.display = 'none';
+                }
+            },
+            error: function(xhr) {
+                alert("Error en la consulta, favor de actualizar")
+            }
+        });
+    });
+});
+</script>
 
 <script>
     
@@ -290,6 +326,29 @@ $("#total_mensual").on({
 });
 </script>
 
+<style>
+        /* Define la animación de vibración */
+        @keyframes vibrate {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        /* Clase que aplicará la animación */
+        .vibrate {
+            animation: vibrate 0.2s linear;
+        }.message-box {
+            display: none;
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #FF0000;
+            background-color: #FFECEC;
+            color: #FF0000;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1000;
+}
+    </style>
 
 
 

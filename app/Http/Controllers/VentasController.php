@@ -648,5 +648,23 @@ class VentasController extends Controller
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
+
+    public function checkLine(Request $request)
+    {
+        $numeroLinea = $request->input('linea_venta');
+        $oneYearAgo = Carbon::now()->subYear();
+
+        $exists = ventas::where('linea_venta', $numeroLinea)
+                      ->where('created_at', '>=', $oneYearAgo)
+                      ->exists();
+        if ($exists) {
+            $venta = ventas::where('linea_venta', $numeroLinea)->pluck('fecha_venta')->first();
+            $id = ventas::where('linea_venta', $numeroLinea)->pluck('id')->first();
+        }else{
+            $venta = null;
+            $id = null;
+        }
+        return response()->json(['exists' => $exists, 'venta' => $venta, 'id' => $id]);
+    }
     
 }
