@@ -277,7 +277,7 @@ $(document).ready(function() {
     $('#linea_venta').on('blur', function() {
         var linea_venta = $(this).val();
         $.ajax({
-            url: '{{ route('check.line') }}',
+            url: "{{ route('check.line') }}",
             method: 'POST',
             data: {
                 _token: '{{ csrf_token() }}',
