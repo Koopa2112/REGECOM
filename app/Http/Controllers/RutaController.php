@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\rutas;
 use App\Models\zonas;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RutaController extends Controller
 {
@@ -14,7 +15,8 @@ class RutaController extends Controller
     public function index()
     {   
         if(auth()->user()->puesto_empleado == 4){
-            $rutas = rutas::all();
+            $cincoDiasAtras = Carbon::today(('America/Mexico_City'))->subDay(3);
+            $rutas = rutas::where('fecha_entrega', '>=', $cincoDiasAtras)->orderBy('id','DESC')->get();
             return view('rutas.index',[ 'rutas' => $rutas]);
         }else{
             return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
