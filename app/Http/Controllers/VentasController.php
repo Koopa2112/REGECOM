@@ -526,7 +526,8 @@ class VentasController extends Controller
         $analista = analistas::where('id_user', $user->id)->get()->first();
         if($user->puesto_empleado == 6){
             $ventas = ventas::where('estado_venta', 6)->where('id_analista', $analista->id)->get();
-            return view("ventas.conRuta", ['ventas' => $ventas]);
+            $zonas = zonas::where('isActive', '1')->get();
+            return view("ventas.conRuta", ['ventas' => $ventas, 'zonas' => $zonas]);
             
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
