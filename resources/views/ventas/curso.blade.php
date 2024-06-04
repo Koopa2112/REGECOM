@@ -55,8 +55,10 @@
 
                     <th><a href="{{  url('ventas/' .$venta->id. '/show') }}" class="btn btn-primary btn-small">Ver</a>
                     </th>
-                    <th><a href="{{  url('ventas/' .$venta->id. '/edit') }}" class="btn btn-warning btn-small">Editar</a>
-                    </th>
+                    @if($venta->estado_venta == 0 || $venta->estado_venta == 2 || $venta->estado_venta == 3 || $venta->estado_venta == 4 || $venta->estado_venta == 5)
+                        <th><a href="{{  url('ventas/' .$venta->id. '/edit') }}" class="btn btn-warning btn-small">Editar</a>
+                        </th>
+                    @endif
                     @if ($venta->estado_venta == 4)
                     <th><a href="{{  url('ventas/' .$venta->id. '/fecha') }}"
                             class="btn btn-secondary btn-small">Agregar fecha</a></th>
