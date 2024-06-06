@@ -7,6 +7,18 @@
     <div class="container py-4">
 
         <h2>Ventas enviadas</h2>
+        @if ($errors->any())
+
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <table class="table table-striped table-responsive">
 
             <thead>
@@ -42,6 +54,7 @@
                     <form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
                         @csrf
                         <input type="hidden" value="" id="estado_venta{{ $venta->id }}" name="estado_venta">
+                        <input type="hidden" value="" id="comentario{{ $venta->id }}" name="comentario">
                         <td><button type="button" class="btn btn-success btn-small" onclick="actualizar(8, '{{ $venta->id }}')">Entregada</button>
                         </td>
                         <td><button type="button" class="btn btn-warning btn-small" onclick="actualizar(4, '{{ $venta->id }}')">No
@@ -49,26 +62,29 @@
                 </tr>
                 </form>
                 @endforeach
-                
+
             </tbody>
 
         </table>
         <script>
-        function actualizar(estado, id) {
-            var estadoHidden = document.getElementById('estado_venta'+id);
-            estadoHidden.value = estado;
-            if (estado == '8') {
-                var confirmacion = confirm("La venta se marcará como entregada, ¿Proseguir?");
-            }
-            else if(estado == '4') {
-                var confirmacion = confirm("La venta se marcará como NO entragada, ¿Proseguir?");
-            }
-            var formulario = document.getElementById('envio'+id);
-            if (confirmacion) {
-                formulario.submit();
-            }
+            function actualizar(estado, id) {
+                var estadoHidden = document.getElementById('estado_venta' + id);
+                var comentario = document.getElementById('comentario' + id);
+                if (estado == '8') {
+                    var confirmacion = confirm("La venta se marcará como entregada, ¿Proseguir?");
+                } else if (estado == '4') {
+                    var confirmacion = confirm("La venta se marcará como NO entragada, ¿Proseguir?");
+                    if (confirmacion) {
+                        comentario.value = prompt('Porfavor, introduce el motivo:');
+                    }
+                }
+                var formulario = document.getElementById('envio' + id);
+                if (confirmacion) {
+                    estadoHidden.value = estado;
+                    formulario.submit();
+                }
 
-        }
+            }
         </script>
 
     </div>
