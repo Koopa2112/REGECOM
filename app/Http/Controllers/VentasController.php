@@ -643,6 +643,12 @@ class VentasController extends Controller
         if(auth()->user()->puesto_empleado == 4){
             $venta = ventas::find($id);
             $venta->estado_venta = intval($request->input('estado_venta'), 10);
+            if(intval($request->input('estado_venta'), 10) == 4) {
+                $request->validate([
+                    'comentario' => 'required',
+                ]);
+                $venta->notas_MC = trim('COMENTARIO DE LOGISTICA-->' . $request->input('comentario') . '///' . $venta->notas_MC);
+            }
             $venta->save();
             return back();
         }else{
