@@ -421,12 +421,27 @@ class VentasController extends Controller
         $venta->marca_equipo = $request->input('marca_equipo');
         $venta->modelo_equipo = $request->input('modelo_equipo');
 
-        $venta->calle_entrega = $request->input('calle_entrega');
-        $venta->numero_entrega = $request->input('numero_entrega');
-        $venta->municipio_entrega = $request->input('municipio_entrega');
-        $venta->colonia_entrega = $request->input('colonia_entrega');
-        $venta->referencia_entrega = $request->input('referencia_entrega');
-        $venta->url_maps = $request->input('url_maps');
+        /////////////////////////////////////////////////////////////////////////// Si cambio cualquier cosa de la dirección
+        $cambioCalle = $venta->calle_entrega !== $request->input('calle_entrega');
+        $cambioNumero = $venta->numero_entrega !== $request->input('numero_entrega');
+        $cambioMunicipio = $venta->municipio_entrega !== $request->input('municipio_entrega');
+        $cambioColonia = $venta->colonia_entrega !== $request->input('colonia_entrega');
+        $cambioReferencia = $venta->referencia_entrega !== $request->input('referencia_entrega');
+        $cambioMaps = $venta->referenurl_mapscia_entrega !== $request->input('url_maps');
+
+        if($cambioCalle || $cambioNumero || $cambioMunicipio || $cambioColonia || $cambioReferencia || $cambioMaps ){
+            $venta->calle_entrega = $request->input('calle_entrega');
+            $venta->numero_entrega = $request->input('numero_entrega');
+            $venta->municipio_entrega = $request->input('municipio_entrega');
+            $venta->colonia_entrega = $request->input('colonia_entrega');
+            $venta->referencia_entrega = $request->input('referencia_entrega');
+            $venta->url_maps = $request->input('url_maps');
+            if($venta->estado_venta != 0 && $venta->estado_venta != 1 && $venta->estado_venta != 2 && $venta->estado_venta != 3){
+                $venta->estado_venta = 5;   
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////// Regresa la venta a asignar zona
         $venta->total_mensual = $total_mensual_formateado;
         $venta->notas_vendedor = $request->input('notas_vendedor');
         $venta->notas_MC = $request->input('notas_MC');
