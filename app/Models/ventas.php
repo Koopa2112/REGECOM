@@ -29,4 +29,8 @@ class ventas extends Model
     public function zona(){
         return $this->belongsTo(zonas::class, 'id_zona', 'id');
     }
+
+    public function acuse(){
+        return $this->belongsTo(acuses::class, 'id_acuse', 'id');
+    }
 }
