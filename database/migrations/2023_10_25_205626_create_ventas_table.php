@@ -36,12 +36,15 @@ return new class extends Migration
             $table->unsignedBigInteger('id_zona')->nullable();
             $table->date('fecha_venta');
             $table->timestamps();
+            $table->string('repartidor', 50);
+            $table->unsignedBigInteger('id_acuse');
 
             $table->foreign('id_asesor')->references('id')->on('asesores');
             $table->foreign('id_analista')->references('id')->on('analistas');
             $table->foreign('id_equipo')->references('id')->on('equipos');
             $table->foreign('id_ruta')->references('id')->on('rutas');
             $table->foreign('id_zona')->references('id')->on('zonas');
+            $table->foreign('id_acuse')->references('id')->on('acuses');
         });
     }
 
