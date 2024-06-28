@@ -49,7 +49,7 @@
                     {{ $venta->municipio_entrega}}. {{ $venta->referencia_entrega}}
                     </td>
                     <td>{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</td>
-                    <td>{{ $venta->url_maps}}</td>
+                    <td>{{ $venta->asesor->user->user}}</td>
                     <td><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></td>
                     <form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
                         @csrf
@@ -62,7 +62,6 @@
                 </tr>
                 </form>
                 @endforeach
-
             </tbody>
 
         </table>
