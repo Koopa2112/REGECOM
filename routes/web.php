@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcuseController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\UserController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\ExportController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -78,14 +80,24 @@ Route::get('/asesores/{id}/show', [AsesorController::class, 'show'])->middleware
 
 Route::post('/zonas/{id}/delete', [ZonaController::class, 'delete'])->middleware('auth');
 
+Route::get('/acuses/{id}/view', [AcuseController::class, 'view'])->middleware('auth');
+Route::get('/acuses/comisiones', [AcuseController::class, 'comisiones'])->middleware('auth');
+Route::put('/acuses/{id}/cerrar', [AcuseController::class, 'cerrar'])->middleware('auth');
+Route::get('/acuses/dwlComisiones', [ExportController::class, 'exportVentasMes'])->middleware('auth');
+Route::get('/acuses/printAcuse/{id}', [ExportController::class, 'printAcuse'])->middleware('auth');
+Route::post('/acuses/sellar', [AcuseController::class, 'sellar'])->middleware('auth');
+
+
 Route::resource('/asesores', AsesorController::class)->middleware('auth');
 Route::resource('/ventas', VentasController::class)->middleware('auth');
 Route::resource('/users', UserController::class)->middleware('auth');
 Route::resource('/rutas', RutaController::class)->middleware('auth');
 Route::resource('/zonas', ZonaController::class)->middleware('auth');
 Route::resource('/equipos', EquipoController::class)->middleware('auth');
+Route::resource('/acuses', AcuseController::class)->middleware('auth');
 
 Route::post('/check-line', [VentasController::class, 'checkLine'])->name('check.line')->middleware('auth');
+//Para revisar si una linea esta repetida se usa esta ruta ↑
 
 Route::middleware([
     'auth:sanctum',
