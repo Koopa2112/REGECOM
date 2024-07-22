@@ -16,6 +16,16 @@
     </ul>
 </li>
 
+<li class="nav-item dropdown">
+    <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Acuses
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" href="{{ url('acuses') }}">Ver Acuses</a></li>
+        <li><a class="dropdown-item" href="{{ url('acuses/comisiones') }}">Imprimir comisiones</a></li>
+    </ul>
+</li>
+
 
 
 
