@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('acuses', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_acuse');
-            $table->timestamp('fecha');
+            $table->date('fecha_creado');
+            $table->date('fecha_sellado');
+            $table->boolean('cerrado');
             $table->timestamps();
         });
     }
