@@ -10,6 +10,7 @@ use App\Models\rutas;
 use App\Models\zonas;
 use App\Models\asesores;
 use App\Models\equipos;
+use App\Models\acuses;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -580,6 +581,24 @@ class VentasController extends Controller
         }
     }
 
+    private function acuseFinal(){
+        $ultimoAcuse = acuses::get()->last();
+        $totalVentasAcuse = ventas::where('id_acuse', '=' , $ultimoAcuse->id)->count();
+        if($totalVentasAcuse < 25 && $ultimoAcuse->cerrado == 0){
+            return($ultimoAcuse->id);
+        }else{
+            if($ultimoAcuse->cerrado == 0){
+                $ultimoAcuse->cerrado = 1;
+                $ultimoAcuse->save();
+            }
+            $acuseNuevo = new acuses();
+            $acuseNuevo->fecha_creado = today();
+            $acuseNuevo->save();
+            return($acuseNuevo->id);
+        }
+        return(-1000);
+    }
+
     public function finalizar(request $request, $id){
         if(auth()->user()->puesto_empleado == 6){
             $request->validate([
@@ -588,14 +607,13 @@ class VentasController extends Controller
             $venta = ventas::find($id);
             $venta->estado_venta = 9;
             $venta->repartidor = $request->repartidor;
+            $venta->id_acuse = $this->acuseFinal();
             $venta->save();
             return redirect()->back();
         }else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
-
-
 
     public function pendienteZona(){
         $puesto = auth()->user()->puesto_empleado;
