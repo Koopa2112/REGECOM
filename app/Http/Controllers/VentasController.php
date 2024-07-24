@@ -586,6 +586,9 @@ class VentasController extends Controller
         $ultimoAcuse = acuses::get()->last();
         $totalVentasAcuse = ventas::where('id_acuse', '=' , $ultimoAcuse->id)->count();
         if($totalVentasAcuse < 25 && $ultimoAcuse->cerrado == 0){
+            if($totalVentasAcuse == 24){
+                $ultimoAcuse->cerrado = 1;
+            }
             return($ultimoAcuse->id);
         }else{
             if($ultimoAcuse->cerrado == 0){
