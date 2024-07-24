@@ -8,7 +8,7 @@
 
         <h2>Ventas terminadas</h2>
         <table class="table table-striped">
-
+        <h5> <strong><ins>*Nota: el estado de "Comisionable" puede no aplicar en las ventas anteriores a agosto</ins></strong></h5>
             <thead>
                 <tr>
                     <th>ID venta</th>
@@ -24,16 +24,18 @@
                 @foreach($ventas as $venta)
                 <tr>
 
-                    <th>{{ $venta->id }}</th>
-                    <th>{{ $venta->linea_venta }}</th>
-                    <th>{{ $venta->nombre_cliente }}</th>
+                    <td>{{ $venta->id }}</td>
+                    <td>{{ $venta->linea_venta }}</td>
+                    <td>{{ $venta->nombre_cliente }}</td>
 
                     @if ($venta->estado_venta == 9)
-                    <th>Finalizada</th>
+                    <td>Finalizada</td>
                     @elseif ($venta->estado_venta == 10)
-                    <th>Cancelada</th>
+                    <td>Cancelada</td>
+                    @elseif ($venta->estado_venta == 11)
+                    <td>Comisionable en {{$venta->acuse->fecha_sellado}}*</td>
                     @else
-                    <th></th>
+                    <td>No hay información</td>
                     @endif
 
                     <th><a href="{{  url('ventas/' .$venta->id. '/show') }}" class="btn btn-primary btn-small">Ver</a>
