@@ -474,8 +474,9 @@ class VentasController extends Controller
         $userID = $user->id;
         $asesor = asesores::where('id_user', $userID)->first();
         $asesorID = $asesor->id;
-        $terminadas = ventas::where('id_asesor', $asesorID)->whereIn('estado_venta', [9,10])->orderBy('id', 'desc')->get();
-        return view('ventas.terminadas', ['ventas' => $terminadas]);
+        $terminadas = ventas::where('id_asesor', $asesorID)->whereIn('estado_venta', [9,10,11])->orderBy('id', 'desc')->get();
+        $acuses = acuses::where('fecha_sellado', '!=', null)->get();
+        return view('ventas.terminadas', ['ventas' => $terminadas, 'acuses' => $acuses]);
     }
 
     public function dia(){
