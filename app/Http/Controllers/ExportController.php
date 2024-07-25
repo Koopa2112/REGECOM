@@ -63,7 +63,7 @@ class ExportController extends Controller
     {
         if(auth()->user()->puesto_empleado != 3){
             // Ruta del archivo de formato
-            $filePath = storage_path('public\Acuse ventas.xls');
+            $filePath = storage_path('public/Acuse_ventas.xls');
 
             // Cargar el archivo Excel
             $spreadsheet = IOFactory::load($filePath);
