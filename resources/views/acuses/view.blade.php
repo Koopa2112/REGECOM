@@ -8,6 +8,9 @@
     <div class="container py-4">
 
         <h2>Acuse {{ $id }}</h2>
+
+        <a href="{{  url('acuses/printAcuse/' .$id ) }}" class="btn btn-warning btn-small">Imprimir Hoja de acuse</a>
+
         <table class="table table-striped">
 
             <thead>
