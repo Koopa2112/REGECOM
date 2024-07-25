@@ -61,33 +61,37 @@ class ExportController extends Controller
 
     public function printAcuse($id)
     {
-        // Ruta del archivo de formato
-        $filePath = storage_path('public\Acuse ventas.xls');
+        if(auth()->user()->puesto_empleado != 3){
+            // Ruta del archivo de formato
+            $filePath = storage_path('public\Acuse ventas.xls');
 
-        // Cargar el archivo Excel
-        $spreadsheet = IOFactory::load($filePath);
-        $worksheet = $spreadsheet->getActiveSheet();
+            // Cargar el archivo Excel
+            $spreadsheet = IOFactory::load($filePath);
+            $worksheet = $spreadsheet->getActiveSheet();
 
-        $row = 9; // Fila inicial 
-        $ventas = ventas::where('id_acuse', '=', $id)->get();
-        foreach ($ventas as $venta) {
-            $nombre = $venta->nombre_cliente; // datos para nombre
-            $celular = $venta->linea_venta; // datos para celular
+            $row = 9; // Fila inicial 
+            $ventas = ventas::where('id_acuse', '=', $id)->get();
+            foreach ($ventas as $venta) {
+                $nombre = $venta->nombre_cliente; // datos para nombre
+                $celular = $venta->linea_venta; // datos para celular
 
-            $worksheet->setCellValue('C' . $row, $nombre);
-            $worksheet->setCellValue('D' . $row, $celular);
+                $worksheet->setCellValue('C' . $row, $nombre);
+                $worksheet->setCellValue('D' . $row, $celular);
 
-            $row++;
+                $row++;
+            }
+            $hoy = today()->format('d / m / y');
+            $worksheet->setCellValue('F6', $hoy);
+            $worksheet->setCellValue('G6', $venta->id_acuse);
+            // Configurar la respuesta para la descarga del archivo Excel
+            $writer = new Xls($spreadsheet);
+            $fileName = 'acuse_folio -'. $id .'.xls';
+
+            return response()->streamDownload(function () use ($writer) {
+                $writer->save('php://output');
+            }, $fileName);
+        }else{
+            return view("message", ['msg' => "Página no encontrada"]);
         }
-        $hoy = today()->format('d / m / y');
-        $worksheet->setCellValue('F6', $hoy);
-        $worksheet->setCellValue('G6', $venta->id_acuse);
-        // Configurar la respuesta para la descarga del archivo Excel
-        $writer = new Xls($spreadsheet);
-        $fileName = 'acuse_ventas_generado.xls';
-
-        return response()->streamDownload(function () use ($writer) {
-            $writer->save('php://output');
-        }, $fileName);
     }
 }
