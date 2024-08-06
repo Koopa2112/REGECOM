@@ -62,6 +62,7 @@ Route::get('/ventas/conRuta', [VentasController::class, 'conRuta'])->middleware(
 Route::get('/ventas/entregadas', [VentasController::class, 'entregadas'])->middleware('auth');
 Route::get('/ventas/{id}/contrato', [VentasController::class, 'contrato'])->middleware('auth');
 Route::post('/ventas/{id}/finalizar', [VentasController::class, 'finalizar'])->middleware('auth');
+Route::post('/ventas/busqueda', [VentasController::class, 'busqueda'])->middleware('auth');
 
 Route::get('/ventas/pendienteZona', [VentasController::class, 'pendienteZona'])->middleware('auth');
 Route::get('/ventas/{id}/asignarZona', [VentasController::class, 'asignarZona'])->middleware('auth');
