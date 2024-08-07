@@ -26,6 +26,16 @@
     </ul>
 </li>
 
+<li class="nav-item dropdown">
+    <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Ventas
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" href="{{ url('ventas/dia') }}">Ventas de hoy</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/mes') }}">Ventas ultimos 30 d0000ias</a></li>
+    </ul>
+</li>
+
 
 
 
