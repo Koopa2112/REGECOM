@@ -487,6 +487,10 @@ class VentasController extends Controller
             $asesores = asesores::where('id_administrativo', $supervisorId)->get()->pluck('id');
             $hoy = now(('America/Mexico_City'))->format('Y-m-d');
             $ventas = ventas::whereIn('id_asesor', $asesores)->where('fecha_venta', $hoy)->get();
+            return view('ventas.dia', ['ventas' => $ventas, 'asesores' => $asesores]);
+        }else if($user->puesto_empleado == 0){
+            $hoy = now(('America/Mexico_City'))->format('Y-m-d');
+            $ventas = ventas::where('fecha_venta', $hoy)->get();
             $asesores = asesores::all();
             return view('ventas.dia', ['ventas' => $ventas, 'asesores' => $asesores]);
         }else{
