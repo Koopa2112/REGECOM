@@ -721,5 +721,23 @@ class VentasController extends Controller
         }
         return response()->json(['exists' => $exists, 'venta' => $venta, 'id' => $id]);
     }
+
+    public function busqueda(Request $request){
+        $request->validate([
+            'busqueda' => 'required', 
+        ]);
+        $termino = $request->input('busqueda');
+        
+        // Realiza la búsqueda en la base de datos
+        $resultados = ventas::where('linea_venta', 'LIKE', "%{$termino}%")
+                            ->orWhere('nombre_cliente', 'LIKE', "%{$termino}%")
+                            ->orWhere('id', 'LIKE', "%{$termino}%")
+                            ->get();
+        
+        // Retorna los resultados a una vista
+        //return($resultados);
+        return view('ventas.busqueda', ['ventas' => $resultados]);
+
+    }
     
 }
