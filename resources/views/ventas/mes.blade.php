@@ -61,6 +61,8 @@
                     <td>Finalizada</td>
                     @elseif ($venta->estado_venta == 10)
                     <td>Cancelada</td>
+                    @elseif ($venta->estado_venta == 11)
+                    <td>Comisionable</td>
                     @endif
                     <td>{{ $venta->fecha_venta}}</td>
                     <td><a href="{{  url('ventas/' .$venta->id. '/sshow') }}" class="btn btn-primary btn-small">Ver</a>
