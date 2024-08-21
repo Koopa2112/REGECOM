@@ -32,7 +32,7 @@
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
         <li><a class="dropdown-item" href="{{ url('ventas/dia') }}">Ventas de hoy</a></li>
-        <li><a class="dropdown-item" href="{{ url('ventas/mes') }}">Ventas ultimos 30 d0000ias</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/mes') }}">Ventas ultimos 30 dias</a></li>
     </ul>
 </li>
 
