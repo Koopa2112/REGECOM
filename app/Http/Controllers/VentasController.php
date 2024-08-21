@@ -512,7 +512,14 @@ class VentasController extends Controller
             $asesores = asesores::all();
             $zonas = zonas::all();
             return view('ventas.mes', ['ventas' => $ventas, 'asesores' => $asesores, 'zonas' => $zonas]);
-        }else{
+        }else if($user->puesto_empleado == 0){
+            $fecha_hace_30_dias = Carbon::now()->subDays(30);
+            $ventas = ventas::whereDate('fecha_venta', '>=', $fecha_hace_30_dias)
+                ->get();
+            $asesores = asesores::all();
+            return view('ventas.mes', ['ventas' => $ventas, 'asesores' => $asesores]);
+        }
+        else{
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
 
