@@ -213,7 +213,7 @@ class VentasController extends Controller
         $asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
-        if($venta->id_asesor == $asesorId ){
+        if($venta->id_asesor == $asesorId || $user->puesto_empleado == 0){
             $total_mensual = $venta->total_mensual;
             $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
             return view('ventas.show', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado] ); 
