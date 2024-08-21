@@ -59,7 +59,7 @@
 </li>
 
 <li class="">
-    <form action="/REGECOM/public/ventas/busqueda" method="POST">
+    <form action="{{ url('ventas/busqueda') }}" method="POST">
         @csrf
         <div class="input-group input-group-sm">
             <input type="text" class="form-control input-sm" placeholder="Línea, ID o nombre" aria-label="Cuadro de búsqueda" aria-describedby="inputGroup-sizing-sm" id="busqueda" name="busqueda">
