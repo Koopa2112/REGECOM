@@ -20,7 +20,7 @@ class RutaController extends Controller
             $rutas = rutas::where('fecha_entrega', '>=', $tresDiasAtras)->orderBy('id','DESC')->get();
             foreach($rutas as $ruta){
                 $ruta->num_entregas = ventas::where('id_ruta' , '=', $ruta->id)
-                                                ->where('estado_ruta', '>=', 6)
+                                                ->where('estado_venta', '>=', 6)
                                                 ->count();
             }
             return view('rutas.index',[ 'rutas' => $rutas]);
