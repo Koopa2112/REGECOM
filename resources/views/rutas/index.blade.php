@@ -1,4 +1,6 @@
-@extends('inicios/logistica')
+@extends((Auth::user()->puesto_empleado == 0) ? 'inicios.admin' : 
+        ((Auth::user()->puesto_empleado == 1) ? 'inicios.supervisor' : 
+        ((Auth::user()->puesto_empleado == 4) ? 'inicios.logistica' : 'inicios.asesor')))
 
 @section('title', 'Rutas')
 
@@ -34,6 +36,8 @@
                     <th><a href="{{  url('rutas/' .$ruta->id. '/edit') }}"
                             class="btn btn-primary btn-small">Editar ruta</a></th>
 
+                    @if(Auth::user()->puesto_empleado == 4 || Auth::user()->puesto_empleado == 0)
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
