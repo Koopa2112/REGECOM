@@ -37,6 +37,7 @@
                             class="btn btn-primary btn-small">Editar ruta</a></th>
 
                     @if(Auth::user()->puesto_empleado == 4 || Auth::user()->puesto_empleado == 0)
+                    <th><a href="{{  url('rutas/' .$ruta->id. '/edit') }}"class="btn btn-primary btn-small">Editar ruta</a></th>
                     @endif
                 </tr>
                 @endforeach
