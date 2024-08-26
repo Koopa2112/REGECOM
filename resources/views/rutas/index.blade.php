@@ -32,10 +32,6 @@
                     <th>{{ $ruta->zona->nombre_zona }}</th>
                     <th style="text-align: center;">{{ $ruta->max_entregas}}</th>
                     <th style="text-align: center;">{{ $ruta->num_entregas}}</th>
-
-                    <th><a href="{{  url('rutas/' .$ruta->id. '/edit') }}"
-                            class="btn btn-primary btn-small">Editar ruta</a></th>
-
                     @if(Auth::user()->puesto_empleado == 4 || Auth::user()->puesto_empleado == 0)
                     <th><a href="{{  url('rutas/' .$ruta->id. '/edit') }}"class="btn btn-primary btn-small">Editar ruta</a></th>
                     @endif
