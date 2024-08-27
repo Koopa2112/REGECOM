@@ -553,7 +553,7 @@ class VentasController extends Controller
         $user = auth()->user();
         $analista = analistas::where('id_user', $user->id)->get()->first();
         if($user->puesto_empleado == 6){
-            $ventas = ventas::where('estado_venta', 6)->where('id_analista', $analista->id)->get();
+            $ventas = ventas::where('estado_venta', 6)->where('id_analista', $analista->id)->orderBy('id_ruta', 'desc')->get();
             $zonas = zonas::where('isActive', '1')->get();
             return view("ventas.conRuta", ['ventas' => $ventas, 'zonas' => $zonas]);
             
