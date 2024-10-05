@@ -44,6 +44,42 @@
                 </div>
             </div>
 
+            @if ($venta->id_zona == '3' || $venta->id_zona == '8' || $venta->id_zona == '14')
+            <div class="mb-3 row">
+                <label for="Repartidor" class="col-sm-2 col-form-label">Repartidor asignado:</label>
+                <div class="col-sm-5">
+                    <textarea type="text" class="form-control-plaintext" name="repartidor" id="repartidor" style="background-color:yellow"
+                        value="{{$venta->repartidor}}" rows="5" readonly>
+Jonathan Ibarra
+Celular: 8115906944
+Matricula: TGA-310-A
+Modelo del vehículo: Vento
+Color del vehículo: Gris</textarea>          <!--JONATHAN IBARRA -->
+                </div>
+            </div>
+            @elseif ($venta->id_zona == '7' || $venta->id_zona == '9' )
+            <div class="mb-3 row">
+                <label for="Repartidor" class="col-sm-2 col-form-label">Repartidor asignado:</label>
+                <div class="col-sm-5">
+                    <textarea type="text" class="form-control-plaintext" name="repartidor" id="repartidor" style="background-color:yellow"
+                        value="{{$venta->repartidor}}" rows="5" readonly>
+Cosme Campos
+Celular: 8116364580
+Matricula: SSL-343-A
+Modelo del vehículo: MG 5 2021
+Color del vehículo: Rojo</textarea>          <!--Cosme Campos -->
+                </div>
+            </div>
+            @else
+            <div class="mb-3 row">
+                <label for="Repartidor" class="col-sm-2 col-form-label">Repartidor asignado:</label>
+                <div class="col-sm-5">
+                    <textarea type="text" class="form-control-plaintext" name="repartidor" id="repartidor" style="background-color:yellow"
+                        value="{{$venta->repartidor}}" rows="1" readonly>No hay repartidor </textarea>          <!--Sin Repartidor -->
+                </div>
+            </div>
+            @endif
+
             <div class="mb-3 row">
                 <label for="plan_venta" class="col-sm-2 col-form-label">Plan</label>
                 <div class="col-sm-5">
