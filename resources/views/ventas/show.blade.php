@@ -148,7 +148,7 @@ Color del vehículo: Rojo</textarea>          <!--Cosme Campos -->
                 <label for="colonia_entrega" class="col-sm-2 col-form-label">Colonia: </label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control-plaintext" name="colonia_entrega" id="colonia_entrega"
-                        value="{{$venta->colonia_entrega}}" rows="3" readonly></textarea>
+                        value="{{$venta->colonia_entrega}}" rows="3" readonly>
                 </div>
             </div>
 
@@ -156,7 +156,7 @@ Color del vehículo: Rojo</textarea>          <!--Cosme Campos -->
                 <label for="municipio_entrega" class="col-sm-2 col-form-label">Municipio: </label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control-plaintext" name="municipio_entrega" id="municipio_entrega"
-                        value="{{$venta->municipio_entrega}}" rows="3" readonly></textarea>
+                        value="{{$venta->municipio_entrega}}" rows="3" readonly>
 
                 </div>
             </div>
@@ -201,18 +201,13 @@ Color del vehículo: Rojo</textarea>          <!--Cosme Campos -->
                 <label for="notas_MC" class="col-sm-2 col-form-label">Notas mesa de control</label>
                 <div class="col-sm-5">
                     <textarea class="form-control-plaintext" name="notas_MC" id="notas_MC"
-                        readonly>{{$venta->notas_MC}}</textarea>
+                        readonly rows="3">{{$venta->notas_MC}}</textarea>
                 </div>
             </div>
 
             <a href="{{ url()->previous()}}" class="btn btn-secondary">Regresar</a>
 
-
-
-
-
         </form>
-
 
     </div>
 </main>
