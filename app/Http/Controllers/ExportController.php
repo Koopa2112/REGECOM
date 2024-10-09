@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exports\VentasExport;
+use App\Exports\RutasExport;
+use App\Models\rutas;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use App\Models\ventas;
-
+use App\Models\zonas;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -90,6 +92,17 @@ class ExportController extends Controller
             return response()->streamDownload(function () use ($writer) {
                 $writer->save('php://output');
             }, $fileName);
+        }else{
+            return view("message", ['msg' => "Página no encontrada"]);
+        }
+    }
+
+    public function printRuta($id)
+    {
+        if(auth()->user()->puesto_empleado != 3){
+            $ruta = rutas::with('zona')->find($id);
+            $nombreZona = $ruta->zona->nombre_zona;       
+            return Excel::download(new RutasExport($id), 'Ruta_' . $id . '_' . $nombreZona . '.xlsx');
         }else{
             return view("message", ['msg' => "Página no encontrada"]);
         }
