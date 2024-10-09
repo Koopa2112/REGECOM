@@ -88,6 +88,7 @@ Route::get('/acuses/dwlComisiones', [ExportController::class, 'exportVentasMes']
 Route::get('/acuses/printAcuse/{id}', [ExportController::class, 'printAcuse'])->middleware('auth');
 Route::post('/acuses/sellar', [AcuseController::class, 'sellar'])->middleware('auth');
 
+Route::get('/rutas/{id}/print', [ExportController::class, 'printRuta'])->middleware('auth');
 
 Route::resource('/asesores', AsesorController::class)->middleware('auth');
 Route::resource('/ventas', VentasController::class)->middleware('auth');
