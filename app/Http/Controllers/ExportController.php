@@ -101,7 +101,7 @@ class ExportController extends Controller
     {
         if(auth()->user()->puesto_empleado != 3){
             $ruta = rutas::with('zona')->find($id);
-            $nombreZona = $ruta->zona->nombre_zona;       
+            $nombreZona = $ruta->zona->nombre_zona;
             return Excel::download(new RutasExport($id), 'Ruta_' . $id . '_' . $nombreZona . '.xlsx');
         }else{
             return view("message", ['msg' => "Página no encontrada"]);
