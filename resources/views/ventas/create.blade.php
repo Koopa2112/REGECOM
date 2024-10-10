@@ -252,7 +252,7 @@
             <a href="{{ url('inicio') }}" class="btn btn-secondary">Regresar</a>
 
 
-            <button type="button" class="btn btn-success" id="btnGuardar" >Guardar</button>
+            <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
 
             <script>
             document.getElementById('btnGuardar').addEventListener('click', function() {
