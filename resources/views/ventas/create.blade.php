@@ -287,40 +287,40 @@
 </main>
 
 <script>
-                $(document).ready(function() {
-                    $('#linea_venta').on('blur', function() {
-                        var linea_venta = $(this).val();
-                        $.ajax({
-                            url: "{{ route('check.line') }}",
-                            method: 'POST',
-                            data: {
-                                _token: '{{ csrf_token() }}',
-                                linea_venta: linea_venta
-                            },
-                            success: function(response) {
-                                var input = document.getElementById('linea_venta')
-                                var messageBox = document.getElementById('message-box');
-                                if (response.exists) {
-                                    input.style.borderColor = '#FF0000';
-                                    input.classList.add('vibrate'); // Añadir la clase de vibración
-                                    setTimeout(function() {
-                                        input.classList.remove('vibrate'); // Eliminar la clase después de la animación
-                                    }, 200);
-                                    messageBox.innerHTML = "¡ATENCION! Esta línea ha sido registrada el: " + response.venta +
-                                        ", con el ID: " + response.id +
-                                        ". Por favor, valida que ya este cerrada esa venta antes de continuar";
-                                    messageBox.style.display = 'block';
-                                } else {
-                                    input.style.borderColor = '#00ff00';
-                                    messageBox.style.display = 'none';
-                                }
-                            },
-                            error: function(xhr) {
-                                alert("Error en la consulta, favor de actualizar")
-                            }
-                        });
-                    });
-                });
+    $(document).ready(function() {
+        $('#linea_venta').on('blur', function() {
+            var linea_venta = $(this).val();
+            $.ajax({
+                url: "{{ route('check.line') }}",
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    linea_venta: linea_venta
+                },
+                success: function(response) {
+                    var input = document.getElementById('linea_venta')
+                    var messageBox = document.getElementById('message-box');
+                    if (response.exists) {
+                        input.style.borderColor = '#FF0000';
+                        input.classList.add('vibrate'); // Añadir la clase de vibración
+                        setTimeout(function() {
+                            input.classList.remove('vibrate'); // Eliminar la clase después de la animación
+                        }, 200);
+                        messageBox.innerHTML = "¡ATENCION! Esta línea ha sido registrada el: " + response.venta +
+                            ", con el ID: " + response.id +
+                            ". Por favor, valida que ya este cerrada esa venta antes de continuar";
+                        messageBox.style.display = 'block';
+                    } else {
+                        input.style.borderColor = '#00ff00';
+                        messageBox.style.display = 'none';
+                    }
+                },
+                error: function(xhr) {
+                    alert("Error en la consulta, favor de actualizar")
+                }
+            });
+        });
+    });
 </script>
 
 <script>
