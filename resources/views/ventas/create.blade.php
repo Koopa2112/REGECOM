@@ -277,12 +277,8 @@
                         alert("Es necesario introducir el Código Postal")
                     }
 
-                // Si el usuario hace clic en "Aceptar", se enviará el formulario
-                if (confirmacion) {
-                    document.getElementById('registrarVenta').submit();
-                }
 
-            });
+                });
             </script>
 
         </form>
