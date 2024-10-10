@@ -255,9 +255,27 @@
             <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
 
             <script>
-            document.getElementById('btnGuardar').addEventListener('click', function() {
-                // Muestra un cuadro de diálogo de confirmación
-                var confirmacion = confirm('¿Estás seguro de que deseas registrar la venta?');
+                document.getElementById('btnGuardar').addEventListener('click', function() {
+                    // Obtener el valor del campo de referencia
+                    let reference = document.getElementById('referencia_entrega').value;
+
+                    // Expresión regular para validar el código postal (5 dígitos)
+                    let postalCodePattern = /\b\d{5}\b/;
+
+                    // Verificar si el código postal es válido
+                    if (postalCodePattern.test(reference)) {
+                        // Evitar que el formulario se envíe
+                        // Muestra un cuadro de diálogo de confirmación
+                        var confirmacion = confirm('¿Estás seguro de que deseas registrar la venta?');
+                        // Si el usuario hace clic en "Aceptar", se enviará el formulario
+                        if (confirmacion) {
+                            document.getElementById('registrarVenta').submit();
+                        }
+                        // Mostrar el mensaje de error
+                    } else {
+                        // Ocultar el mensaje de error si el código postal es válido
+                        alert("Es necesario introducir el Código Postal")
+                    }
 
                 // Si el usuario hace clic en "Aceptar", se enviará el formulario
                 if (confirmacion) {
