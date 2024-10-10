@@ -209,10 +209,10 @@
 
 
             <div class="mb-3 row">
-                <label for="referencia_entrega" class="col-sm-2 col-form-label">Entre calle y referencias:</label>
+                <label for="referencia_entrega" class="col-sm-2 col-form-label">Referencias y notas para logística</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="referencia_entrega" id="referencia_entrega" rows="5"
-                        required placeholder="Entre calles, puntos de referencia, color de fachada, etc">{{old ('referencia_entrega')}}</textarea>
+                        required placeholder="CODIGO POSTAL, entre calles, puntos de referencia, collor de fachada, Etc.">{{old ('referencia_entrega')}}</textarea>
 
                 </div>
             </div>
@@ -242,7 +242,7 @@
 
 
             <div class="mb-3 row">
-                <label for="notas_vendedor" class="col-sm-2 col-form-label">Agregar notas</label>
+                <label for="notas_vendedor" class="col-sm-2 col-form-label">Agregar notas para Mesa de controll</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" name="notas_vendedor" id="notas_vendedor" rows="3"
                         required placeholder="Información adicional a lo anterior">{{old ('notas_vendedor')}}</textarea>
