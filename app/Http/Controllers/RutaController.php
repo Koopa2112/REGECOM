@@ -34,7 +34,7 @@ class RutaController extends Controller
      */
     public function create()
     {   
-        if(auth()->user()->puesto_empleado == 4){
+        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
             $zonas = zonas::all();
             return view('rutas.create', ['zonas' => $zonas]);
         }else{
@@ -47,7 +47,7 @@ class RutaController extends Controller
      */
     public function store(Request $request)
     {
-        if(auth()->user()->puesto_empleado == 4){
+        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',
@@ -78,7 +78,7 @@ class RutaController extends Controller
      */
     public function edit($id)
     {
-        if(auth()->user()->puesto_empleado == 4){
+        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
             $ruta = rutas::find($id);
             $zonas = zonas::all();
             return view('rutas.edit', ['ruta' => $ruta, 'zonas' => $zonas]);
@@ -92,7 +92,7 @@ class RutaController extends Controller
      */
     public function update(Request $request, $id)
     {   
-        if(auth()->user()->puesto_empleado == 4){
+        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',
