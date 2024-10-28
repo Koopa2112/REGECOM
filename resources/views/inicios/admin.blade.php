@@ -41,7 +41,7 @@
         Rutas
     </button>
     <ul class="dropdown-menu dropdown-menu-dark">
-        <!--<li><a class="dropdown-item" href="{{ url('rutas/create') }}">Agregar ruta</a></li>-->
+        <li><a class="dropdown-item" href="{{ url('rutas/create') }}">Agregar ruta</a></li>
         <li><a class="dropdown-item" href="{{ url('rutas') }}">Ver rutas</a></li>
 
     </ul>
