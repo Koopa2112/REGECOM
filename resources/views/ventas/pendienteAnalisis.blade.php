@@ -15,6 +15,7 @@
                     <th>Linea</th>
                     <th>Nombre del cliente</th>
                     <th>Asesor</th>
+                    <th>Municipio</th>
                     <th></th>
                 </tr>
             </thead>
@@ -24,13 +25,18 @@
                 @foreach($ventas as $venta)
                 <tr>
 
-                    <th>{{ $venta->id }}</th>
-                    <th>{{ $venta->linea_venta }}</th>
-                    <th>{{ $venta->nombre_cliente }}</th>
-                    <th>{{ $venta->asesor->user->user}}</th>
+                    <td>{{ $venta->id }}</td>
+                    <td>{{ $venta->linea_venta }}</td>
+                    <td>{{ $venta->nombre_cliente }}</td>
+                    <td>{{ $venta->asesor->user->user}}</td>
+                    @if($venta->id_zona == null)
+                    <td>{{ $venta->municipio_entrega}}</td>
+                    @else
+                    <td>{{ $venta->zona->nombre_zona}}</td>
+                    @endif
 
-                    <th><a href="{{  url('ventas/' .$venta->id. '/ashow') }}"
-                            class="btn btn-primary btn-small">Abrir</a></th>
+                    <td><a href="{{  url('ventas/' .$venta->id. '/ashow') }}"
+                            class="btn btn-primary btn-small">Abrir</a></td>
 
 
 
