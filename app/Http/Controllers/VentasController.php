@@ -540,7 +540,7 @@ class VentasController extends Controller
         $user = auth()->user();
         $analista = analistas::where('id_user', $user->id)->first();
         if($user->puesto_empleado == 6){
-            $ventas = ventas::where('estado_venta', 2)->get();//where('id_analista', $analista->id)->get();
+            $ventas = ventas::where('estado_venta', 2)->orderBy('id_zona', 'asc')->get();//where('id_analista', $analista->id)->get();
             return view("ventas.pendienteAnalisis", ['ventas' => $ventas]);
             
         }else{
