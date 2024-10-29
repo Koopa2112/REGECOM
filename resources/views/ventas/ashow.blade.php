@@ -1,4 +1,5 @@
-@extends('inicios/analista')
+@extends((Auth::user()->puesto_empleado == 0) ? 'inicios.admin' : 
+        ((Auth::user()->puesto_empleado == 6) ? 'inicios.analista' : 'inicios.analista'))
 
 @section('title', 'Revisión de venta')
 

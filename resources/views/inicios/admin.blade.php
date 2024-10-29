@@ -33,6 +33,9 @@
     <ul class="dropdown-menu dropdown-menu-dark">
         <li><a class="dropdown-item" href="{{ url('ventas/dia') }}">Ventas de hoy</a></li>
         <li><a class="dropdown-item" href="{{ url('ventas/mes') }}">Ventas ultimos 30 dias</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/pendienteAnalisis') }}">Lineas para analizar</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/conRuta') }} ">Contratos con ruta asignada</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/entregadas') }} ">Contratos entregados</a></li>
     </ul>
 </li>
 
