@@ -192,16 +192,20 @@
                 <div class="col-sm-5">
                     <select class="form-control" name="municipio_entrega" id="municipio_entrega">
                         <option disabled selected>Seleccionar...</option>
+                        <option value="Allende"> Allende</option>
                         <option value="Apodaca"> Apodaca</option>
+                        <option value="Caderteyta"> Caderteyta</option>
                         <option value="Cumbres"> Cumbres</option>
                         <option value="García"> García</option>
                         <option value="San Pedro Garza García"> San Pedro Garza García</option>
                         <option value="General Escobedo"> General Escobedo</option>
                         <option value="Guadalupe"> Guadalupe</option>
                         <option value="Ciudad Benito Juárez"> Ciudad Benito Juárez</option>
+                        <option value="Montemorelos"> Montemorelos</option>
                         <option value="Monterrey"> Monterrey</option>
                         <option value="San Nicolás de los Garza"> San Nicolás de los Garza</option>
                         <option value="Santa Catarina"> Santa Catarina</option>
+                        <option value="Santiago"> Santiago</option>
                     </select>
 
                 </div>
