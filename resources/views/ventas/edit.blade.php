@@ -155,16 +155,20 @@
                 <div class="col-sm-5">
                     <select class="form-control" name="municipio_entrega" id="municipio_entrega">
                         <option disabled selected>Seleccionar...</option>
+                        <option value="Allende" @if($venta->municipio_entrega == 'Allende') selected @endif> Allende</option>
                         <option value="Apodaca" @if($venta->municipio_entrega == 'Apodaca') selected @endif> Apodaca</option>
+                        <option value="Cadereyta" @if($venta->municipio_entrega == 'Cadereyta') selected @endif> Cadereyta</option>
                         <option value="Cumbres" @if($venta->municipio_entrega == 'Cumbres') selected @endif> Cumbres</option>
                         <option value="García" @if($venta->municipio_entrega == 'García') selected @endif> García</option>
                         <option value="San Pedro Garza García" @if($venta->municipio_entrega == 'San Pedro Garza García') selected @endif>  San Pedro Garza García</option>
                         <option value="General Escobedo" @if($venta->municipio_entrega == 'General Escobedo') selected @endif> General Escobedo</option>
                         <option value="Guadalupe"@if($venta->municipio_entrega == 'Guadalupe') selected @endif> Guadalupe</option>
                         <option value="Ciudad Benito Juárez" @if($venta->municipio_entrega == 'Ciudad Benito Juárez') selected @endif> Ciudad Benito Juárez</option>
+                        <option value="Montemorelos" @if($venta->municipio_entrega == 'Montemorelos') selected @endif> Montemorelos</option>
                         <option value="Monterrey" @if($venta->municipio_entrega == 'Monterrey') selected @endif> Monterrey</option>
                         <option value="San Nicolás de los Garza" @if($venta->municipio_entrega == 'San Nicolás de los Garza') selected @endif> San Nicolás de los Garza</option>
                         <option value="Santa Catarina" @if($venta->municipio_entrega == 'Santa Catarina') selected @endif> Santa Catarina</option>
+                        <option value="Santiago" @if($venta->municipio_entrega == 'Santiago') selected @endif> Santiago</option>
                     </select>
                 </div>
             </div>

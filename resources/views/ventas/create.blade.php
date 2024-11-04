@@ -194,7 +194,7 @@
                         <option disabled selected>Seleccionar...</option>
                         <option value="Allende"> Allende</option>
                         <option value="Apodaca"> Apodaca</option>
-                        <option value="Caderteyta"> Caderteyta</option>
+                        <option value="Cadereyta"> Cadereyta</option>
                         <option value="Cumbres"> Cumbres</option>
                         <option value="García"> García</option>
                         <option value="San Pedro Garza García"> San Pedro Garza García</option>
