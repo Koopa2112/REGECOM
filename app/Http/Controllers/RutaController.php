@@ -35,7 +35,7 @@ class RutaController extends Controller
     public function create()
     {   
         if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
-            $zonas = zonas::all();
+            $zonas = zonas::where('isActive', '=', 1)->get();
             return view('rutas.create', ['zonas' => $zonas]);
         }else{
             return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
