@@ -41,7 +41,7 @@ class RutasExport implements FromCollection, WithHeadings, /*WithStyles,*/ WithE
                     'Cliente' => $venta->nombre_cliente,
                     'Dirección' => "Calle: ".$venta->calle_entrega. " # ".$venta->numero_entrega. ". Col. " .$venta->colonia_entrega. ". REFERENCIAS: " .$venta->referencia_entrega, 
                     'Municipio' => $venta->municipio_entrega,
-                    'ඞ' => "____________",
+                    'Asesor' => $venta->asesor->user->user,
                 ];
             });
             return $this->ventas;
@@ -54,7 +54,7 @@ class RutasExport implements FromCollection, WithHeadings, /*WithStyles,*/ WithE
             'Cliente',
             'Dirección',
             'Municipio',
-            'ඞ',
+            'Asesor',
         ];
     }
 
