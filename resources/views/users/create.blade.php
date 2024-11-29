@@ -63,6 +63,7 @@
                     <option value="4">Logistica</option>
                     <option value="5">Almacen</option>
                     <option value="6">Analista</option>
+                    <option value="7">Repartidor</option>
                 </select>
             
             </div>

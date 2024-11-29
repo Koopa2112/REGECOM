@@ -31,6 +31,9 @@ class InicioController extends Controller
         }elseif ($user->puesto_empleado == 6) {
             return view('inicios.analista');
         
+        }elseif ($user->puesto_empleado == 7) {
+            return view('inicios.repartidor');
+        
         }
 }
 }
