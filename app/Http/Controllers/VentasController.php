@@ -671,32 +671,54 @@ class VentasController extends Controller
         }
     }
 
-    public function enviadas(){
-        if(auth()->user()->puesto_empleado == 4){
+    public function enviadas()
+    {
+        Carbon::setLocale('es');
+        if (auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 7) {
             $ventas = ventas::where('estado_venta', 7)
-            ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
-            ->select('ventas.*', 'rutas.fecha_entrega')
-            ->orderBy('rutas.fecha_entrega', 'asc')
-            ->get();
+                ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
+                ->select('ventas.*', 'rutas.fecha_entrega')
+                ->orderBy('rutas.fecha_entrega', 'asc')
+                ->get()
+                ->map(function ($venta) {
+                    $venta->fecha_entrega = Carbon::parse($venta->fecha_entrega)->translatedFormat('d-F');
+                    return $venta;
+                });
+            //return $ventas;
             return view('ventas.enviadas', ['ventas' => $ventas]);
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
 
-    public function envio(request $request, $id){
-        if(auth()->user()->puesto_empleado == 4){
+    public function envio(request $request, $id)
+    {
+        if (auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 7) {
             $venta = ventas::find($id);
             $venta->estado_venta = intval($request->input('estado_venta'), 10);
-            if(intval($request->input('estado_venta'), 10) == 4) {
+            if (intval($request->input('estado_venta'), 10) == 4) {
                 $request->validate([
                     'comentario' => 'required',
                 ]);
                 $venta->notas_MC = trim('COMENTARIO DE LOGISTICA-->' . $request->input('comentario') . '///' . $venta->notas_MC);
+                $venta->save();
+                return view("message", ['msg' => "Venta marcada como NO entregada"]);
+            } else {
+                $subidaDrive = new DriveController;
+                if($request->input('tipo_documento')==1){
+                    $request->validate([
+                        'ine_reverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
+                    ]);
+                    $subidaDrive->subirArchivo($request->file('ine_reverso'),$venta->linea_venta."_reverso_INE", '1OniplE6TnHJfuq9-Mp_WHkdUULk4moIO');  //Subir reverso
+                }
+                $request->validate([
+                    'ine_anverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
+                ]);
+                $subidaDrive->subirArchivo($request->file('ine_anverso'),$venta->linea_venta."_anverso_INE", '1DgDCKGlI_mGmLeZciPEDghUQ5-w6hKF0');  //Subir Anverso
+                $venta->save();
+                return view("message", ['msg' => "Venta marcada como entregada"]);
             }
-            $venta->save();
-            return back();
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }

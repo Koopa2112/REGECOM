@@ -16,9 +16,11 @@ return new class extends Migration
             $table->integer('num_entregas' );
             $table->integer('max_entregas');
             $table->unsignedBigInteger('id_zona');
+            $table->unsignedBigInteger('id_repartidor');
             $table->date('fecha_entrega');
             $table->timestamps();
 
+            $table->foreign('id_repartidor')->references('id')->on('users');
             $table->foreign('id_zona')->references('id')->on('zonas');
         });
     }

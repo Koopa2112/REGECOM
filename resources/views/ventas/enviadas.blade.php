@@ -1,12 +1,13 @@
-@extends('inicios/logistica')
+@extends((Auth::user()->puesto_empleado == 6) ? 'inicios.logistica' : 
+        ((Auth::user()->puesto_empleado == 7) ? 'inicios.repartidor' : 'inicios.repartidor'))
 
-@section('title', 'Ventas enviadas')
+@section('title', 'Ventas en ruta')
 
 @section('contenido')
 <main>
-    <div class="container py-4">
+    <div class="container-lg" >
 
-        <h2>Ventas enviadas</h2>
+        <h2>Ventas en ruta</h2>
         @if ($errors->any())
 
 
@@ -19,19 +20,22 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+        <div style="overflow-x:auto;">
         <table class="table table-striped table-responsive">
 
             <thead>
                 <tr>
-                    <th>ID venta</th>
-                    <th>Fecha de envio</th>
-                    <th>Linea</th>
-                    <th>Nombre del cliente</th>
-                    <th>Domicilio</th>
-                    <th>Notas</th>
-                    <th>URL</th>
+                    <th style="font-size: 0.75rem;">ID venta</th>
+                    <th style="font-size: 0.75rem;">Fecha de envio</th>
+                    <th style="font-size: 0.75rem;">Linea</th>
+                    <th style="font-size: 0.75rem;">Nombre del cliente</th>
+                    <th style="font-size: 0.75rem;">Domicilio</th>
+                    @if(Auth::user()->puesto_empleado!=7)
+                        <th style="font-size: 0.75rem;">Notas</th>
+                    @endif
+                    <th style="font-size: 0.75rem;">Asesor</th>
                     <th></th>
-                    <th></th>
+                    <!--<th></th>-->
                 </tr>
             </thead>
 
@@ -41,30 +45,33 @@
                 @foreach($ventas as $venta)
                 <tr>
 
-                    <td>{{ $venta->id}}</td>
-                    <td>{{ $venta->ruta->fecha_entrega }}</td>
-                    <td>{{ $venta->linea_venta }}</td>
-                    <td>{{ $venta->nombre_cliente }}</td>
-                    <td>{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
+                    <td style="font-size: 0.75rem;">{{ $venta->id}}</td>
+                    <td style="font-size: 0.75rem;">{{ $venta->fecha_entrega }}</td>
+                    <td style="font-size: 0.75rem;">{{ $venta->linea_venta }}</td>
+                    <td style="font-size: 0.75rem;">{{ $venta->nombre_cliente }}</td>
+                    <td style="font-size: 0.75rem;">{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
                     {{ $venta->municipio_entrega}}. {{ $venta->referencia_entrega}}
                     </td>
-                    <td>{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</td>
-                    <td>{{ $venta->asesor->user->user}}</td>
-                    <td><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></td>
-                    <form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
+                    @if(Auth::user()->puesto_empleado!=7)
+                        <td style="font-size: 0.75rem;">{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</td>
+                    @endif
+                    <td style="font-size: 0.75rem;">{{ $venta->asesor->user->user}}</td>
+                    <td style="font-size: 0.75rem;"><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></td>
+                    <!--<form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
                         @csrf
                         <input type="hidden" value="" id="estado_venta{{ $venta->id }}" name="estado_venta">
                         <input type="hidden" value="" id="comentario{{ $venta->id }}" name="comentario">
-                        <td><button type="button" class="btn btn-success btn-small" onclick="actualizar(8, '{{ $venta->id }}')">Entregada</button>
-                        </td>
-                        <td><button type="button" class="btn btn-warning btn-small" onclick="actualizar(4, '{{ $venta->id }}')">No
-                                entregada</button></td>
+                        <td><div class="btn-group-vertical">
+                            <button type="button" class="btn btn-success btn-sm" onclick="actualizar(8, '{{ $venta->id }}')">Entregada</button>
+                            
+                            <button type="button" class="btn btn-warning btn-sm" onclick="actualizar(4, '{{ $venta->id }}')">No entregada</button>
+                        </div></td>
                 </tr>
-                </form>
+                </form>-->
                 @endforeach
             </tbody>
 
-        </table>
+        </table></div>
         <script>
             function actualizar(estado, id) {
                 var estadoHidden = document.getElementById('estado_venta' + id);
