@@ -117,7 +117,7 @@ class UserController extends Controller
             $user->estado = $request->has('estado');
             
             $user->save();
-
+/*
             if($request->puesto_empleado == 3){
                 $supervisor = user::where('puesto_empleado', 1)->first()->value('id');
                 $asesor = asesores::where('id_user', $user->id)->get();
@@ -138,7 +138,7 @@ class UserController extends Controller
                 $administrativos = new administrativos();
                 $administrativos->id_user = $user->id;
                 $administrativos->save();
-            }
+            }*/
             
             return view('message', ['msg' => "Usuario editado correctamente =)"]);
         }else{
