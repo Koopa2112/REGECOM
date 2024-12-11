@@ -28,7 +28,8 @@ class VentasController extends Controller
         return view('ventas.curso', ['ventas' => $ventasCurso]);
     }
 
-    public function fecha($id){
+    public function fecha($id)
+    {
         $userId = auth()->user()->id;
         $asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
         $venta = ventas::find($id);
@@ -77,7 +78,7 @@ class VentasController extends Controller
         $userId = auth()->user()->id;
         $asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
         $venta = ventas::find($id);
-        if($venta->id_asesor == $asesorId){
+        if ($venta->id_asesor == $asesorId) {
             $venta->estado_venta = 10;
             $venta->save();
             return view("message", ['msg' => "La venta ha sido cancelada =("]);
@@ -349,7 +350,6 @@ class VentasController extends Controller
         } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-
     }
 
 
@@ -491,7 +491,6 @@ class VentasController extends Controller
         } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-
     }
 
     public function mes()
@@ -517,100 +516,100 @@ class VentasController extends Controller
         } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-
     }
 
-    public function pendienteRevision(){
+    public function pendienteRevision()
+    {
 
-        if(auth()->user()->puesto_empleado == 2){
+        if (auth()->user()->puesto_empleado == 2) {
             $ventas = ventas::where('estado_venta', 0)->get();
             return view("ventas.pendienteRevision", ['ventas' => $ventas]);
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-
     }
 
-    public function pendienteAnalisis(){
+    public function pendienteAnalisis()
+    {
         $user = auth()->user();
         $analista = analistas::where('id_user', $user->id)->first();
-        if($user->puesto_empleado == 6 || $user->puesto_empleado == 0){
-            $ventas = ventas::where('estado_venta', 2)->orderBy('id_zona', 'asc')->get();//where('id_analista', $analista->id)->get();
+        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0) {
+            $ventas = ventas::where('estado_venta', 2)->orderBy('id_zona', 'asc')->get(); //where('id_analista', $analista->id)->get();
             return view("ventas.pendienteAnalisis", ['ventas' => $ventas]);
-            
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-
     }
 
-    public function conRuta(){
+    public function conRuta()
+    {
         $user = auth()->user();
         $analista = analistas::where('id_user', $user->id)->get()->first();
-        if($user->puesto_empleado == 6 || $user->puesto_empleado == 0){
-            $ventas = ventas::where('estado_venta', 6)->orderBy('id_ruta', 'desc')->get();//where('id_analista', $analista->id)->orderBy('id_ruta', 'desc')->get();
+        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0) {
+            $ventas = ventas::where('estado_venta', 6)->orderBy('id_ruta', 'desc')->get(); //where('id_analista', $analista->id)->orderBy('id_ruta', 'desc')->get();
             $zonas = zonas::where('isActive', '1')->get();
             return view("ventas.conRuta", ['ventas' => $ventas, 'zonas' => $zonas]);
-            
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
-
     }
 
-    public function contrato($id){
+    public function contrato($id)
+    {
         $user = auth()->user();
         $userId = $user->id;
         //$asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
-        if($user->puesto_empleado == 6 || $user->puesto_empleado == 0){
+        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0) {
             $total_mensual = $venta->total_mensual;
             $equipos = equipos::where('entregado', false)->get();
-            $totalFormateado = '$ '.number_format($total_mensual, 0, ',');
-            return view('ventas.contrato', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado, 'equipos' => $equipos] );      
-        }else{
+            $totalFormateado = '$ ' . number_format($total_mensual, 0, ',');
+            return view('ventas.contrato', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado, 'equipos' => $equipos]);
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
 
-    public function entregadas(){
+    public function entregadas()
+    {
         $user = auth()->user();
         $analista = analistas::where('id_user', $user->id)->get()->first();
-        if($user->puesto_empleado == 6 || $user->puesto_empleado == 0){
-            
-            $ventas = ventas::where('estado_venta', 8)->get();//where('id_analista', $analista->id)->get();
+        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0) {
+
+            $ventas = ventas::where('estado_venta', 8)->get(); //where('id_analista', $analista->id)->get();
 
             return view("ventas.entregadas", ['ventas' => $ventas]);
-            
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
 
-    private function acuseFinal(){
+    private function acuseFinal()
+    {
         $ultimoAcuse = acuses::get()->last();
-        $totalVentasAcuse = ventas::where('id_acuse', '=' , $ultimoAcuse->id)->count();
-        if($totalVentasAcuse < 25 && $ultimoAcuse->cerrado == 0){
-            if($totalVentasAcuse == 24){
+        $totalVentasAcuse = ventas::where('id_acuse', '=', $ultimoAcuse->id)->count();
+        if ($totalVentasAcuse < 25 && $ultimoAcuse->cerrado == 0) {
+            if ($totalVentasAcuse == 24) {
                 $ultimoAcuse->cerrado = 1;
             }
-            return($ultimoAcuse->id);
-        }else{
-            if($ultimoAcuse->cerrado == 0){
+            return ($ultimoAcuse->id);
+        } else {
+            if ($ultimoAcuse->cerrado == 0) {
                 $ultimoAcuse->cerrado = 1;
                 $ultimoAcuse->save();
             }
             $acuseNuevo = new acuses();
             $acuseNuevo->fecha_creado = today();
             $acuseNuevo->save();
-            return($acuseNuevo->id);
+            return ($acuseNuevo->id);
         }
-        return(-1000);
+        return (-1000);
     }
 
-    public function finalizar(request $request, $id){
-        if(auth()->user()->puesto_empleado == 6 || auth()->user()->puesto_empleado == 0){
+    public function finalizar(request $request, $id)
+    {
+        if (auth()->user()->puesto_empleado == 6 || auth()->user()->puesto_empleado == 0) {
             $request->validate([
                 'repartidor' => 'required',
             ]);
@@ -620,53 +619,56 @@ class VentasController extends Controller
             $venta->id_acuse = $this->acuseFinal();
             $venta->save();
             return redirect()->back();
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
 
-    public function pendienteZona(){
+    public function pendienteZona()
+    {
         $puesto = auth()->user()->puesto_empleado;
-        if($puesto == 4 || $puesto == 1){
+        if ($puesto == 4 || $puesto == 1) {
             $ventas = ventas::where('estado_venta', 5)->get();
- 
+
             return view("ventas.pendienteZona", ['ventas' => $ventas]);
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
 
-    public function asignarZona($id){
+    public function asignarZona($id)
+    {
         $puesto = auth()->user()->puesto_empleado;
-        if($puesto == 4 || $puesto == 1){
+        if ($puesto == 4 || $puesto == 1) {
             $venta = ventas::find($id);
-            if($venta->estado_venta == 5){
+            if ($venta->estado_venta == 5) {
                 $zonas = zonas::where('isActive', 1)->get();
-                return view("ventas.asignarZona", ['venta' => $venta, 'zonas' => $zonas, ]);
-            }else{
+                return view("ventas.asignarZona", ['venta' => $venta, 'zonas' => $zonas,]);
+            } else {
                 header("Location: /REGECOM/public/ventas/pendienteZona");
                 exit();
             }
-        }else{
+        } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }
     }
 
-    public function zonaAsignada(request $request, $id){
+    public function zonaAsignada(request $request, $id)
+    {
         $puesto = auth()->user()->puesto_empleado;
-            if($puesto == 4 || $puesto == 1){
-                //return($request);
-                $request->validate([
-                    'id_zona' => 'required'
-                ]);
-                $venta = ventas::find($id);
-                $venta->estado_venta = 4;
-                $venta->id_zona = intval($request->input('id_zona'), 10);
-                $venta->save();
-                return view("message", ['msg' => "Zona guardada correctamente (="]);
-            }else{
-                return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
-            }
+        if ($puesto == 4 || $puesto == 1) {
+            //return($request);
+            $request->validate([
+                'id_zona' => 'required'
+            ]);
+            $venta = ventas::find($id);
+            $venta->estado_venta = 4;
+            $venta->id_zona = intval($request->input('id_zona'), 10);
+            $venta->save();
+            return view("message", ['msg' => "Zona guardada correctamente (="]);
+        } else {
+            return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
+        }
     }
 
     public function enviadas(){
@@ -705,30 +707,31 @@ class VentasController extends Controller
         $oneYearAgo = Carbon::now()->subYear();
 
         $exists = ventas::where('linea_venta', $numeroLinea)
-                      ->where('created_at', '>=', $oneYearAgo)
-                      ->exists();
+            ->where('created_at', '>=', $oneYearAgo)
+            ->exists();
         if ($exists) {
             $venta = ventas::where('linea_venta', $numeroLinea)->pluck('fecha_venta')->first();
             $id = ventas::where('linea_venta', $numeroLinea)->pluck('id')->first();
-        }else{
+        } else {
             $venta = null;
             $id = null;
         }
         return response()->json(['exists' => $exists, 'venta' => $venta, 'id' => $id]);
     }
 
-    public function busqueda(Request $request){
+    public function busqueda(Request $request)
+    {
         $request->validate([
-            'busqueda' => 'required', 
+            'busqueda' => 'required',
         ]);
         $termino = $request->input('busqueda');
-        
+
         // Realiza la búsqueda en la base de datos
         $resultados = ventas::where('linea_venta', 'LIKE', "%{$termino}%")
-                            ->orWhere('nombre_cliente', 'LIKE', "%{$termino}%")
-                            ->orWhere('id', 'LIKE', "%{$termino}%")
-                            ->get();
-        
+            ->orWhere('nombre_cliente', 'LIKE', "%{$termino}%")
+            ->orWhere('id', 'LIKE', "%{$termino}%")
+            ->get();
+
         // Retorna los resultados a una vista
         //return($resultados);
         return view('ventas.busqueda', ['ventas' => $resultados]);
