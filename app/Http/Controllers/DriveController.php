@@ -35,15 +35,15 @@ class DriveController extends Controller
         $client->setScopes(['https://www.googleapis.com/auth/drive.file']);
 
         try {
-            $service = new \Google\Service\Drive($client);
+            $service = new \Google\Service\Drive($client); //instancia del servicio
 
-            $file = new \Google\Service\Drive\DriveFile();
+            $file = new \Google\Service\Drive\DriveFile();  //Instancia del archivo
             $file->setName($nombreArchivo);
 
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);        //Obtener el mime type
             $mime_type = finfo_file($finfo, $rutaTemporal);
 
-            $file->setParents([$claveJSON]);
+            $file->setParents([$claveJSON]);            //id de carpeta donde tengo el prermiso de subir
             $file->setDescription($descripcion);
             $file->setMimeType($mime_type);
 
@@ -54,7 +54,7 @@ class DriveController extends Controller
                     'mimeType' => $mime_type,
                     'uploadType' => 'media',
                 ]
-            );
+            );  //Fichero se sube a drive
 
             return ("Archivo subido exitosamente.");
         } catch (\Google\Service\Exception $gs) {
