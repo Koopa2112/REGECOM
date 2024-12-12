@@ -63,7 +63,7 @@ class ExportController extends Controller
 
     public function printAcuse($id)
     {
-        if(auth()->user()->puesto_empleado != 3){
+        if (auth()->user()->puesto_empleado != 3) {
             // Ruta del archivo de formato
             $filePath = storage_path('public/Acuse_ventas.xls');
 
@@ -87,24 +87,40 @@ class ExportController extends Controller
             $worksheet->setCellValue('G6', $venta->id_acuse);
             // Configurar la respuesta para la descarga del archivo Excel
             $writer = new Xls($spreadsheet);
-            $fileName = 'acuse_folio -'. $id .'.xls';
+            $fileName = 'acuse_folio -' . $id . '.xls';
 
             return response()->streamDownload(function () use ($writer) {
                 $writer->save('php://output');
             }, $fileName);
-        }else{
+        } else {
             return view("message", ['msg' => "Página no encontrada"]);
         }
     }
 
     public function printRuta($id)
     {
-        if(auth()->user()->puesto_empleado != 3){
+        if (auth()->user()->puesto_empleado != 3) {
             $ruta = rutas::with('zona')->find($id);
             $nombreZona = $ruta->zona->nombre_zona;
             return Excel::download(new RutasExport($id), 'Ruta_' . $id . '_' . $nombreZona . '.xlsx');
-        }else{
+        } else {
             return view("message", ['msg' => "Página no encontrada"]);
         }
     }
+    /*
+    public function printReporteV(Carbon $startDate, Carbon $endDate)
+    {
+        if (auth()->user()->puesto_empleado != 3) {
+            $ventas = ventas::whereBetween('fecha_venta', [$startDate, $endDate])->get();
+            $totalVentas = 0;
+            $totalVentas = $ventas->sum('total_venta');
+            $totalVentas = $totalVentas / 100;
+            $reporte = new ReporteV();
+            $reporte->ventas = $ventas;
+            $reporte->totalVentas = $totalVentas;
+            return Excel::download(new ReporteVExport($reporte), 'ReporteVentas.xlsx');
+        } else {
+            return view("message", ['msg' => "Página no encontrada"]);
+        }
+    }*/
 }
