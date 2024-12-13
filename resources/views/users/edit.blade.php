@@ -63,6 +63,7 @@
                     <option value="4" @if($user->puesto_empleado == 4) selected @endif>Logistica</option>
                     <option value="5" @if($user->puesto_empleado == 5) selected @endif>Almacen</option>
                     <option value="6" @if($user->puesto_empleado == 6) selected @endif>Analista</option>
+                    <option value="7" @if($user->puesto_empleado == 7) selected @endif>Repartidor</option>
                 </select>
             
             </div>
