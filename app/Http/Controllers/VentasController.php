@@ -709,7 +709,7 @@ class VentasController extends Controller
                     $request->validate([
                         'ine_reverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
                     ]);
-                    $subidaDrive->subirArchivo($request->file('ine_reverso'),$venta->linea_venta."_reverso_INE", '1OniplE6TnHJfuq9-Mp_WHkdUULk4moIO');  //Subir reverso
+                    $subidaDrive->subirArchivo($request->file('ine_reverso'),$venta->linea_venta."_reverso_INE", '1DgDCKGlI_mGmLeZciPEDghUQ5-w6hKF0');  //Subir reverso
                 }
                 $request->validate([
                     'ine_anverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
