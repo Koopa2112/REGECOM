@@ -46,8 +46,18 @@
                         <option value="{{ $zona->id}}" @if($zona->id == $ruta->id_zona) selected @endif>{{ $zona->nombre_zona }}</option>
                     @endforeach
                 </select>
+            </div>
+        </div>
 
-
+        <div class="mb-3 row">
+            <label for="id_repartidor" class="col-sm-2 col-form-label">Repartidor</label>
+            <div class="col-sm-5">
+                <select class="form-select" id="id_repartidor" name="id_repartidor">
+                    <option disabled selected>Seleccionar...</option>
+                    @foreach($repartidores as $repartidor)
+                        <option value="{{ $repartidor->id}}" @if($repartidor->id == $ruta->id_repartidor) selected @endif>{{ $repartidor->user }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
 
