@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\rutas;
+use App\Models\User;
 use App\Models\zonas;
 use App\Models\ventas;
 use Illuminate\Http\Request;
@@ -36,7 +37,10 @@ class RutaController extends Controller
     {   
         if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
             $zonas = zonas::where('isActive', '=', 1)->get();
-            return view('rutas.create', ['zonas' => $zonas]);
+            $repartidores = User::where('puesto_empleado', '=', 7)->get()->map(function ($user) {
+                return (object) ['id' => $user->id, 'user' => $user->user];
+            });
+            return view('rutas.create', ['zonas' => $zonas, 'repartidores' => $repartidores]);
         }else{
             return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
         }
@@ -51,12 +55,14 @@ class RutaController extends Controller
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',
-                'fecha_entrega' => 'required'
+                'id_repartidor' => 'required',
+                'fecha_entrega' => 'required',
             ]);
             $ruta = new rutas();
             $ruta->max_entregas = $request->input('max_entregas');
             $ruta->num_entregas = 0;
             $ruta->id_zona = $request->input('id_zona');
+            $ruta->id_repartidor = $request->input('id_repartidor');
             $ruta->fecha_entrega = $request->input('fecha_entrega');
             $ruta->save();
             return view('message', ['msg' => "Ruta agregada correctamente =)"]);
@@ -81,7 +87,10 @@ class RutaController extends Controller
         if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
             $ruta = rutas::find($id);
             $zonas = zonas::all();
-            return view('rutas.edit', ['ruta' => $ruta, 'zonas' => $zonas]);
+            $repartidores = User::where('puesto_empleado', '=', 7)->get()->map(function ($user) {
+                return (object) ['id' => $user->id, 'user' => $user->user];
+            });
+            return view('rutas.edit', ['ruta' => $ruta, 'zonas' => $zonas, 'repartidores' => $repartidores]);
         }else{
             return view('message', ['msg' => "No tienes permiso de estar aqui >:("]);
         }
@@ -96,13 +105,15 @@ class RutaController extends Controller
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',
+                'id_repartidor' => 'required',
                 'fecha_entrega' => 'required'
             ]);
             $ruta = rutas::find($id);
             $ruta->max_entregas = $request->input('max_entregas');
             $ruta->id_zona = $request->input('id_zona');
+            $ruta->id_repartidor = $request->input('id_repartidor');
             $ruta->fecha_entrega = $request->input('fecha_entrega');
-            
+
             $ruta->save();
             return view('message', ['msg' => "Ruta editada correctamente =)"]);
         }else{
