@@ -40,6 +40,8 @@
                         Almacén
                         @elseif( $user->puesto_empleado == 6)
                         Analista
+                        @elseif( $user->puesto_empleado == 7)
+                        Repartidor
                         @endif
                     </th>
 
