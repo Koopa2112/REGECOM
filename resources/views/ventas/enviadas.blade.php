@@ -54,24 +54,28 @@
                         </td>
                         @if(Auth::user()->puesto_empleado!=7)
                         <td style="font-size: 0.75rem;">{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</td>
-                    @endif
-                    <td style="font-size: 0.75rem;">{{ $venta->asesor->user->user}}</td>
-                    <td style="font-size: 0.75rem;"><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></td>
-                    <!--<form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
-                        @csrf
-                        <input type="hidden" value="" id="estado_venta{{ $venta->id }}" name="estado_venta">
-                        <input type="hidden" value="" id="comentario{{ $venta->id }}" name="comentario">
-                        <td><div class="btn-group-vertical">
-                            <button type="button" class="btn btn-success btn-sm" onclick="actualizar(8, '{{ $venta->id }}')">Entregada</button>
-                            
-                            <button type="button" class="btn btn-warning btn-sm" onclick="actualizar(4, '{{ $venta->id }}')">No entregada</button>
-                        </div></td>
-                </tr>
-                </form>-->
-                @endforeach
-            </tbody>
 
-        </table></div>
+                        <td style="font-size: 0.75rem;">{{ $venta->asesor->user->user}}</td>
+                        <td style="font-size: 0.75rem;"><a href="{{  url('ventas/' .$venta->id. '/lshow') }}" class="btn btn-primary btn-small">Ver</a></td>
+                        <form action="{{url('ventas/' . $venta->id .'/envio')}}" id="envio{{ $venta->id }}" method="post">
+                            @csrf
+                            <input type="hidden" value="" id="estado_venta{{ $venta->id }}" name="estado_venta">
+                            <input type="hidden" value="" id="comentario{{ $venta->id }}" name="comentario">
+                            <td>
+                                <div class="btn-group-vertical">
+                                    <button type="button" class="btn btn-success btn-sm" onclick="actualizar(8, '{{ $venta->id }}')">Entregada</button>
+
+                                    <button type="button" class="btn btn-warning btn-sm" onclick="actualizar(4, '{{ $venta->id }}')">No entregada</button>
+                                </div>
+                            </td>
+                        </form>
+                        @endif
+                    </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+        </div>
         <script>
             function actualizar(estado, id) {
                 var estadoHidden = document.getElementById('estado_venta' + id);
