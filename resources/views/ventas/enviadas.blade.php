@@ -1,11 +1,11 @@
-@extends((Auth::user()->puesto_empleado == 6) ? 'inicios.logistica' : 
-        ((Auth::user()->puesto_empleado == 7) ? 'inicios.repartidor' : 'inicios.repartidor'))
+@extends((Auth::user()->puesto_empleado == 6) ? 'inicios.logistica' :
+((Auth::user()->puesto_empleado == 7) ? 'inicios.repartidor' : 'inicios.repartidor'))
 
 @section('title', 'Ventas en ruta')
 
 @section('contenido')
 <main>
-    <div class="container-lg" >
+    <div class="container-lg">
 
         <h2>Ventas en ruta</h2>
         @if ($errors->any())
@@ -21,38 +21,38 @@
         </div>
         @endif
         <div style="overflow-x:auto;">
-        <table class="table table-striped table-responsive">
+            <table class="table table-striped table-responsive">
 
-            <thead>
-                <tr>
-                    <th style="font-size: 0.75rem;">ID venta</th>
-                    <th style="font-size: 0.75rem;">Fecha de envio</th>
-                    <th style="font-size: 0.75rem;">Linea</th>
-                    <th style="font-size: 0.75rem;">Nombre del cliente</th>
-                    <th style="font-size: 0.75rem;">Domicilio</th>
-                    @if(Auth::user()->puesto_empleado!=7)
+                <thead>
+                    <tr>
+                        <th style="font-size: 0.75rem;">ID venta</th>
+                        <th style="font-size: 0.75rem;">Fecha de envio</th>
+                        <th style="font-size: 0.75rem;">Linea</th>
+                        <th style="font-size: 0.75rem;">Nombre del cliente</th>
+                        <th style="font-size: 0.75rem;">Domicilio</th>
+                        @if(Auth::user()->puesto_empleado!=7)
                         <th style="font-size: 0.75rem;">Notas</th>
-                    @endif
-                    <th style="font-size: 0.75rem;">Asesor</th>
-                    <th></th>
-                    <!--<th></th>-->
-                </tr>
-            </thead>
+                        @endif
+                        <th style="font-size: 0.75rem;">Asesor</th>
+                        <th></th>
+                        <!--<th></th>-->
+                    </tr>
+                </thead>
 
-            <br>
+                <br>
 
-            <tbody>
-                @foreach($ventas as $venta)
-                <tr>
+                <tbody>
+                    @foreach($ventas as $venta)
+                    <tr>
 
-                    <td style="font-size: 0.75rem;">{{ $venta->id}}</td>
-                    <td style="font-size: 0.75rem;">{{ $venta->fecha_entrega }}</td>
-                    <td style="font-size: 0.75rem;">{{ $venta->linea_venta }}</td>
-                    <td style="font-size: 0.75rem;">{{ $venta->nombre_cliente }}</td>
-                    <td style="font-size: 0.75rem;">{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
-                    {{ $venta->municipio_entrega}}. {{ $venta->referencia_entrega}}
-                    </td>
-                    @if(Auth::user()->puesto_empleado!=7)
+                        <td style="font-size: 0.75rem;">{{ $venta->id}}</td>
+                        <td style="font-size: 0.75rem;">{{ $venta->fecha_entrega }}</td>
+                        <td style="font-size: 0.75rem;">{{ $venta->linea_venta }}</td>
+                        <td style="font-size: 0.75rem;">{{ $venta->nombre_cliente }}</td>
+                        <td style="font-size: 0.75rem;">{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
+                            {{ $venta->municipio_entrega}}. {{ $venta->referencia_entrega}}
+                        </td>
+                        @if(Auth::user()->puesto_empleado!=7)
                         <td style="font-size: 0.75rem;">{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</td>
                     @endif
                     <td style="font-size: 0.75rem;">{{ $venta->asesor->user->user}}</td>
