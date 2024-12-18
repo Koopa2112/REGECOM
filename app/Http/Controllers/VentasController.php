@@ -673,18 +673,35 @@ class VentasController extends Controller
 
     public function enviadas()
     {
+        $puesto_empleado = auth()->user()->puesto_empleado;
         Carbon::setLocale('es');
-        if (auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 7) {
-            $ventas = ventas::where('estado_venta', 7)
-                ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
-                ->select('ventas.*', 'rutas.fecha_entrega')
-                ->orderBy('rutas.fecha_entrega', 'asc')
-                ->get()
-                ->map(function ($venta) {
-                    $venta->fecha_entrega = Carbon::parse($venta->fecha_entrega)->translatedFormat('d-F');
-                    return $venta;
-                });
-            //return $ventas;
+        if ($puesto_empleado == 4 || $puesto_empleado == 7) {
+            if ($puesto_empleado == 4) {
+                $ventas = ventas::where('estado_venta', 7)
+                    ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
+                    ->select('ventas.*', 'rutas.fecha_entrega')
+                    ->orderBy('rutas.fecha_entrega', 'asc')
+                    ->get()
+                    ->map(function ($venta) {
+                        $venta->fecha_entrega = Carbon::parse($venta->fecha_entrega)->translatedFormat('d-F');
+                        return $venta;
+                    });
+            } elseif ($puesto_empleado == 7) {
+                $hoy = carbon::today();
+                
+                $ventas = ventas::where('estado_venta', 7)
+                    ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
+                    ->where('id_repartidor', '=', auth()->user()->id)
+                    ->where('fecha_entrega', '>', $hoy)
+                    ->select('ventas.*', 'rutas.fecha_entrega')
+                    ->orderBy('rutas.fecha_entrega', 'asc')
+                    ->get()
+                    ->map(function ($venta) {
+                       $venta->fecha_entrega = Carbon::parse($venta->fecha_entrega)->translatedFormat('d-F');
+                        return $venta;
+                    });
+            ;}
+            return $ventas;
             return view('ventas.enviadas', ['ventas' => $ventas]);
         } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
@@ -704,17 +721,19 @@ class VentasController extends Controller
                 $venta->save();
                 return view("message", ['msg' => "Venta marcada como NO entregada"]);
             } else {
-                $subidaDrive = new DriveController;
-                if($request->input('tipo_documento')==1){
+                if (auth()->user()->puesto_empleado == 7) {
+                    $subidaDrive = new DriveController;
+                    if ($request->input('tipo_documento') == 1) {
+                        $request->validate([
+                            'ine_reverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
+                        ]);
+                        $subidaDrive->subirArchivo($request->file('ine_reverso'), $venta->linea_venta . "_reverso_INE", '1DgDCKGlI_mGmLeZciPEDghUQ5-w6hKF0');  //Subir reverso
+                    }
                     $request->validate([
-                        'ine_reverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
+                        'ine_anverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
                     ]);
-                    $subidaDrive->subirArchivo($request->file('ine_reverso'),$venta->linea_venta."_reverso_INE", '1DgDCKGlI_mGmLeZciPEDghUQ5-w6hKF0');  //Subir reverso
+                    $subidaDrive->subirArchivo($request->file('ine_anverso'), $venta->linea_venta . "_anverso_INE", '1DgDCKGlI_mGmLeZciPEDghUQ5-w6hKF0');  //Subir Anverso
                 }
-                $request->validate([
-                    'ine_anverso' => 'required|file|mimes:jpg,jpeg,png,gif|max:10240',
-                ]);
-                $subidaDrive->subirArchivo($request->file('ine_anverso'),$venta->linea_venta."_anverso_INE", '1DgDCKGlI_mGmLeZciPEDghUQ5-w6hKF0');  //Subir Anverso
                 $venta->save();
                 return view("message", ['msg' => "Venta marcada como entregada"]);
             }
@@ -757,7 +776,5 @@ class VentasController extends Controller
         // Retorna los resultados a una vista
         //return($resultados);
         return view('ventas.busqueda', ['ventas' => $resultados]);
-
     }
-    
 }
