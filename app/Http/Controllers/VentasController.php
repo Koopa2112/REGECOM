@@ -701,7 +701,6 @@ class VentasController extends Controller
                         return $venta;
                     });
             ;}
-            return $ventas;
             return view('ventas.enviadas', ['ventas' => $ventas]);
         } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
