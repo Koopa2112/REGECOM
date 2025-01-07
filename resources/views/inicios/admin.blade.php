@@ -36,6 +36,7 @@
         <li><a class="dropdown-item" href="{{ url('ventas/pendienteAnalisis') }}">Lineas para analizar</a></li>
         <li><a class="dropdown-item" href="{{ url('ventas/conRuta') }} ">Contratos con ruta asignada</a></li>
         <li><a class="dropdown-item" href="{{ url('ventas/entregadas') }} ">Contratos entregados</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/pendienteZona') }}">Ventas para asignar zona</a></li>
     </ul>
 </li>
 
