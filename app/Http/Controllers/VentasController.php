@@ -692,8 +692,8 @@ class VentasController extends Controller
                 $ventas = ventas::where('estado_venta', 7)
                     ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
                     ->where('id_repartidor', '=', auth()->user()->id)
-                    //->where('fecha_entrega', '>', $hoy)
-                    //->select('ventas.*', 'rutas.fecha_entrega')
+                    ->where('fecha_entrega', '>=', $hoy)
+                    ->select('ventas.*', 'rutas.fecha_entrega')
                     ->orderBy('rutas.fecha_entrega', 'asc')
                     ->get()
                     ->map(function ($venta) {
