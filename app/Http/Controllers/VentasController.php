@@ -692,14 +692,15 @@ class VentasController extends Controller
                 $ventas = ventas::where('estado_venta', 7)
                     ->join('rutas', 'ventas.id_ruta', '=', 'rutas.id')
                     ->where('id_repartidor', '=', auth()->user()->id)
-                    ->where('fecha_entrega', '>', $hoy)
-                    ->select('ventas.*', 'rutas.fecha_entrega')
+                    //->where('fecha_entrega', '>', $hoy)
+                    //->select('ventas.*', 'rutas.fecha_entrega')
                     ->orderBy('rutas.fecha_entrega', 'asc')
                     ->get()
                     ->map(function ($venta) {
                        $venta->fecha_entrega = Carbon::parse($venta->fecha_entrega)->translatedFormat('d-F');
                         return $venta;
                     });
+                    
             ;}
             return view('ventas.enviadas', ['ventas' => $ventas]);
         } else {
