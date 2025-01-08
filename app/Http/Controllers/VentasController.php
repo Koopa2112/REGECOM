@@ -146,7 +146,7 @@ class VentasController extends Controller
             }
         }
         $request->validate([
-            'linea_venta' => 'required',
+            'linea_venta' => 'required|digits:10',
             'nombre_cliente' => 'required',
             'plan_venta' => 'required',
             'meses_venta' => 'required',
@@ -700,7 +700,6 @@ class VentasController extends Controller
                        $venta->fecha_entrega = Carbon::parse($venta->fecha_entrega)->translatedFormat('d-F');
                         return $venta;
                     });
-                    
             ;}
             return view('ventas.enviadas', ['ventas' => $ventas]);
         } else {
