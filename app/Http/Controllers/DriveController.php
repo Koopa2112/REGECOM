@@ -71,7 +71,7 @@ class DriveController extends Controller
     public function descargaINE($linea)
     {
         $client = new \Google_Client();
-        $client->setAuthConfig(storage_path('app\credentials\storageid-07a73687097e.json')); // Ruta a tus credenciales
+        $client->setAuthConfig(storage_path('app/credentials/storageid-07a73687097e.json')); // Ruta a tus credenciales
         $client->addScope(Drive::DRIVE_READONLY);
 
         $service = new Drive($client);
