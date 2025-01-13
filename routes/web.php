@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AcuseController;
 use App\Http\Controllers\AsesorController;
+use App\Http\Controllers\DriveController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -70,6 +71,7 @@ Route::post('/ventas/{id}/zonaAsignada', [VentasController::class, 'zonaAsignada
 Route::get('/ventas/enviadas', [VentasController::class, 'enviadas'])->middleware('auth');
 Route::post('/ventas/{id}/envio', [VentasController::class, 'envio'])->middleware('auth');
 Route::get('/ventas/{id}/lshow', [VentasController::class, 'lshow'])->middleware('auth');
+Route::get('/ventas/descargaINE/{linea}', [DriveController::class, 'descargaINE'])->middleware('auth');
 
 
 Route::get('/equipos/asignados', [EquipoController::class, 'asignados'])->middleware('auth');
