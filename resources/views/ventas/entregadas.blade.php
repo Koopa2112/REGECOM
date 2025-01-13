@@ -71,13 +71,14 @@
                 @foreach($ventas as $venta)
                 <tr>
 
-                    <th>{{ $venta->id }}</th>
-                    <th>{{ $venta->linea_venta }}</th>
-                    <th>{{ $venta->nombre_cliente }}</th>
-                    <th>{{ $venta->ruta->fecha_entrega }}</th>
+                    <td>{{ $venta->id }}</td>
+                    <td>{{ $venta->linea_venta }}</td>
+                    <td>{{ $venta->nombre_cliente }}</td>
+                    <td>{{ $venta->ruta->fecha_entrega }}</td>
+                    <td><button type="button" class="btn btn-info" onclick="descarga('{{$venta->linea_venta}}')">Identificación</button></td>
                     <form action="{{  url('ventas/' .$venta->id. '/finalizar') }}" method="post" id="form{{$venta->id}}">
                         @csrf
-                        <th><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="cambiarHidden( '{{$venta->id}}')">Finalizar</button></th>
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="cambiarHidden( '{{$venta->id}}')">Finalizar</button></td>
                         <input type="hidden" value="" id="venta{{$venta->id}}" name="repartidor">
                     </form>
 
@@ -107,6 +108,14 @@
         document.getElementById('venta' + id).value = repartidor;
         confirmar(id)
     }
+
+    function descarga(linea){
+        window.location.href = 'descargaINE/'+linea; // Reemplaza FILE_ID con el ID del archivo
+        
+    }
+    document.getElementById('downloadButton').addEventListener('click', function() {
+        window.location.href = '/descargaINE/FILE_ID'; // Reemplaza FILE_ID con el ID del archivo
+    });
     </script>
 </main>
 
