@@ -8,7 +8,7 @@ use Google\Exception;
 class DriveController extends Controller
 {
     public function subirArchivo($archivo, $nombre, $idCarpeta)
-    {  
+    {
         //return($archivo);                                                //Subiendo el archivo al servidor
         // Obtener el archivo subido
         $rutaTemporal = $archivo->getPathname(); // Ruta temporal del archivo
@@ -16,7 +16,7 @@ class DriveController extends Controller
 
         // Llamar a la función para subir a Google Drive
         $descripcion = "Prohibida la distribucion";
-        return($this->subirDocumentoDrive($rutaTemporal, $nombreArchivo, $descripcion, $idCarpeta));
+        return ($this->subirDocumentoDrive($rutaTemporal, $nombreArchivo, $descripcion, $idCarpeta));
 
         //return back()->with('mensaje', 'Archivo subido exitosamente a Google Drive.');
     }
