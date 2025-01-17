@@ -1,4 +1,7 @@
-@extends('inicios/logistica')
+@extends((Auth::user()->puesto_empleado == 0) ? 'inicios.admin' : 
+        ((Auth::user()->puesto_empleado == 1) ? 'inicios.supervisor' : 
+        ((Auth::user()->puesto_empleado == 7) ? 'inicios.repartidor' : 
+        ((Auth::user()->puesto_empleado == 4) ? 'inicios.logistica' : 'inicios.asesor'))))
 
 @section('title', 'Editar ruta')
 

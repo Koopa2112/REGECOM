@@ -16,7 +16,8 @@ class RutaController extends Controller
      */
     public function index()
     {   
-        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 1 || auth()->user()->puesto_empleado == 0){
+        $puesto = auth()->user()->puesto_empleado;
+        if($puesto == 4 || $puesto == 1 || $puesto == 0 || $puesto == 7){
             $tresDiasAtras = Carbon::today(('America/Mexico_City'))->subDay(3);
             $rutas = rutas::where('fecha_entrega', '>=', $tresDiasAtras)->orderBy('id','DESC')->get();
             foreach($rutas as $ruta){
@@ -35,7 +36,8 @@ class RutaController extends Controller
      */
     public function create()
     {   
-        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
+        $puesto = auth()->user()->puesto_empleado;
+        if($puesto == 4 || $puesto == 0 || $puesto == 7){
             $zonas = zonas::where('isActive', '=', 1)->get();
             $repartidores = User::where('puesto_empleado', '=', 7)->get()->map(function ($user) {
                 return (object) ['id' => $user->id, 'user' => $user->user];
@@ -84,7 +86,8 @@ class RutaController extends Controller
      */
     public function edit($id)
     {
-        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
+        $puesto = auth()->user()->puesto_empleado;
+        if( $puesto == 4 || $puesto == 0 || $puesto == 7){
             $ruta = rutas::find($id);
             $zonas = zonas::all();
             $repartidores = User::where('puesto_empleado', '=', 7)->get()->map(function ($user) {
