@@ -52,7 +52,7 @@
                         <td style="font-size: 0.75rem;">{{ $venta->calle_entrega}},#{{ $venta->numero_entrega}}. {{ $venta->colonia_entrega}},
                             {{ $venta->municipio_entrega}}. {{ $venta->referencia_entrega}}
                         </td>
-                        
+                    
                         <td style="font-size: 0.75rem;">{{ $venta->asesor->user->user}}</td>
                         <td style="font-size: 0.75rem;">{{ $venta->notas_vendedor}}///{{ $venta->notas_MC}}</td>
                         
