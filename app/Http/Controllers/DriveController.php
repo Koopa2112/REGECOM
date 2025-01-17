@@ -28,7 +28,7 @@ class DriveController extends Controller
     {
         // Aquí va tu código para subir el archivo a Google Drive
         $claveJSON = $idCarpeta;
-        $pathJSON = storage_path('app\credentials\storageid-07a73687097e.json'); // Ruta en Laravel
+        $pathJSON = storage_path('app/credentials/storageid-07a73687097e.json'); // Ruta en Laravel
 
         // Configurar variable de entorno
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $pathJSON);
