@@ -103,8 +103,9 @@ class RutaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {   
-        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
+    {      
+        $puesto = auth()->user()->puesto_empleado;
+        if($puesto == 4 || $puesto == 0 || $puesto == 7){
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',
