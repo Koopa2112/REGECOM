@@ -69,6 +69,10 @@
                             Plus 8</option>
                         <option value="Telcel Plus 9" @if(old ('plan_venta')=='Telcel Plus 9' ) selected @endif> Telcel
                             Plus 9</option>
+                        <option value="Telcel Plus 12" @if(old ('plan_venta')=='Telcel Plus 12' ) selected @endif> Telcel
+                            Plus 12</option>
+                        <option value="Telcel Plus 14" @if(old ('plan_venta')=='Telcel Plus 14' ) selected @endif> Telcel
+                            Plus 14</option>
                         <option value="Telcel Plus 1 CC" @if(old ('plan_venta')=='Telcel Plus 1 CC' ) selected @endif>
                             Telcel Plus 1 CC</option>
                         <option value="Telcel Plus 1.5 CC" @if(old ('plan_venta')=='Telcel Plus 1.5 CC' ) selected
@@ -89,6 +93,10 @@
                             Telcel Plus 8 CC</option>
                         <option value="Telcel Plus 9 CC" @if(old ('plan_venta')=='Telcel Plus 9 CC' ) selected @endif>
                             Telcel Plus 9 CC</option>
+                        <option value="Telcel Plus 12 CC" @if(old ('plan_venta')=='Telcel Plus 12 CC' ) selected @endif>
+                            Telcel Plus 12 CC</option>
+                        <option value="Telcel Plus 14 CC" @if(old ('plan_venta')=='Telcel Plus 14 CC' ) selected @endif>
+                            Telcel Plus 14 CC</option>
                         <option value="Telcel Plus 1 MPP" @if(old ('plan_venta')=='Telcel Plus 1 MPP' ) selected @endif>
                             Telcel Plus 1 MPP</option>
                         <option value="Telcel Plus 1.5 MPP" @if(old ('plan_venta')=='Telcel Plus 1.5 MPP' ) selected
@@ -109,6 +117,10 @@
                             Telcel Plus 8 MPP</option>
                         <option value="Telcel Plus 9 MPP" @if(old ('plan_venta')=='Telcel Plus 9 MPP' ) selected @endif>
                             Telcel Plus 9 MPP</option>
+                        <option value="Telcel Plus 12 MPP" @if(old ('plan_venta')=='Telcel Plus 12 MPP' ) selected @endif>
+                            Telcel Plus 12 MPP</option>
+                        <option value="Telcel Plus 14 MPP" @if(old ('plan_venta')=='Telcel Plus 14 MPP' ) selected @endif>
+                            Telcel Plus 14 MPP</option>
                         <option value="Telcel Plus 1 MPP CC" @if(old ('plan_venta')=='Telcel Plus 1 MPP CC' ) selected
                             @endif> Telcel Plus 1 MPP CC</option>
                         <option value="Telcel Plus 1.5 MPP CC" @if(old ('plan_venta')=='Telcel Plus 1.5 MPP CC' )
@@ -129,6 +141,10 @@
                             @endif> Telcel Plus 8 MPP CC</option>
                         <option value="Telcel Plus 9 MPP CC" @if(old ('plan_venta')=='Telcel Plus 9 MPP CC' ) selected
                             @endif> Telcel Plus 9 MPP CC</option>
+                        <option value="Telcel Plus 12 MPP CC" @if(old ('plan_venta')=='Telcel Plus 12 MPP CC' ) selected
+                            @endif> Telcel Plus 12 MPP CC</option>
+                        <option value="Telcel Plus 14 MPP CC" @if(old ('plan_venta')=='Telcel Plus 14 MPP CC' ) selected
+                            @endif> Telcel Plus 14 MPP CC</option>
 
                     </select>
 
