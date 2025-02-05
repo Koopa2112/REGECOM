@@ -53,7 +53,8 @@ class RutaController extends Controller
      */
     public function store(Request $request)
     {
-        if(auth()->user()->puesto_empleado == 4 || auth()->user()->puesto_empleado == 0){
+        $puesto = auth()->user()->puesto_empleado;
+        if($puesto == 4 || $puesto == 0 || $puesto == 7){
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',
