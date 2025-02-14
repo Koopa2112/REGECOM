@@ -16,12 +16,12 @@
 </main>
 
 <?php
-    function getRandomImage(){
-        $api = 'https://dog.ceo/api/breeds/image/random';
-        $responde = json_decode(file_get_contents($api));
-        if(isset($responde->status) && $responde->status == "success"){
-            return $responde->message;
-        }
-    }
+//    function getRandomImage(){
+//        $api = 'https://dog.ceo/api/breeds/image/random';
+//        $responde = json_decode(file_get_contents($api));
+//        if(isset($responde->status) && $responde->status == "success"){
+//            return $responde->message;
+//        }
+//    }
 ?>
 @stop
