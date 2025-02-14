@@ -10,7 +10,7 @@
         <a href="{{ url('inicio') }}" class="btn btn-secondary">Regresar</a>
     </div>
     <div style="text-align: center; ">
-        <!--<img style="height: 400px" src="<?php echo getRandomImage();?>"> -->
+        <!--<img style="height: 400px" src="<?php //echo getRandomImage();?>"> -->
     </div>
     
 </main>
