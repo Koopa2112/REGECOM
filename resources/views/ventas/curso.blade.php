@@ -17,7 +17,7 @@
                     <th>Estado</th>
                     <th>Info</th>
                     <th></th>
-                    <th></th>
+                    <th>Agregar a zona</th>
                 </tr>
             </thead>
 
@@ -26,31 +26,31 @@
                 @foreach($ventas as $venta)
                 <tr>
 
-                    <th>{{ $venta->id }}</th>
-                    <th>{{ $venta->linea_venta }}</th>
-                    <th>{{ $venta->nombre_cliente }}</th>
+                    <td>{{ $venta->id }}</td>
+                    <td>{{ $venta->linea_venta }}</td>
+                    <td>{{ $venta->nombre_cliente }}</td>
                     @if ($venta->estado_venta == 0)
-                    <th>Creada</th>
+                    <td>Creada</td>
                     @elseif ($venta->estado_venta == 1)
-                    <th>Rechazada</th>
+                    <td>Rechazada</td>
                     @elseif ($venta->estado_venta == 2)
-                    <th>Aceptada</th>
+                    <td>Aceptada</td>
                     @elseif ($venta->estado_venta == 3)
-                    <th>Problema</th>
+                    <td>Problema</td>
                     @elseif ($venta->estado_venta == 4)
-                    <th>Esperando fecha de entrega</th>
+                    <td>Esperando fecha de entrega</td>
                     @elseif ($venta->estado_venta == 5)
-                    <th>Esperando asignación de zona</th>
+                    <td>Esperando asignación de zona</td>
                     @elseif ($venta->estado_venta == 6)
-                    <th>Esperando contrato</th>
+                    <td>Esperando contrato</td>
                     @elseif ($venta->estado_venta == 7)
-                    <th>En fase de entrega</th>
+                    <td>En fase de entrega</td>
                     @elseif ($venta->estado_venta == 8)
-                    <th>Trámite en proceso</th>
+                    <td>Trámite en proceso</td>
                     @elseif ($venta->estado_venta == 9)
-                    <th>Finalizada</th>
+                    <td>Finalizada</td>
                     @elseif ($venta->estado_venta == 10)
-                    <th>Cancelada</th>
+                    <td>Cancelada</td>
                     @endif
 
                     <th><a href="{{  url('ventas/' .$venta->id. '/show') }}" class="btn btn-primary btn-small">Ver</a>
