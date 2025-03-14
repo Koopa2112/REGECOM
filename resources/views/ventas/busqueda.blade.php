@@ -19,6 +19,7 @@
                     <th>Asesor</th>
                     <th>Estado</th>
                     <th>Fecha venta</th>
+                    <th>Repartidor</th>
                     <th>Info</th>
                 </tr>
             </tdead>
@@ -63,6 +64,9 @@
                     <td>Comisionable</td>
                     @endif
                     <td>{{ $venta->fecha_venta}}</td>
+                    @if ($venta->estado_venta == 9)
+                    <td>{{ $venta->ruta->repartidor->user }}</td>
+                    @endif
                     @if(Auth::user()->puesto_empleado == 0)
                     <td><a href="{{  url('ventas/' .$venta->id. '/show') }}" class="btn btn-primary btn-small">Ver</a>
                     @elseif(Auth::user()->puesto_empleado == 4)
