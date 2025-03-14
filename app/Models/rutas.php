@@ -14,4 +14,8 @@ class rutas extends Model
     public function zona(){
         return $this->belongsTo(zonas::class, 'id_zona', 'id');
     }
+
+    public function repartidor(){
+        return $this->belongsTo(user::class, 'id_repartidor', 'id');
+    }
 }
