@@ -161,6 +161,15 @@
             </div>
 
             <div class="mb-3 row">
+                <label for="promocion" class="col-sm-2 col-form-label">Promocion</label>
+                <div class="col-sm-5">
+                    <input type="checkbox" class="form-check-input" name="promocion" id="promocion"
+                        value="{{old ('promocion')}}" required>
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
                 <label for="marca_equipo" class="col-sm-2 col-form-label">Marca equipo</label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="marca_equipo" id="marca_equipo"
@@ -357,6 +366,35 @@
             });
         }
     });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const checkbox = document.getElementById("promocion");
+    const marcaEquipo = document.getElementById("marca_equipo");
+    const modeloEquipo = document.getElementById("modelo_equipo");
+    
+    const marcaRow = marcaEquipo.parentElement.parentElement;
+    const modeloRow = modeloEquipo.parentElement.parentElement;
+
+    checkbox.addEventListener("change", function () {
+        if (this.checked) {
+            marcaRow.style.display = "none";
+            modeloRow.style.display = "none";
+
+            // Eliminar el atributo "required"
+            marcaEquipo.removeAttribute("required");
+            modeloEquipo.removeAttribute("required");
+        } else {
+            marcaRow.style.display = "flex";
+            modeloRow.style.display = "flex";
+
+            // Agregar el atributo "required"
+            marcaEquipo.setAttribute("required", "required");
+            modeloEquipo.setAttribute("required", "required");
+        }
+    });
+});
 </script>
 
 <style>
