@@ -150,8 +150,6 @@ class VentasController extends Controller
             'nombre_cliente' => 'required',
             'plan_venta' => 'required',
             'meses_venta' => 'required',
-            'marca_equipo' => 'required',
-            'modelo_equipo' => 'required',
             'id_equipo' => 'nullable|int',
             'id_ruta' => 'nullable|int',
             'calle_entrega' => 'required',
@@ -166,6 +164,12 @@ class VentasController extends Controller
             'id_zona' => 'nullable|int',
 
         ]);
+        if(!$request->has('promocion')){
+            $request->validate([
+                'marca_equipo' => 'required',
+                'modelo_equipo' => 'required',  
+            ]);
+        }
         $total_mensual = $request->input('total_mensual');
 
         $total_mensual_formateado = intval(str_replace(',', '', $total_mensual));
@@ -183,8 +187,13 @@ class VentasController extends Controller
         $venta->nombre_cliente = $request->input('nombre_cliente');
         $venta->plan_venta = $request->input('plan_venta');
         $venta->meses_venta = $request->input('meses_venta');
-        $venta->marca_equipo = $request->input('marca_equipo');
-        $venta->modelo_equipo = $request->input('modelo_equipo');
+        if($request->has('promocion')){
+            $venta->marca_equipo = "promoción";
+            $venta->modelo_equipo = "promoción";
+        }else{
+            $venta->marca_equipo = $request->input('marca_equipo');
+            $venta->modelo_equipo = $request->input('modelo_equipo');
+        }
         $venta->id_ruta = $request->input('id_ruta');
         $venta->calle_entrega = $request->input('calle_entrega');
         $venta->numero_entrega = $request->input('numero_entrega');
