@@ -270,7 +270,7 @@ class VentasController extends Controller
         //$asesorId = asesores::where('id_user', $userId)->pluck('id')->first();
         $venta = ventas::find($id);
         $zona = zonas::find($venta->id_zona);
-        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0) {
+        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0 || $user->puesto_empleado == 4) {
             $total_mensual = $venta->total_mensual;
             $totalFormateado = '$ ' . number_format($total_mensual, 0, ',');
             return view('ventas.ashow', ['venta' => $venta, 'zona' => $zona, 'total_mensual' => $totalFormateado]);
@@ -329,7 +329,7 @@ class VentasController extends Controller
             'estado' => 'required',
         ]);
 
-        if (auth()->user()->puesto_empleado == 6 || auth()->user()->puesto_empleado == 0) {
+        if (auth()->user()->puesto_empleado == 6 || auth()->user()->puesto_empleado == 0 || auth()->user()->puesto_empleado == 4) {
             $venta = ventas::find($id);
             $venta->notas_MC = $request->input('notas_MC');
             $venta->estado_venta = intval($request->input('estado'));
@@ -542,7 +542,7 @@ class VentasController extends Controller
     {
         $user = auth()->user();
         $analista = analistas::where('id_user', $user->id)->first();
-        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0) {
+        if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0 || $user->puesto_empleado == 4) {
             $ventas = ventas::where('estado_venta', 2)->orderBy('id_zona', 'asc')->get(); //where('id_analista', $analista->id)->get();
             return view("ventas.pendienteAnalisis", ['ventas' => $ventas]);
         } else {

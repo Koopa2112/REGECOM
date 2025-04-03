@@ -1,5 +1,6 @@
 @extends((Auth::user()->puesto_empleado == 0) ? 'inicios.admin' : 
-        ((Auth::user()->puesto_empleado == 6) ? 'inicios.analista' : 'inicios.analista'))
+        ((Auth::user()->puesto_empleado == 4) ? 'inicios.logistica' : 
+        ((Auth::user()->puesto_empleado == 6) ? 'inicios.repartidor' : 'inicios.repartidor')))
 
 @section('title', 'Lineas para analizar')
 

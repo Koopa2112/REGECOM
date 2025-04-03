@@ -12,6 +12,7 @@
     <ul class="dropdown-menu dropdown-menu-dark">
         <li><a class="dropdown-item" href="{{ url('ventas/pendienteZona') }}">Ventas para asignar zona</a></li>
         <li><a class="dropdown-item" href="{{ url('ventas/enviadas') }}">Ventas enviadas</a></li>
+        <li><a class="dropdown-item" href="{{ url('ventas/pendienteAnalisis') }}">Lineas para analizar</a></li>
     </ul>
 </li>
 
