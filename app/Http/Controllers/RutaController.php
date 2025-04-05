@@ -37,7 +37,7 @@ class RutaController extends Controller
     public function create()
     {   
         $puesto = auth()->user()->puesto_empleado;
-        if($puesto == 4 || $puesto == 0 || $puesto == 7){
+        if($puesto == 4 || $puesto == 0 ){
             $zonas = zonas::where('isActive', '=', 1)->get();
             $repartidores = User::where('puesto_empleado', '=', 7)->get()->map(function ($user) {
                 return (object) ['id' => $user->id, 'user' => $user->user];
@@ -54,7 +54,7 @@ class RutaController extends Controller
     public function store(Request $request)
     {
         $puesto = auth()->user()->puesto_empleado;
-        if($puesto == 4 || $puesto == 0 || $puesto == 7){
+        if($puesto == 4 || $puesto == 0){
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',
@@ -88,7 +88,7 @@ class RutaController extends Controller
     public function edit($id)
     {
         $puesto = auth()->user()->puesto_empleado;
-        if( $puesto == 4 || $puesto == 0 || $puesto == 7){
+        if( $puesto == 4 || $puesto == 0 ){
             $ruta = rutas::find($id);
             $zonas = zonas::all();
             $repartidores = User::where('puesto_empleado', '=', 7)->get()->map(function ($user) {
@@ -106,7 +106,7 @@ class RutaController extends Controller
     public function update(Request $request, $id)
     {      
         $puesto = auth()->user()->puesto_empleado;
-        if($puesto == 4 || $puesto == 0 || $puesto == 7){
+        if($puesto == 4 || $puesto == 0){
             $request->validate([
                 'max_entregas' => 'required',
                 'id_zona' => 'required',

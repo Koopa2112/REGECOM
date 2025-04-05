@@ -31,7 +31,7 @@
                     <th>{{ $ruta->zona->nombre_zona }}</th>
                     <th style="text-align: center;">{{ $ruta->max_entregas}}</th>
                     <th style="text-align: center;">{{ $ruta->num_entregas}}</th>
-                    @if(Auth::user()->puesto_empleado == 4 || Auth::user()->puesto_empleado == 0 || Auth::user()->puesto_empleado == 7)
+                    @if(Auth::user()->puesto_empleado == 4 || Auth::user()->puesto_empleado == 0)
                     <th><a href="{{  url('rutas/' .$ruta->id. '/print') }}"class="btn btn-success btn-small">Imprimir ruta</a></th>
                     <th><a href="{{  url('rutas/' .$ruta->id. '/edit') }}"class="btn btn-primary btn-small">Editar ruta</a></th>
                     @endif

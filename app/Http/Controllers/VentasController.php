@@ -636,7 +636,7 @@ class VentasController extends Controller
     public function pendienteZona()
     {
         $puesto = auth()->user()->puesto_empleado;
-        if ($puesto == 4 || $puesto == 1 || $puesto == 0 || $puesto == 7) {
+        if ($puesto == 4 || $puesto == 1 || $puesto == 0) {
             $ventas = ventas::where('estado_venta', 5)->get();
 
             return view("ventas.pendienteZona", ['ventas' => $ventas]);
