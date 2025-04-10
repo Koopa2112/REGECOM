@@ -34,7 +34,7 @@ class RutasExport implements FromCollection, WithHeadings, /*WithStyles,*/ WithE
     public function collection()
     {
         $this->ventas = ventas::where('id_ruta', $this->ruta)
-            ->where('estado_venta', 7)
+            ->whereIn('estado_venta', [7, 8, 9])
             ->get()
             ->map(function ($venta) {
                 return [
