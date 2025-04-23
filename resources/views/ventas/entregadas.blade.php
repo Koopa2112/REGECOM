@@ -22,7 +22,7 @@
                 <div class="modal-body">
                     <select name="select" class="form-select" id="nombreRepartidor">
                         @foreach($repartidores as $repartidor)
-                            <option value="{{$repartidor->id}}">{{$repartidor->nombre}}</option>
+                            <option value="{{$repartidor->nombre}}">{{$repartidor->nombre}}</option>
                         @endforeach
                     </select> 
                     <input type="hidden" value="" id="idSelected">
