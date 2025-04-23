@@ -587,8 +587,9 @@ class VentasController extends Controller
         if ($user->puesto_empleado == 6 || $user->puesto_empleado == 0) {
 
             $ventas = ventas::where('estado_venta', 8)->get(); //where('id_analista', $analista->id)->get();
-
             return view("ventas.entregadas", ['ventas' => $ventas]);
+            $repartidores = user::where('puesto_empleado', '=', 7)->get();
+            //return($repartidores);
         } else {
             return view("message", ['msg' => "No tienes permiso para hacer esto >:("]);
         }

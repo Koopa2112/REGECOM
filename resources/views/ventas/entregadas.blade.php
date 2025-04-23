@@ -21,12 +21,7 @@
                 </div>
                 <div class="modal-body">
                     <select name="select" class="form-select" id="nombreRepartidor">
-                        <option value="" selected disabled>Seleccionar</option>
-                        <option value="Jonathan Ibarra">Jonathan Ibarra</option>
-                        <option value="Cosme Campos">Cosme Campos</option>
-                        <option value="Eduardo Narvaez">Eduardo Narvaez</option>
-                        <option value="Miguel Sanchez">Miguel Sanchez</option>
-                    </select>
+                    </select> 
                     <input type="hidden" value="" id="idSelected">
                 </div>
                 <div class="modal-footer">
