@@ -22,7 +22,7 @@
                 <div class="modal-body">
                     <select name="select" class="form-select" id="nombreRepartidor">
                         @foreach($repartidores as $repartidor)
-                            <option value="{{$repartidor->id}}">{{$repartidor->user}}</option>
+                            <option value="{{$repartidor->id}}">{{$repartidor->nombre}}</option>
                         @endforeach
                     </select> 
                     <input type="hidden" value="" id="idSelected">
@@ -109,7 +109,7 @@
 
     function descarga(linea){
         window.location.href = 'descargaINE/'+linea; // Reemplaza FILE_ID con el ID del archivo
-        
+
     }
     document.getElementById('downloadButton').addEventListener('click', function() {
         window.location.href = '/descargaINE/FILE_ID'; // Reemplaza FILE_ID con el ID del archivo
