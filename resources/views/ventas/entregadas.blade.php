@@ -21,6 +21,9 @@
                 </div>
                 <div class="modal-body">
                     <select name="select" class="form-select" id="nombreRepartidor">
+                        @foreach($repartidores as $repartidor)
+                            <option value="{{$repartidor->id}}">{{$repartidor->user}}</option>
+                        @endforeach
                     </select> 
                     <input type="hidden" value="" id="idSelected">
                 </div>
