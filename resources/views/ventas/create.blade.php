@@ -170,6 +170,24 @@
             </div>
 
             <div class="mb-3 row">
+                <label for="promocion2" class="col-sm-2 col-form-label">Arrendamiento</label>
+                <div class="col-sm-5">
+                    <input type="checkbox" class="form-check-input" name="promocion2" id="promocion2"
+                        value="{{old ('promocion2')}}" required>
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="promocion3" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-5">
+                    <input type="checkbox" class="form-check-input" name="promocion3" id="promocion3"
+                        value="{{old ('promocion3')}}" required>
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
                 <label for="marca_equipo" class="col-sm-2 col-form-label">Marca equipo</label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="marca_equipo" id="marca_equipo"
@@ -370,29 +388,37 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const checkbox = document.getElementById("promocion");
+    const checkboxes = [
+        document.getElementById("promocion"),
+        document.getElementById("promocion2"),
+        document.getElementById("promocion3")
+    ];
     const marcaEquipo = document.getElementById("marca_equipo");
     const modeloEquipo = document.getElementById("modelo_equipo");
-    
+
     const marcaRow = marcaEquipo.parentElement.parentElement;
     const modeloRow = modeloEquipo.parentElement.parentElement;
 
-    checkbox.addEventListener("change", function () {
-        if (this.checked) {
+    function actualizarCampos() {
+        // Verificar si al menos un checkbox está seleccionado
+        const algunoSeleccionado = checkboxes.some(cb => cb.checked);
+
+        if (algunoSeleccionado) {
             marcaRow.style.display = "none";
             modeloRow.style.display = "none";
-
-            // Eliminar el atributo "required"
             marcaEquipo.removeAttribute("required");
             modeloEquipo.removeAttribute("required");
         } else {
             marcaRow.style.display = "flex";
             modeloRow.style.display = "flex";
-
-            // Agregar el atributo "required"
             marcaEquipo.setAttribute("required", "required");
             modeloEquipo.setAttribute("required", "required");
         }
+    }
+
+    // Asignar el evento "change" a todos los checkboxes
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", actualizarCampos);
     });
 });
 </script>
