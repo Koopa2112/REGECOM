@@ -400,7 +400,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const modeloRow = modeloEquipo.parentElement.parentElement;
 
     function actualizarCampos() {
-        // Verificar si al menos un checkbox está seleccionado
         const algunoSeleccionado = checkboxes.some(cb => cb.checked);
 
         if (algunoSeleccionado) {
@@ -416,12 +415,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Asignar el evento "change" a todos los checkboxes
+    // Evento para cada checkbox
     checkboxes.forEach(cb => {
-        cb.addEventListener("change", actualizarCampos);
+        cb.addEventListener("change", function () {
+            if (this.checked) {
+                // Desmarcar todos los demás checkboxes
+                checkboxes.forEach(otherCb => {
+                    if (otherCb !== this) {
+                        otherCb.checked = false;
+                    }
+                });
+            }
+            // Actualizar la vista
+            actualizarCampos();
+        });
     });
 });
 </script>
+
 
 <style>
     /* Define la animación de vibración */
