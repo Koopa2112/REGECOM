@@ -179,7 +179,7 @@
             </div>
 
             <div class="mb-3 row">
-                <label for="promocion3" class="col-sm-2 col-form-label"></label>
+                <label for="promocion3" class="col-sm-2 col-form-label">Financiamiento</label>
                 <div class="col-sm-5">
                     <input type="checkbox" class="form-check-input" name="promocion3" id="promocion3"
                         value="{{old ('promocion3')}}" required>
