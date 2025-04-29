@@ -49,89 +49,89 @@
                 <div class="col-sm-5">
                     <select class="form-control" name="plan_venta" id="plan_venta">
                         <option disabled selected>Seleccionar...</option>
-                        <option value="Telcel Libre $249" @if(old ('plan_venta')=='Telcel Libre $249' ) selected @endif> Telcel
-                            Libre $249</option>
-                        <option value="Telcel Libre $319" @if(old ('plan_venta')=='Telcel Libre $319' ) selected @endif>
-                            Telcel Libre $319</option>
-                        <option value="Telcel Libre $399" @if(old ('plan_venta')=='Telcel Libre $399' ) selected @endif> Telcel
-                            Libre $399</option>
-                        <option value="Telcel Libre $499" @if(old ('plan_venta')=='Telcel Libre $499' ) selected @endif> Telcel
-                            Libre $499</option>
-                        <option value="Telcel Libre $599" @if(old ('plan_venta')=='Telcel Libre $599' ) selected @endif> Telcel
-                            Libre $599</option>
-                        <option value="Telcel Libre $699" @if(old ('plan_venta')=='Telcel Libre $699' ) selected @endif> Telcel
-                            Libre $699</option>
-                        <option value="Telcel Libre $799" @if(old ('plan_venta')=='Telcel Libre $799' ) selected @endif> Telcel
-                            Libre $799</option>
-                        <option value="Telcel Libre $999" @if(old ('plan_venta')=='Telcel Libre $999' ) selected @endif> Telcel
-                            Libre $999</option>
-                        <option value="Telcel Libre $1,299" @if(old ('plan_venta')=='Telcel Libre $1,299' ) selected @endif> Telcel
-                            Libre $1,299</option>
-                        <option value="Telcel Libre VIP" @if(old ('plan_venta')=='Telcel Libre VIP' ) selected @endif> Telcel
-                            Libre VIP</option>
-                            
-                        <option value="Telcel Libre $249 CC" @if(old ('plan_venta')=='Telcel Libre $249 CC' ) selected @endif>
-                            Telcel Libre $249 CC</option>
-                        <option value="Telcel Libre $319 CC" @if(old ('plan_venta')=='Telcel Libre $319 CC' ) selected
-                            @endif> Telcel Libre $319 CC</option>
-                        <option value="Telcel Libre $399 CC" @if(old ('plan_venta')=='Telcel Libre $399CC' ) selected @endif>
-                            Telcel Libre $399 CC</option>
-                        <option value="Telcel Libre $499 CC" @if(old ('plan_venta')=='Telcel Libre $499 CC' ) selected @endif>
-                            Telcel Libre $499 CC</option>
-                        <option value="Telcel Libre $599 CC" @if(old ('plan_venta')=='Telcel Libre $599 CC' ) selected @endif>
-                            Telcel Libre $599 CC</option>
-                        <option value="Telcel Libre $699 CC" @if(old ('plan_venta')=='Telcel Libre $699 CC' ) selected @endif>
-                            Telcel Libre $699 CC</option>
-                        <option value="Telcel Libre $799 CC" @if(old ('plan_venta')=='Telcel Libre $799 CC' ) selected @endif>
-                            Telcel Libre $799 CC</option>
-                        <option value="Telcel Libre $999 CC" @if(old ('plan_venta')=='Telcel Libre $999 CC' ) selected @endif>
-                            Telcel Libre $999 CC</option>
-                        <option value="Telcel Libre $1,299 CC" @if(old ('plan_venta')=='Telcel Libre $1,299 CC' ) selected @endif>
-                            Telcel Libre $1,299 CC</option>
-                        <option value="Telcel Libre VIP CC" @if(old ('plan_venta')=='Telcel Libre VIP CC' ) selected @endif>
-                            Telcel Libre VIP CC</option>
+                        <option value="Telcel Libre 1 $249" @if(old ('plan_venta')=='Telcel Libre 1 $249' ) selected @endif> Telcel
+                            Libre 1 $249</option>
+                        <option value="Telcel Libre 2 $319" @if(old ('plan_venta')=='Telcel Libre 2 $319' ) selected @endif>
+                            Telcel Libre 2 $319</option>
+                        <option value="Telcel Libre 3 $399" @if(old ('plan_venta')=='Telcel Libre 3 $399' ) selected @endif> Telcel
+                            Libre 3 $399</option>
+                        <option value="Telcel Libre 4 $499" @if(old ('plan_venta')=='Telcel Libre 4 $499' ) selected @endif> Telcel
+                            Libre 4 $499</option>
+                        <option value="Telcel Libre 5 $599" @if(old ('plan_venta')=='Telcel Libre 5 $599' ) selected @endif> Telcel
+                            Libre 5 $599</option>
+                        <option value="Telcel Libre 6 $699" @if(old ('plan_venta')=='Telcel Libre 6 $699' ) selected @endif> Telcel
+                            Libre 6 $699</option>
+                        <option value="Telcel Libre 7 $799" @if(old ('plan_venta')=='Telcel Libre 7 $799' ) selected @endif> Telcel
+                            Libre 7 $799</option>
+                        <option value="Telcel Libre 9 $999" @if(old ('plan_venta')=='Telcel Libre 9 $999' ) selected @endif> Telcel
+                            Libre 9 $999</option>
+                        <option value="Telcel Libre 12 $1,299" @if(old ('plan_venta')=='Telcel Libre 12 $1,299' ) selected @endif> Telcel
+                            Libre 12 $1,299</option>
+                        <option value="Telcel Libre $1,499 VIP" @if(old ('plan_venta')=='Telcel Libre $1,499 VIP' ) selected @endif> Telcel
+                            Libre $1,499 VIP</option>
 
-                        <option value="Telcel Libre $249MPP" @if(old ('plan_venta')=='Telcel Libre $249MPP' ) selected @endif>
-                            Telcel Libre $249MPP</option>
-                        <option value="Telcel Libre $319 MPP" @if(old ('plan_venta')=='Telcel Libre $319 MPP' ) selected
-                            @endif> Telcel Libre $319 MPP</option>
-                        <option value="Telcel Libre $399 MPP" @if(old ('plan_venta')=='Telcel Libre $399 MPP' ) selected @endif>
-                            Telcel Libre $399 MPP</option>
-                        <option value="Telcel Libre $499 MPP" @if(old ('plan_venta')=='Telcel Libre $499 MPP' ) selected @endif>
-                            Telcel Libre $499 MPP</option>
-                        <option value="Telcel Libre $599 MPP" @if(old ('plan_venta')=='Telcel Libre $599 MPP' ) selected @endif>
-                            Telcel Libre $599 MPP</option>
-                        <option value="Telcel Libre $699 MPP" @if(old ('plan_venta')=='Telcel Libre $699 MPP' ) selected @endif>
-                            Telcel Libre $699 MPP</option>
-                        <option value="Telcel Libre $799 MPP" @if(old ('plan_venta')=='Telcel Libre $799 MPP' ) selected @endif>
-                            Telcel Libre $799 MPP</option>
-                        <option value="Telcel Libre $999 MPP" @if(old ('plan_venta')=='Telcel Libre $999 MPP' ) selected @endif>
-                            Telcel Libre $999 MPP</option>
-                        <option value="Telcel Libre $1,299 MPP" @if(old ('plan_venta')=='Telcel Libre $1,299 MPP' ) selected @endif>
-                            Telcel Libre $1,299 MPP</option>
+                        <option value="Telcel Libre 1 $299 CC" @if(old ('plan_venta')=='Telcel Libre 1 $299 CC' ) selected @endif>
+                            Telcel Libre 1 $299 CC</option>
+                        <option value="Telcel Libre 2 $369 CC" @if(old ('plan_venta')=='Telcel Libre 2 $369 CC' ) selected
+                            @endif> Telcel Libre 2 $369 CC</option>
+                        <option value="Telcel Libre 3 $449 CC" @if(old ('plan_venta')=='Telcel Libre 3 $449 CC' ) selected @endif>
+                            Telcel Libre 3 $449 CC</option>
+                        <option value="Telcel Libre 4 $549 CC" @if(old ('plan_venta')=='Telcel Libre 4 $549 CC' ) selected @endif>
+                            Telcel Libre 4 $549 CC</option>
+                        <option value="Telcel Libre 5 $699 CC" @if(old ('plan_venta')=='Telcel Libre 5 $699 CC' ) selected @endif>
+                            Telcel Libre 5 $699 CC</option>
+                        <option value="Telcel Libre 6 $799 CC" @if(old ('plan_venta')=='Telcel Libre 6 $799 CC' ) selected @endif>
+                            Telcel Libre 6 $799 CC</option>
+                        <option value="Telcel Libre 7 $899 CC" @if(old ('plan_venta')=='Telcel Libre 7 $899 CC' ) selected @endif>
+                            Telcel Libre 7 $899 CC</option>
+                        <option value="Telcel Libre 9 $1099 CC" @if(old ('plan_venta')=='Telcel Libre 9 $1099 CC' ) selected @endif>
+                            Telcel Libre 9 $1099 CC</option>
+                        <option value="Telcel Libre 12 $1,399 CC" @if(old ('plan_venta')=='Telcel Libre 12 $1,399 CC' ) selected @endif>
+                            Telcel Libre 12 $1,399 CC</option>
+                        <option value="Telcel Libre VIP $1599 CC" @if(old ('plan_venta')=='Telcel Libre VIP $1599 CC' ) selected @endif>
+                            Telcel Libre VIP $1599 CC</option>
+
+                        <!--<option value="Telcel Libre 1 $249MPP" @if(old ('plan_venta')=='Telcel Libre 1 $249MPP' ) selected @endif>
+                            Telcel Libre 1 $249MPP</option>
+                        <option value="Telcel Libre 2 $319 MPP" @if(old ('plan_venta')=='Telcel Libre 2 $319 MPP' ) selected
+                            @endif> Telcel Libre 2 $319 MPP</option>
+                        <option value="Telcel Libre 3 $399 MPP" @if(old ('plan_venta')=='Telcel Libre 3 $399 MPP' ) selected @endif>
+                            Telcel Libre 3 $399 MPP</option>
+                        <option value="Telcel Libre 4 $499 MPP" @if(old ('plan_venta')=='Telcel Libre 4 $499 MPP' ) selected @endif>
+                            Telcel Libre 4 $499 MPP</option>
+                        <option value="Telcel Libre 5 $599 MPP" @if(old ('plan_venta')=='Telcel Libre 5 $599 MPP' ) selected @endif>
+                            Telcel Libre 5 $599 MPP</option>
+                        <option value="Telcel Libre 6 $699 MPP" @if(old ('plan_venta')=='Telcel Libre 6 $699 MPP' ) selected @endif>
+                            Telcel Libre 6 $699 MPP</option>
+                        <option value="Telcel Libre 7 $799 MPP" @if(old ('plan_venta')=='Telcel Libre 7 $799 MPP' ) selected @endif>
+                            Telcel Libre 7 $799 MPP</option>
+                        <option value="Telcel Libre 9 $999 MPP" @if(old ('plan_venta')=='Telcel Libre 9 $999 MPP' ) selected @endif>
+                            Telcel Libre 9 $999 MPP</option>
+                        <option value="Telcel Libre 12 $1,299 MPP" @if(old ('plan_venta')=='Telcel Libre 12 $1,299 MPP' ) selected @endif>
+                            Telcel Libre 12 $1,299 MPP</option>
                         <option value="Telcel Libre VIP MPP" @if(old ('plan_venta')=='Telcel Libre VIP MPP' ) selected @endif>
                             Telcel Libre VIP MPP</option>
 
-                        <option value="Telcel Libre $249MPP CC" @if(old ('plan_venta')=='Telcel Libre $249MPP CC' ) selected
-                            @endif> Telcel Libre $249MPP CC</option>
-                        <option value="Telcel Libre $319 MPP CC" @if(old ('plan_venta')=='Telcel Libre $319 MPP CC' )
-                            selected @endif> Telcel Libre $319 MPP CC</option>
-                        <option value="Telcel Libre $399 MPP CC" @if(old ('plan_venta')=='Telcel Libre $399 MPP CC' ) selected
-                            @endif> Telcel Libre $399 MPP CC</option>
-                        <option value="Telcel Libre $499 MPP CC" @if(old ('plan_venta')=='Telcel Libre $499 MPP CC' ) selected
-                            @endif> Telcel Libre $499 MPP CC</option>
-                        <option value="Telcel Libre $599 MPP CC" @if(old ('plan_venta')=='Telcel Libre $599 MPP CC' ) selected
-                            @endif> Telcel Libre $599 MPP CC</option>
-                        <option value="Telcel Libre $699 MPP CC" @if(old ('plan_venta')=='Telcel Libre $699 MPP CC' ) selected
-                            @endif> Telcel Libre $699 MPP CC</option>
-                        <option value="Telcel Libre $799 MPP CC" @if(old ('plan_venta')=='Telcel Libre $799 MPP CC' ) selected
-                            @endif> Telcel Libre $799 MPP CC</option>
-                        <option value="Telcel Libre $999 MPP CC" @if(old ('plan_venta')=='Telcel Libre $999 MPP CC' ) selected
-                            @endif> Telcel Libre $999 MPP CC</option>
-                        <option value="Telcel Libre $1,299 MPP CC" @if(old ('plan_venta')=='Telcel Libre $1,299 MPP CC' ) selected
-                            @endif> Telcel Libre $1,299 MPP CC</option>
+                        <option value="Telcel Libre 1 $249MPP CC" @if(old ('plan_venta')=='Telcel Libre 1 $249MPP CC' ) selected
+                            @endif> Telcel Libre 1 $249MPP CC</option>
+                        <option value="Telcel Libre 2 $319 MPP CC" @if(old ('plan_venta')=='Telcel Libre 2 $319 MPP CC' )
+                            selected @endif> Telcel Libre 2 $319 MPP CC</option>
+                        <option value="Telcel Libre 3 $399 MPP CC" @if(old ('plan_venta')=='Telcel Libre 3 $399 MPP CC' ) selected
+                            @endif> Telcel Libre 3 $399 MPP CC</option>
+                        <option value="Telcel Libre 4 $499 MPP CC" @if(old ('plan_venta')=='Telcel Libre 4 $499 MPP CC' ) selected
+                            @endif> Telcel Libre 4 $499 MPP CC</option>
+                        <option value="Telcel Libre 5 $599 MPP CC" @if(old ('plan_venta')=='Telcel Libre 5 $599 MPP CC' ) selected
+                            @endif> Telcel Libre 5 $599 MPP CC</option>
+                        <option value="Telcel Libre 6 $699 MPP CC" @if(old ('plan_venta')=='Telcel Libre 6 $699 MPP CC' ) selected
+                            @endif> Telcel Libre 6 $699 MPP CC</option>
+                        <option value="Telcel Libre 7 $799 MPP CC" @if(old ('plan_venta')=='Telcel Libre 7 $799 MPP CC' ) selected
+                            @endif> Telcel Libre 7 $799 MPP CC</option>
+                        <option value="Telcel Libre 9 $999 MPP CC" @if(old ('plan_venta')=='Telcel Libre 9 $999 MPP CC' ) selected
+                            @endif> Telcel Libre 9 $999 MPP CC</option>
+                        <option value="Telcel Libre 12 $1,299 MPP CC" @if(old ('plan_venta')=='Telcel Libre 12 $1,299 MPP CC' ) selected
+                            @endif> Telcel Libre 12 $1,299 MPP CC</option>
                         <option value="Telcel Libre VIP MPP CC" @if(old ('plan_venta')=='Telcel Libre VIP MPP CC' ) selected
-                            @endif> Telcel Libre VIP MPP CC</option>
+                            @endif> Telcel Libre VIP MPP CC</option> -->
 
                     </select>
 
@@ -374,50 +374,50 @@
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const checkboxes = [
-        document.getElementById("promocion"),
-        document.getElementById("promocion2"),
-        document.getElementById("promocion3")
-    ];
-    const marcaEquipo = document.getElementById("marca_equipo");
-    const modeloEquipo = document.getElementById("modelo_equipo");
+    document.addEventListener("DOMContentLoaded", function() {
+        const checkboxes = [
+            document.getElementById("promocion"),
+            document.getElementById("promocion2"),
+            document.getElementById("promocion3")
+        ];
+        const marcaEquipo = document.getElementById("marca_equipo");
+        const modeloEquipo = document.getElementById("modelo_equipo");
 
-    const marcaRow = marcaEquipo.parentElement.parentElement;
-    const modeloRow = modeloEquipo.parentElement.parentElement;
+        const marcaRow = marcaEquipo.parentElement.parentElement;
+        const modeloRow = modeloEquipo.parentElement.parentElement;
 
-    function actualizarCampos() {
-        const algunoSeleccionado = checkboxes.some(cb => cb.checked);
+        function actualizarCampos() {
+            const algunoSeleccionado = checkboxes.some(cb => cb.checked);
 
-        if (algunoSeleccionado) {
-            marcaRow.style.display = "none";
-            modeloRow.style.display = "none";
-            marcaEquipo.removeAttribute("required");
-            modeloEquipo.removeAttribute("required");
-        } else {
-            marcaRow.style.display = "flex";
-            modeloRow.style.display = "flex";
-            marcaEquipo.setAttribute("required", "required");
-            modeloEquipo.setAttribute("required", "required");
-        }
-    }
-
-    // Evento para cada checkbox
-    checkboxes.forEach(cb => {
-        cb.addEventListener("change", function () {
-            if (this.checked) {
-                // Desmarcar todos los demás checkboxes
-                checkboxes.forEach(otherCb => {
-                    if (otherCb !== this) {
-                        otherCb.checked = false;
-                    }
-                });
+            if (algunoSeleccionado) {
+                marcaRow.style.display = "none";
+                modeloRow.style.display = "none";
+                marcaEquipo.removeAttribute("required");
+                modeloEquipo.removeAttribute("required");
+            } else {
+                marcaRow.style.display = "flex";
+                modeloRow.style.display = "flex";
+                marcaEquipo.setAttribute("required", "required");
+                modeloEquipo.setAttribute("required", "required");
             }
-            // Actualizar la vista
-            actualizarCampos();
+        }
+
+        // Evento para cada checkbox
+        checkboxes.forEach(cb => {
+            cb.addEventListener("change", function() {
+                if (this.checked) {
+                    // Desmarcar todos los demás checkboxes
+                    checkboxes.forEach(otherCb => {
+                        if (otherCb !== this) {
+                            otherCb.checked = false;
+                        }
+                    });
+                }
+                // Actualizar la vista
+                actualizarCampos();
+            });
         });
     });
-});
 </script>
 
 
