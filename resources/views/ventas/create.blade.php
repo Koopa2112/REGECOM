@@ -67,9 +67,9 @@
                             Libre $999</option>
                         <option value="Telcel Libre $1,299" @if(old ('plan_venta')=='Telcel Libre $1,299' ) selected @endif> Telcel
                             Libre $1,299</option>
-
                         <option value="Telcel Libre VIP" @if(old ('plan_venta')=='Telcel Libre VIP' ) selected @endif> Telcel
                             Libre VIP</option>
+                            
                         <option value="Telcel Libre $249 CC" @if(old ('plan_venta')=='Telcel Libre $249 CC' ) selected @endif>
                             Telcel Libre $249 CC</option>
                         <option value="Telcel Libre $319 CC" @if(old ('plan_venta')=='Telcel Libre $319 CC' ) selected
@@ -132,10 +132,6 @@
                             @endif> Telcel Libre $1,299 MPP CC</option>
                         <option value="Telcel Libre VIP MPP CC" @if(old ('plan_venta')=='Telcel Libre VIP MPP CC' ) selected
                             @endif> Telcel Libre VIP MPP CC</option>
-                        <option value="Telcel Plus 12 MPP CC" @if(old ('plan_venta')=='Telcel Plus 12 MPP CC' ) selected
-                            @endif> Telcel Plus 12 MPP CC</option>
-                        <option value="Telcel Plus 14 MPP CC" @if(old ('plan_venta')=='Telcel Plus 14 MPP CC' ) selected
-                            @endif> Telcel Plus 14 MPP CC</option>
 
                     </select>
 
