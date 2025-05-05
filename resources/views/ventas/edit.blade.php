@@ -52,47 +52,44 @@
                 <div class="col-sm-5">
                     <select class="form-control" name="plan_venta" id="plan_venta">
                         <option disabled selected>Seleccionar...</option>
-                        <option value="Telcel Plus 1" @if($venta->plan_venta == 'Telcel Plus 1') selected @endif> Telcel Plus 1</option>
-                        <option value="Telcel Plus 1.5" @if($venta->plan_venta == 'Telcel Plus 1.5') selected @endif> Telcel Plus 1.5</option>
-                        <option value="Telcel Plus 2" @if($venta->plan_venta == 'Telcel Plus 2') selected @endif>  Telcel Plus 2</option>
-                        <option value="Telcel Plus 3" @if($venta->plan_venta == 'Telcel Plus 3') selected @endif> Telcel Plus 3</option>
-                        <option value="Telcel Plus 4"@if($venta->plan_venta == 'Telcel Plus 4') selected @endif> Telcel Plus 4</option>
-                        <option value="Telcel Plus 5" @if($venta->plan_venta == 'Telcel Plus 5') selected @endif> Telcel Plus 5</option>
-                        <option value="Telcel Plus 6" @if($venta->plan_venta == 'Telcel Plus 6') selected @endif> Telcel Plus 6</option>
-                        <option value="Telcel Plus 7" @if($venta->plan_venta == 'Telcel Plus 7') selected @endif> Telcel Plus 7</option>
-                        <option value="Telcel Plus 8" @if($venta->plan_venta == 'Telcel Plus 8') selected @endif> Telcel Plus 8</option>
-                        <option value="Telcel Plus 9" @if($venta->plan_venta == 'Telcel Plus 9') selected @endif> Telcel Plus 9</option>
-                        <option value="Telcel Plus 1 CC" @if($venta->plan_venta == 'Telcel Plus 1 CC') selected @endif> Telcel Plus 1 CC</option>
-                        <option value="Telcel Plus 1.5 CC" @if($venta->plan_venta == 'Telcel Plus 1.5 CC') selected @endif> Telcel Plus 1.5 CC</option>
-                        <option value="Telcel Plus 2 CC" @if($venta->plan_venta == 'Telcel Plus 2CC') selected @endif> Telcel Plus 2 CC</option>
-                        <option value="Telcel Plus 3 CC" @if($venta->plan_venta == 'Telcel Plus 3 CC') selected @endif> Telcel Plus 3CC</option>
-                        <option value="Telcel Plus 4 CC" @if($venta->plan_venta == 'Telcel Plus 4 CC') selected @endif> Telcel Plus 4 CC</option>
-                        <option value="Telcel Plus 5 CC" @if($venta->plan_venta == 'Telcel Plus 5 CC') selected @endif> Telcel Plus 5 CC</option>
-                        <option value="Telcel Plus 6 CC" @if($venta->plan_venta == 'Telcel Plus 6 CC') selected @endif> Telcel Plus 6 CC</option>
-                        <option value="Telcel Plus 7 CC" @if($venta->plan_venta == 'Telcel Plus 7 CC') selected @endif> Telcel Plus 7 CC</option>
-                        <option value="Telcel Plus 8 CC" @if($venta->plan_venta == 'Telcel Plus 8 CC') selected @endif> Telcel Plus 8 CC</option>
-                        <option value="Telcel Plus 9 CC" @if($venta->plan_venta == 'Telcel Plus 9 CC') selected @endif> Telcel Plus 9 CC</option>
-                        <option value="Telcel Plus 1 MPP" @if($venta->plan_venta == 'Telcel Plus 1 MPP') selected @endif> Telcel Plus 1 MPP</option>
-                        <option value="Telcel Plus 1.5 MPP" @if($venta->plan_venta == 'Telcel Plus 1.5 MPP') selected @endif> Telcel Plus 1.5 MPP</option>
-                        <option value="Telcel Plus 2 MPP" @if($venta->plan_venta == 'Telcel Plus 2 MPP') selected @endif> Telcel Plus 2 MPP</option>
-                        <option value="Telcel Plus 3 MPP" @if($venta->plan_venta == 'Telcel Plus 3 MPP') selected @endif> Telcel Plus 3 MPP</option>
-                        <option value="Telcel Plus 4 MPP" @if($venta->plan_venta == 'Telcel Plus 4 MPP') selected @endif> Telcel Plus 4 MPP</option>
-                        <option value="Telcel Plus 5 MPP" @if($venta->plan_venta == 'Telcel Plus 5 MPP') selected @endif> Telcel Plus 5 MPP</option>
-                        <option value="Telcel Plus 6 MPP" @if($venta->plan_venta == 'Telcel Plus 6 MPP') selected @endif> Telcel Plus 6 MPP</option>
-                        <option value="Telcel Plus 7 MPP" @if($venta->plan_venta == 'Telcel Plus 7 MPP') selected @endif> Telcel Plus 7 MPP</option>
-                        <option value="Telcel Plus 8 MPP" @if($venta->plan_venta == 'Telcel Plus 8 MPP') selected @endif> Telcel Plus 8 MPP</option>
-                        <option value="Telcel Plus 9 MPP" @if($venta->plan_venta == 'Telcel Plus 9 MPP') selected @endif> Telcel Plus 9 MPP</option>
-                        <option value="Telcel Plus 1 MPP CC" @if($venta->plan_venta == 'Telcel Plus 1 MPP CC') selected @endif> Telcel Plus 1 MPP CC</option>
-                        <option value="Telcel Plus 1.5 MPP CC" @if($venta->plan_venta == 'Telcel Plus 1.5 MPP CC') selected @endif> Telcel Plus 1.5 MPP CC</option>
-                        <option value="Telcel Plus 2 MPP CC" @if($venta->plan_venta == 'Telcel Plus 2 MPP CC') selected @endif> Telcel Plus 2 MPP CC</option>
-                        <option value="Telcel Plus 3 MPP CC" @if($venta->plan_venta == 'Telcel Plus 3 MPP CC') selected @endif> Telcel Plus 3 MPP CC</option>
-                        <option value="Telcel Plus 4 MPP CC" @if($venta->plan_venta == 'Telcel Plus 4 MPP CC') selected @endif> Telcel Plus 4 MPP CC</option>
-                        <option value="Telcel Plus 5 MPP CC" @if($venta->plan_venta == 'Telcel Plus 5 MPP CC') selected @endif> Telcel Plus 5 MPP CC</option>
-                        <option value="Telcel Plus 6 MPP CC" @if($venta->plan_venta == 'Telcel Plus 6 MPP CC') selected @endif> Telcel Plus 6 MPP CC</option>
-                        <option value="Telcel Plus 7 MPP CC" @if($venta->plan_venta == 'Telcel Plus 7 MPP CC') selected @endif> Telcel Plus 7 MPP CC</option>
-                        <option value="Telcel Plus 8 MPP CC" @if($venta->plan_venta == 'Telcel Plus 8 MPP CC') selected @endif> Telcel Plus 8 MPP CC</option>
-                        <option value="Telcel Plus 9 MPP CC" @if($venta->plan_venta == 'Telcel Plus 9 MPP CC') selected @endif> Telcel Plus 9 MPP CC</option>
-
+                        <option value="Telcel Libre 1 $249" @if($venta->plan_venta == 'Telcel Libre 1 $249') selected @endif> Telcel Libre 1 $249</option>
+                        <option value="Telcel Libre 2 $319" @if($venta->plan_venta == 'Telcel Libre 2 $319') selected @endif>  Telcel Libre 2 $319</option>
+                        <option value="Telcel Libre 3 $399" @if($venta->plan_venta == 'Telcel Libre 3 $399') selected @endif> Telcel Libre 3 $399</option>
+                        <option value="Telcel Libre 4 $499"@if($venta->plan_venta == 'Telcel Libre 4 $499') selected @endif> Telcel Libre 4 $499</option>
+                        <option value="Telcel Libre 5 $599" @if($venta->plan_venta == 'Telcel Libre 5 $599') selected @endif> Telcel Libre 5 $599</option>
+                        <option value="Telcel Libre 6 $699" @if($venta->plan_venta == 'Telcel Libre 6 $699') selected @endif> Telcel Libre 6 $699</option>
+                        <option value="Telcel Libre 7 $799" @if($venta->plan_venta == 'Telcel Libre 7 $799') selected @endif> Telcel Libre 7 $799</option>
+                        <option value="Telcel Libre 9 $999" @if($venta->plan_venta == 'Telcel Libre 9 $999') selected @endif> Telcel Libre 9 $999</option>
+                        <option value="Telcel Libre 12 $1,299" @if($venta->plan_venta == 'Telcel Libre 12 $1,299') selected @endif> Telcel Libre 12 $1,299</option>
+                        <option value="Telcel Libre VIP $1,499" @if($venta->plan_venta == 'Telcel Libre VIP $1,499') selected @endif> Telcel Libre VIP $1,499</option>
+                        
+                        <option value="Telcel Libre 1 $299 CC" @if($venta->plan_venta == 'Telcel Libre 1 $299 CC') selected @endif> Telcel Libre 1 $299 CC</option>
+                        <option value="Telcel Libre 2 $369 CC" @if($venta->plan_venta == 'Telcel Libre 2 $319 CC') selected @endif> Telcel Libre 2 $369 CC</option>
+                        <option value="Telcel Libre 3 $449 CC" @if($venta->plan_venta == 'Telcel Libre 3 $449 CC') selected @endif> Telcel Libre 3 $449 CC</option>
+                        <option value="Telcel Libre 4 $549 CC" @if($venta->plan_venta == 'Telcel Libre 4 $549 CC') selected @endif> Telcel Libre 4 $549 CC</option>
+                        <option value="Telcel Libre 5 $699 CC" @if($venta->plan_venta == 'Telcel Libre 5 $699 CC') selected @endif> Telcel Libre 5 $699 CC</option>
+                        <option value="Telcel Libre 6 $799 CC" @if($venta->plan_venta == 'Telcel Libre 6 $799 CC') selected @endif> Telcel Libre 6 $799 CC</option>
+                        <option value="Telcel Libre 7 $899 CC" @if($venta->plan_venta == 'Telcel Libre 7 $899 CC') selected @endif> Telcel Libre 7 $899 CC</option>
+                        <option value="Telcel Libre 9 $1099 CC" @if($venta->plan_venta == 'Telcel Libre 9 $1099 CC') selected @endif> Telcel Libre 9 $1099 CC</option>
+                        <option value="Telcel Libre 12 $1,399 CC" @if($venta->plan_venta == 'Telcel Libre 12 $1,399 CC') selected @endif> Telcel Libre 12 $1,399 CC</option>
+                        <option value="Telcel Libre VIP $1,599 CC" @if($venta->plan_venta == 'Telcel Libre VIP $1,599 CC') selected @endif> Telcel Libre VIP $1,599 CC</option>
+<!--                    <option value="Telcel Libre 1 $249 MPP" @if($venta->plan_venta == 'Telcel Libre 1 $249 MPP') selected @endif> Telcel Libre 1 $249 MPP</option>
+                        <option value="Telcel Libre 2 $319 MPP" @if($venta->plan_venta == 'Telcel Libre 2 $319 MPP') selected @endif> Telcel Libre 2 $319 MPP</option>
+                        <option value="Telcel Libre 3 $399 MPP" @if($venta->plan_venta == 'Telcel Libre 3 $399 MPP') selected @endif> Telcel Libre 3 $399 MPP</option>
+                        <option value="Telcel Libre 4 $499 MPP" @if($venta->plan_venta == 'Telcel Libre 4 $499 MPP') selected @endif> Telcel Libre 4 $499 MPP</option>
+                        <option value="Telcel Libre 5 $599 MPP" @if($venta->plan_venta == 'Telcel Libre 5 $599 MPP') selected @endif> Telcel Libre 5 $599 MPP</option>
+                        <option value="Telcel Libre 6 $699 MPP" @if($venta->plan_venta == 'Telcel Libre 6 $699 MPP') selected @endif> Telcel Libre 6 $699 MPP</option>
+                        <option value="Telcel Libre 7 $799 MPP" @if($venta->plan_venta == 'Telcel Libre 7 $799 MPP') selected @endif> Telcel Libre 7 $799 MPP</option>
+                        <option value="Telcel Libre 9 $999 MPP" @if($venta->plan_venta == 'Telcel Libre 9 $999 MPP') selected @endif> Telcel Libre 9 $999 MPP</option>
+                        <option value="Telcel Libre 1 $249 MPP CC" @if($venta->plan_venta == 'Telcel Libre 1 $249 MPP CC') selected @endif> Telcel Libre 1 $249 MPP CC</option>
+                        <option value="Telcel Libre 2 $319 MPP CC" @if($venta->plan_venta == 'Telcel Libre 2 $319 MPP CC') selected @endif> Telcel Libre 2 $319 MPP CC</option>
+                        <option value="Telcel Libre 3 $399 MPP CC" @if($venta->plan_venta == 'Telcel Libre 3 $399 MPP CC') selected @endif> Telcel Libre 3 $399 MPP CC</option>
+                        <option value="Telcel Libre 4 $499 MPP CC" @if($venta->plan_venta == 'Telcel Libre 4 $499 MPP CC') selected @endif> Telcel Libre 4 $499 MPP CC</option>
+                        <option value="Telcel Libre 5 $599 MPP CC" @if($venta->plan_venta == 'Telcel Libre 5 $599 MPP CC') selected @endif> Telcel Libre 5 $599 MPP CC</option>
+                        <option value="Telcel Libre 6 $699 MPP CC" @if($venta->plan_venta == 'Telcel Libre 6 $699 MPP CC') selected @endif> Telcel Libre 6 $699 MPP CC</option>
+                        <option value="Telcel Libre 7 $799 MPP CC" @if($venta->plan_venta == 'Telcel Libre 7 $799 MPP CC') selected @endif> Telcel Libre 7 $799 MPP CC</option>
+                        <option value="Telcel Libre 9 $999 MPP CC" @if($venta->plan_venta == 'Telcel Libre 9 $999 MPP CC') selected @endif> Telcel Libre 9 $999 MPP CC</option>
+-->
                     </select>
 
                 </div>
